@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <QueryProvider>
-        <body className={`${poppins}`}>{children}</body>
+        <body className={`${poppins} min-h-screen`}>{children}</body>
       </QueryProvider>
     </html>
   );
