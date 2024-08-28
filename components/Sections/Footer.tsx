@@ -17,56 +17,56 @@ const Footer = () => {
         </div>
         <div className="flex flex-row gap-x-8 text-left">
           <div className="flex flex-col gap-y-3">
-            <span className="font-bold text-secondary-foreground">
+            <span className="font-bold text-muted-foreground">
               {" "}
               Nos voitures
             </span>
-            <ul className="flex flex-col gap-y-1">
-              <Link href="/" className="xl:hover:text-foreground/80">
+            <ul className="flex flex-col gap-y-1 text-foreground/90">
+              <Link href="/" className="xl:hover:text-foreground">
                 Classiques
               </Link>
-              <Link href="/" className="xl:hover:text-foreground/80">
+              <Link href="/" className="xl:hover:text-foreground">
                 Premium
               </Link>
             </ul>
           </div>
           <div className="flex flex-col gap-y-3">
-            <span className="font-bold text-secondary-foreground">
+            <span className="font-bold text-muted-foreground">
               Nos Services
             </span>
-            <ul className="flex flex-col gap-y-1">
-              <Link href="/" className="xl:hover:text-foreground/80">
+            <ul className="flex flex-col gap-y-1 text-foreground/90">
+              <Link href="/" className="xl:hover:text-foreground">
                 Estimation
               </Link>
-              <Link href="/" className="xl:hover:text-foreground/80">
+              <Link href="/" className="xl:hover:text-foreground">
                 Acheter
               </Link>
-              <Link href="/" className="xl:hover:text-foreground/80">
+              <Link href="/" className="xl:hover:text-foreground">
                 Vendre
               </Link>
             </ul>
           </div>
           <div className="flex flex-col gap-y-3">
-            <span className="font-bold text-secondary-foreground">
+            <span className="font-bold text-muted-foreground">
               Plus d&apos;infos
             </span>
-            <ul className="flex flex-col gap-y-1">
-              <Link href="/" className="xl:hover:text-foreground/80">
+            <ul className="flex flex-col gap-y-1 text-foreground/90">
+              <Link href="/" className="xl:hover:text-foreground">
                 Equipe
               </Link>
-              <Link href="/" className="xl:hover:text-foreground/80">
+              <Link href="/" className="xl:hover:text-foreground">
                 Contact
               </Link>
             </ul>
           </div>
         </div>
       </div>
-      <div className="mx-auto flex max-w-4xl flex-row justify-between border-t py-6 text-sm text-secondary-foreground">
+      <div className="mx-auto flex max-w-4xl flex-row justify-between border-t py-6 text-sm text-foreground/70">
         <div className="flex flex-row gap-x-4">
-          <Link href="/" className="xl:hover:font-semibold">
+          <Link href="/" className="xl:hover:text-foreground">
             CGV
           </Link>
-          <Link href="/" className="xl:hover:font-semibold">
+          <Link href="/" className="xl:hover:text-foreground">
             Mentions légales
           </Link>
         </div>
