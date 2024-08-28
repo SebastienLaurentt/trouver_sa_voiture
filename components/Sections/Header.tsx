@@ -1,11 +1,17 @@
-'use client'
+"use client";
 
+import { gsap } from "gsap";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Header: React.FC = () => {
   const pathname = usePathname();
+
+  useEffect(() => {
+    gsap.fromTo("#header", { opacity: 0 }, { opacity: 1, duration:1, delay:0.5 });
+  }, []);
 
   const links = [
     { name: "Accueil", href: "/", ariaLabel: "Aller à l'accueil" },
@@ -29,10 +35,10 @@ const Header: React.FC = () => {
   ];
 
   return (
-    <header className=" shadow-md">
-      <nav className="container mx-auto flex items-center justify-between px-6 py-4">
-        <div className="text-lg font-semibold">Logo</div>
-        <ul className="flex space-x-8">
+    <header id="header" className="opacity-0 shadow-md">
+      <nav className="container mx-auto flex items-center justify-between px-6 py-2">
+        <Image src="/images/Rolls.svg" width={60} height={50} alt="logo" color="text-white"/>
+        <ul className="flex space-x-4">
           {links.map((link, idx) => (
             <li key={idx}>
               <Link
