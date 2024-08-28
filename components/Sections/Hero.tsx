@@ -43,6 +43,9 @@ const Hero = () => {
           alt="hero"
         />
       </div>
+      <div>
+
+      </div>
     </Section>
   );
 };
