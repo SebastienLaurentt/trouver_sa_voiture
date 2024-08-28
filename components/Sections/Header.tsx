@@ -13,6 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 import { gsap } from "gsap";
 import { Atom } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
 
@@ -24,24 +25,6 @@ const Header: React.FC = () => {
       { opacity: 1, duration: 1, delay: 0.5 }
     );
   }, []);
-
-  const components: { title: string; href: string; description: string }[] = [
-    {
-      title: "Estimation",
-      href: "/services/estimation",
-      description: "Notre service pour les estimations",
-    },
-    {
-      title: "Achat",
-      href: "/services/achat",
-      description: "Notre service pour les achats",
-    },
-    {
-      title: "Vente",
-      href: "/services/vente",
-      description: "Notre service pour les ventes",
-    },
-  ];
 
   const ListItem = React.forwardRef<
     React.ElementRef<"a">,
@@ -91,26 +74,20 @@ const Header: React.FC = () => {
                 <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
                     <NavigationMenuLink asChild>
-                      <a
-                        className="flex size-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                        href="/"
-                      >
-                        <div className="mb-2 mt-4 text-lg font-medium">
-                          shadcn/ui
-                        </div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Beautifully designed components that you can copy and
-                          paste into your apps. Accessible. Customizable. Open
-                          Source.
-                        </p>
-                      </a>
+                      <Image
+                        src="/images/Car50.avif"
+                        alt="Photo de voiture"
+                        width={180}
+                        height={180}
+                        className="rounded-md"
+                      />
                     </NavigationMenuLink>
                   </li>
                   <ListItem href="/docs" title="Classiques">
-                    Les vehicules classiques.
+                    Venez découvrir les vehicules classiques de notre catalogue.
                   </ListItem>
                   <ListItem href="/docs/installation" title="Premium">
-                    Les vehicules Premiums
+                    Venez découvrir les vehicules premium de notre catalogue.
                   </ListItem>
                 </ul>
               </NavigationMenuContent>
@@ -118,16 +95,16 @@ const Header: React.FC = () => {
             <NavigationMenuItem>
               <NavigationMenuTrigger>Services</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-1 lg:w-[600px] ">
-                  {components.map((component) => (
-                    <ListItem
-                      key={component.title}
-                      title={component.title}
-                      href={component.href}
-                    >
-                      {component.description}
-                    </ListItem>
-                  ))}
+                <ul className="p-6 md:w-[340px]">
+                  <ListItem href="/services/estimation" title="Estimation">
+                    Notre service pour les estimations.
+                  </ListItem>
+                  <ListItem href="/services/achat" title="Achat">
+                    Notre service pour les achats.
+                  </ListItem>
+                  <ListItem href="/services/vente" title="Vente">
+                    Notre service pour les ventes.
+                  </ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
