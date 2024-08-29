@@ -12,7 +12,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { gsap } from "gsap";
-import { Atom } from "lucide-react";
+import { Atom, ChartNoAxesCombined, Handshake } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -31,8 +31,11 @@ const Header: React.FC = () => {
 
   const ListItem = React.forwardRef<
     React.ElementRef<"a">,
-    React.ComponentPropsWithoutRef<"a">
-  >(({ className, title, children, ...props }, ref) => {
+    React.ComponentPropsWithoutRef<"a"> & {
+      title: string;
+      icon?: React.ElementType;
+    }
+  >(({ className, title, icon: Icon, children, ...props }, ref) => {
     return (
       <li>
         <NavigationMenuLink asChild>
@@ -44,10 +47,15 @@ const Header: React.FC = () => {
             )}
             {...props}
           >
-            <div className="text-sm font-medium leading-none">{title}</div>
-            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-              {children}
-            </p>
+            <div className="flex flex-row items-center gap-x-4">
+              {Icon && <Icon className="size-6" />}
+              <div className="flex flex-col ">
+                <div className="text-sm font-medium leading-none">{title}</div>
+                <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                  {children}
+                </p>
+              </div>
+            </div>
           </a>
         </NavigationMenuLink>
       </li>
@@ -98,14 +106,26 @@ const Header: React.FC = () => {
             <NavigationMenuItem>
               <NavigationMenuTrigger>Services</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="p-6 md:w-[340px]">
-                  <ListItem href="/services/estimation" title="Estimation">
+                <ul className="p-6 md:w-[400px]">
+                  <ListItem
+                    href="/services/estimation"
+                    title="Estimation"
+                    icon={ChartNoAxesCombined}
+                  >
                     Notre service pour les estimations.
                   </ListItem>
-                  <ListItem href="/services/achat" title="Achat">
+                  <ListItem
+                    href="/services/achat"
+                    title="Achat"
+                    icon={Handshake}
+                  >
                     Notre service pour les achats.
                   </ListItem>
-                  <ListItem href="/services/vente" title="Vente">
+                  <ListItem
+                    href="/services/vente"
+                    title="Vente"
+                    icon={Handshake}
+                  >
                     Notre service pour les ventes.
                   </ListItem>
                 </ul>

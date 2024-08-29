@@ -79,7 +79,7 @@ const Footer = () => {
             Mentions légales
           </Link>
         </div>
-        <span>@2024 Trouver Sa Voiture</span>
+        <span>@2024 - TSV</span>
       </div>
     </footer>
   );
