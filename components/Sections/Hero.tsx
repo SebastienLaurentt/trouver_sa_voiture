@@ -24,9 +24,10 @@ const Hero = () => {
           Trouvez la voiture de{" "}
           <span className="text-primary"> vos rêves </span> en quelques clics !
         </h1>
-        <p className="my-4 text-xl">
-          Explorez des annonces de voitures neuves et d&apos;occasion. Comparez
-          les modèles et trouvez celle qui vous convient.
+        <p className="subtitle my-4">
+          {" "}
+          Explorez les voitures neuves et d’occasion. Comparez et trouvez votre
+          modèle idéal.{" "}
         </p>
         <Button>
           <Link href="/">Trouver ma voiture</Link>
@@ -43,9 +44,7 @@ const Hero = () => {
           alt="hero"
         />
       </div>
-      <div>
-
-      </div>
+      <div></div>
     </Section>
   );
 };

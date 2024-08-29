@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="border-t">
+    <footer className="hidden border-t xl:block">
       <div className="mx-auto flex max-w-4xl flex-row justify-between py-12">
         <div className="flex flex-col">
           <div className="flex flex-row items-center gap-x-1">
@@ -22,10 +22,16 @@ const Footer = () => {
               Nos voitures
             </span>
             <ul className="flex flex-col gap-y-1 text-foreground/90">
-              <Link href="/" className="xl:hover:text-foreground">
+              <Link
+                href="/voitures/classiques"
+                className="xl:hover:text-foreground"
+              >
                 Classiques
               </Link>
-              <Link href="/" className="xl:hover:text-foreground">
+              <Link
+                href="/voitures/premium"
+                className="xl:hover:text-foreground"
+              >
                 Premium
               </Link>
             </ul>
@@ -35,13 +41,13 @@ const Footer = () => {
               Nos Services
             </span>
             <ul className="flex flex-col gap-y-1 text-foreground/90">
-              <Link href="/" className="xl:hover:text-foreground">
+              <Link href="/services/estimation" className="xl:hover:text-foreground">
                 Estimation
               </Link>
-              <Link href="/" className="xl:hover:text-foreground">
+              <Link href="/services/achat" className="xl:hover:text-foreground">
                 Acheter
               </Link>
-              <Link href="/" className="xl:hover:text-foreground">
+              <Link href="/services/vente" className="xl:hover:text-foreground">
                 Vendre
               </Link>
             </ul>
@@ -51,10 +57,10 @@ const Footer = () => {
               Plus d&apos;infos
             </span>
             <ul className="flex flex-col gap-y-1 text-foreground/90">
-              <Link href="/" className="xl:hover:text-foreground">
+              <Link href="/about" className="xl:hover:text-foreground">
                 Equipe
               </Link>
-              <Link href="/" className="xl:hover:text-foreground">
+              <Link href="/contact" className="xl:hover:text-foreground">
                 Contact
               </Link>
             </ul>

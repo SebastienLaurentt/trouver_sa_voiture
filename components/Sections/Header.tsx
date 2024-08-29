@@ -53,7 +53,7 @@ const Header: React.FC = () => {
   ListItem.displayName = "ListItem";
 
   return (
-    <header id="header" className="opacity-0 shadow-md">
+    <header id="header" className="hidden opacity-0 shadow-md xl:block">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4 ">
         <div className="flex flex-row items-center gap-x-1">
           <Atom size={28} className="text-primary" />
@@ -62,7 +62,7 @@ const Header: React.FC = () => {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link href="/accueil" legacyBehavior passHref>
+              <Link href="/" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Accueil
                 </NavigationMenuLink>
@@ -83,10 +83,10 @@ const Header: React.FC = () => {
                       />
                     </NavigationMenuLink>
                   </li>
-                  <ListItem href="/docs" title="Classiques">
+                  <ListItem href="/voitures/classiques" title="Classiques">
                     Venez découvrir les vehicules classiques de notre catalogue.
                   </ListItem>
-                  <ListItem href="/docs/installation" title="Premium">
+                  <ListItem href="/voitures/premium" title="Premium">
                     Venez découvrir les vehicules premium de notre catalogue.
                   </ListItem>
                 </ul>

@@ -40,6 +40,12 @@
     @apply bg-background text-foreground;
   }
   h1 {
-    @apply text-6xl;
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+
+  /* Custom class */
+  .subtitle {
+    @apply md:w-[480px] md:text-lg mx-auto;
   }
 }
