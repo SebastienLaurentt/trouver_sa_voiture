@@ -1,4 +1,5 @@
 import Hero from "@/components/LandingSections/Hero";
+import Services from "@/components/LandingSections/Services";
 import Voitures from "@/components/LandingSections/Voitures";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <main>
       <Hero />
       <Voitures />
+      <Services />
     </main>
   );
 }
