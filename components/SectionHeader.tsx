@@ -5,8 +5,9 @@ interface SectionHeaderProps {
 
 const SectionHeader = ({ tag, description }: SectionHeaderProps) => {
   return (
-    <div className="flex flex-col items-center gap-x-2">
-      <span className="text-muted-foreground"> {tag} </span> <h2> {description}</h2>
+    <div className="mb-8 flex flex-col items-center gap-x-2 md:mb-12">
+      <span className="text-muted-foreground"> {tag} </span>{" "}
+      <h2> {description}</h2>
     </div>
   );
 };
