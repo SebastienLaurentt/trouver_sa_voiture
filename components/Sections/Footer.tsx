@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="hidden border-t xl:block">
-      <div className="mx-auto flex max-w-4xl flex-row justify-between py-12">
+    <footer className=" border-t">
+      <div className="mx-auto flex flex-col justify-between gap-y-8 px-3 py-12 md:max-w-2xl  md:flex-row md:gap-y-0 md:px-0 lg:max-w-4xl">
         <div className="flex flex-col">
           <div className="flex flex-row items-center gap-x-1">
             <Atom size={28} className="text-primary" />
@@ -41,7 +41,10 @@ const Footer = () => {
               Nos Services
             </span>
             <ul className="flex flex-col gap-y-1 text-foreground/90">
-              <Link href="/services/estimation" className="xl:hover:text-foreground">
+              <Link
+                href="/services/estimation"
+                className="xl:hover:text-foreground"
+              >
                 Estimation
               </Link>
               <Link href="/services/achat" className="xl:hover:text-foreground">
@@ -54,7 +57,7 @@ const Footer = () => {
           </div>
           <div className="flex flex-col gap-y-3">
             <span className="font-bold text-muted-foreground">
-              Plus d&apos;infos
+              Plus d&apos;info
             </span>
             <ul className="flex flex-col gap-y-1 text-foreground/90">
               <Link href="/about" className="xl:hover:text-foreground">
@@ -67,7 +70,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto flex max-w-4xl flex-row justify-between border-t py-6 text-sm text-foreground/70">
+      <div className="mx-auto flex flex-col justify-between gap-y-2 border-t px-3 py-6 text-sm text-foreground/70 md:max-w-2xl md:flex-row md:gap-y-0 md:px-0 lg:max-w-4xl">
         <div className="flex flex-row gap-x-4">
           <Link href="/" className="xl:hover:text-foreground">
             CGV
