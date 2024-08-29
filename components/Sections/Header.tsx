@@ -15,9 +15,12 @@ import { gsap } from "gsap";
 import { Atom } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import BurgerMenu from "../BurgerMenu";
 
 const Header: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     gsap.fromTo(
       "#header",
@@ -53,13 +56,13 @@ const Header: React.FC = () => {
   ListItem.displayName = "ListItem";
 
   return (
-    <header id="header" className="hidden opacity-0 shadow-md xl:block">
+    <header id="header" className=" opacity-0 shadow-md">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4 ">
         <div className="flex flex-row items-center gap-x-1">
           <Atom size={28} className="text-primary" />
           <span className="text-3xl font-semibold">TSV</span>
         </div>
-        <NavigationMenu>
+        <NavigationMenu className="hidden lg:block">
           <NavigationMenuList>
             <NavigationMenuItem>
               <Link href="/" legacyBehavior passHref>
@@ -117,6 +120,10 @@ const Header: React.FC = () => {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+
+        <div className="flex items-center lg:hidden">
+          <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
+        </div>
       </nav>
     </header>
   );
