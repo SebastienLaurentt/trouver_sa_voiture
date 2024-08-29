@@ -6,7 +6,7 @@ import ServicesCard from "../ServicesCard";
 
 const Services = () => {
   return (
-    <Section marginTop marginBottom>
+    <Section marginTop>
       <SectionHeader
         tag="Nos Services"
         description="Vous accompagner dans vos démarches"
