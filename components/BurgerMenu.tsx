@@ -1,6 +1,5 @@
-import { anton } from "@/lib/font";
 import { gsap } from "gsap";
-import { Menu, X } from "lucide-react";
+import { Atom, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { Dispatch, SetStateAction, useEffect } from "react";
 
@@ -74,8 +73,37 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
           <X className="lg:size-10" />
         </button>
 
-        <div className="mt-32 flex flex-col gap-y-12">
-Menu en cours
+        <div className="mt-24 flex flex-col gap-y-20">
+          <div className="flex flex-row items-center justify-center gap-x-1">
+            <Atom size={44} className="text-primary" />
+            <span className="text-5xl font-semibold">TSV</span>
+          </div>
+          <ul className="flex flex-col gap-y-2 text-lg">
+            <li>
+              <Link href="/">Accueil</Link>
+            </li>
+            <li>
+              <Link href="/voitures/classiques">Voiture Classiques</Link>
+            </li>
+            <li>
+              <Link href="/voitures/premium">Voiture Premium</Link>
+            </li>
+            <li>
+              <Link href="/services/estimation">Estimation</Link>
+            </li>
+            <li>
+              <Link href="/services/achat">Achat</Link>
+            </li>
+            <li>
+              <Link href="/services/vente">Vente</Link>
+            </li>
+            <li>
+              <Link href="/about">Equipe</Link>
+            </li>
+            <li>
+              <Link href="/contact">Contact</Link>
+            </li>
+          </ul>
         </div>
       </div>
     </>
