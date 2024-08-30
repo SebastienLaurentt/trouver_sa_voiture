@@ -22,7 +22,7 @@ const Voitures = () => {
             <div className="flex  flex-row justify-between rounded-3xl border">
               <div className="flex w-1/2 flex-col justify-around p-6">
                 <h3>Nos marques Classiques</h3>
-                <ul className="grid grid-cols-4 gap-x-4 gap-y-8">
+                <ul className="grid grid-cols-4 gap-x-4 md:gap-y-4 lg:gap-y-6 xl:gap-y-8">
                   <li>
                     <Image
                       src="/images/CarLogo/Porsche.svg"
@@ -140,7 +140,7 @@ const Voitures = () => {
             <div className="flex  flex-row justify-between rounded-3xl border">
               <div className="flex w-1/2 flex-col justify-around p-6">
                 <h3>Nos marques Premium</h3>
-                <ul className="grid grid-cols-4 gap-x-4 gap-y-8">
+                <ul className="grid grid-cols-4 gap-x-4 md:gap-y-4 lg:gap-y-6 xl:gap-y-8">
                   <li>
                     <Image
                       src="/images/CarLogo/Porsche.svg"

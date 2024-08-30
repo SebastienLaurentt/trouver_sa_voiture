@@ -1,4 +1,3 @@
-import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
@@ -12,7 +11,7 @@ const Services = () => {
         description="Vous accompagner dans vos démarches"
       />
       <div className="flex flex-row rounded-xl border">
-        <div className="w-1/2 border-r">
+        <div className="flex flex-col justify-between border-r  md:w-1/2">
           <ServicesCard
             serviceName="Estimation"
             serviceDescription="Nous vous accompagnons pour l'estimation"
@@ -32,7 +31,7 @@ const Services = () => {
             classname="hover:rounded-bl-xl"
           />
         </div>
-        <div className="w-1/2 p-2">
+        <div className="p-2 md:w-1/2">
           <Image
             src="/images/CarPremium.jpg"
             alt="Image de voiture classique"

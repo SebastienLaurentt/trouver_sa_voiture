@@ -17,10 +17,12 @@ const ServicesCard = ({
   return (
     <Link
       href={href}
-      className={`${classname} flex flex-col justify-between p-9 hover:bg-muted`}
+      className={`${classname} flex flex-col justify-between hover:bg-muted md:p-2.5 xl:p-9`}
     >
-      <span className="mb-2 font-bold text-lg">{serviceName}</span>
-      <p className="mb-3">{serviceDescription}</p>
+      <span className=" mb-1.5 font-bold lg:mb-2 lg:text-lg">
+        {serviceName}
+      </span>
+      <p className="mb-2 text-sm lg:mb-3 lg:text-base">{serviceDescription}</p>
       <div className="flex flex-row gap-x-4 font-bold text-primary">
         <span>En savoir plus</span> <MoveRight />
       </div>
