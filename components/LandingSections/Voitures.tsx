@@ -19,10 +19,10 @@ const Voitures = () => {
             <TabsTrigger value="premium">Premium</TabsTrigger>
           </TabsList>
           <TabsContent value="classiques">
-            <div className="flex  flex-row justify-between rounded-3xl border">
-              <div className="flex w-1/2 flex-col justify-around p-6">
+            <div className="flex  flex-row justify-between rounded-3xl md:border">
+              <div className="flex w-full flex-col justify-around p-6 md:w-1/2">
                 <h3>Nos marques Classiques</h3>
-                <ul className="grid grid-cols-4 gap-x-4 md:gap-y-4 lg:gap-y-6 xl:gap-y-8">
+                <ul className="grid grid-cols-4 gap-4 py-4 md:py-0 lg:gap-y-6 xl:gap-y-8">
                   <li>
                     <Image
                       src="/images/CarLogo/Porsche.svg"
@@ -124,7 +124,7 @@ const Voitures = () => {
                   <Link href="/voitures/classiques">Catalogue Classique</Link>
                 </Button>
               </div>
-              <div className="w-2/3 p-3">
+              <div className="hidden p-3 md:block md:w-2/3">
                 <Image
                   src="/images/ClassiquesCar.jpg"
                   alt="Image de voiture classique"
@@ -136,11 +136,10 @@ const Voitures = () => {
             </div>
           </TabsContent>
           <TabsContent value="premium">
-            {" "}
-            <div className="flex  flex-row justify-between rounded-3xl border">
-              <div className="flex w-1/2 flex-col justify-around p-6">
+            <div className="flex flex-row justify-between rounded-3xl md:border">
+              <div className="flex w-full flex-col justify-around p-6 md:w-1/2">
                 <h3>Nos marques Premium</h3>
-                <ul className="grid grid-cols-4 gap-x-4 md:gap-y-4 lg:gap-y-6 xl:gap-y-8">
+                <ul className="grid grid-cols-4 gap-4 py-4 md:py-0 lg:gap-y-6 xl:gap-y-8">
                   <li>
                     <Image
                       src="/images/CarLogo/Porsche.svg"
@@ -239,13 +238,13 @@ const Voitures = () => {
                   </li>
                 </ul>
                 <Button asChild>
-                  <Link href="/voitures/classiques">Catalogue Premium</Link>
+                  <Link href="/voitures/premium">Catalogue Premium</Link>
                 </Button>
               </div>
-              <div className="w-2/3 p-3">
+              <div className="hidden p-3 md:block md:w-2/3">
                 <Image
                   src="/images/CarPremium.jpg"
-                  alt="Image de voiture classique"
+                  alt="Image de voiture premium"
                   width={1000}
                   height={1000}
                   className="rounded-lg"
