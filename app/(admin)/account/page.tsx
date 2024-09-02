@@ -1,11 +1,14 @@
-import CreateVehiculeForm from "./CreateVehiculeForm";
+import { getVehiclesList } from '@/lib/actions';
+import React from 'react'
+import VehiculeList from './VehiculeList';
 
-const page = () => {
+const Page = async () => {
+  const vehicles = await getVehiclesList();
   return (
     <div>
-      <CreateVehiculeForm />
+      <VehiculeList vehicles={vehicles} />
     </div>
-  );
-};
+  )
+}
 
-export default page;
+export default Page

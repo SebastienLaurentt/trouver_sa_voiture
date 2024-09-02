@@ -5,17 +5,17 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
 import { createVehicle } from "@/lib/actions";
-
 import { useMutation } from "@tanstack/react-query";
+import { X } from "lucide-react";
 import React, { useState } from "react";
 
-const CreateVehiculeForm = () => {
+const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
   const [name, setName] = useState("");
   const [kmNumber, setKmNumber] = useState("");
   const [boiteType, setBoiteType] = useState("");
   const [carType, setCarType] = useState("");
   const [price, setPrice] = useState("");
-  const [error, setError] = useState(""); 
+  const [error, setError] = useState("");
 
   const {
     mutate: createVehicleMutation,
@@ -30,7 +30,7 @@ const CreateVehiculeForm = () => {
         const result = await createVehicle(formData);
         return result;
       } catch (error) {
-        throw new Error("Failed to create vehicle");
+        throw new Error("Échec de la création du véhicule");
       }
     },
     onSuccess: () => {
@@ -39,10 +39,10 @@ const CreateVehiculeForm = () => {
       setBoiteType("");
       setCarType("");
       setPrice("");
-      toast({ title: "Vehicle created successfully" });
+      toast({ title: "Véhicule créé avec succès" });
     },
     onError: (error) => {
-      setError(error.message || "An unexpected error occurred.");
+      setError(error.message || "Une erreur inattendue est survenue.");
     },
   });
 
@@ -59,68 +59,76 @@ const CreateVehiculeForm = () => {
   };
 
   return (
-    <div className="mx-auto  w-[500px] py-20">
-      <h2 className="mb-4 text-xl font-bold">Create New Vehicle</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <Label htmlFor="name">Name</Label>
-          <Input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <Label htmlFor="kmNumber">Kilometers</Label>
-          <Input
-            id="kmNumber"
-            type="number"
-            value={kmNumber}
-            onChange={(e) => setKmNumber(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <Label htmlFor="boiteType">Transmission Type</Label>
-          <Input
-            id="boiteType"
-            type="text"
-            value={boiteType}
-            onChange={(e) => setBoiteType(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <Label htmlFor="carType">Car Type</Label>
-          <Input
-            id="carType"
-            type="text"
-            value={carType}
-            onChange={(e) => setCarType(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <Label htmlFor="price">Price</Label>
-          <Input
-            id="price"
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-          />
-        </div>
-        {isError && <p className="text-red-500">{error}</p>}
-        <Button type="submit" disabled={isPending}>
-          {isPending
-            ? "Creating..."
-            : isSuccess
-            ? "Created!"
-            : "Create Vehicle"}
-        </Button>
-      </form>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+      <div className="relative w-[500px] rounded-lg border border-white bg-background  p-6 shadow-lg">
+        <button
+          className="absolute right-2 top-2 text-gray-600 hover:text-black"
+          onClick={onClose}
+        >
+          <X />
+        </button>
+        <h2 className="mb-4 text-xl font-bold">Créer un nouveau véhicule</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <Label htmlFor="name">Nom</Label>
+            <Input
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <Label htmlFor="kmNumber">Kilométrage</Label>
+            <Input
+              id="kmNumber"
+              type="number"
+              value={kmNumber}
+              onChange={(e) => setKmNumber(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <Label htmlFor="boiteType">Type de transmission</Label>
+            <Input
+              id="boiteType"
+              type="text"
+              value={boiteType}
+              onChange={(e) => setBoiteType(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <Label htmlFor="carType">Type de véhicule</Label>
+            <Input
+              id="carType"
+              type="text"
+              value={carType}
+              onChange={(e) => setCarType(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <Label htmlFor="price">Prix</Label>
+            <Input
+              id="price"
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              required
+            />
+          </div>
+          {isError && <p className="text-red-500">{error}</p>}
+          <Button type="submit" disabled={isPending}>
+            {isPending
+              ? "Création en cours..."
+              : isSuccess
+              ? "Créé !"
+              : "Créer véhicule"}
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };
