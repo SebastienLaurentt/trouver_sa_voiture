@@ -5,7 +5,6 @@ import { z } from "zod";
 import { prisma } from "./prisma";
 
 const VehicleSchema = z.object({
-  id: z.string().optional(),
   name: z.string().min(1, "Name is required"),
   kmNumber: z.number().int().positive("Kilometers must be a positive number"),
   boiteType: z.string().min(1, "Transmission type is required"),

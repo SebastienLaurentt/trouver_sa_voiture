@@ -1,14 +1,13 @@
-"use client";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Vehicule } from "@prisma/client";
+import { getVehiclesList } from "@/lib/actions";
 import Link from "next/link";
 import CarCard from "../CarCard";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
 import { Button } from "../ui/button";
 
-const Voitures = ({ vehicles }: { vehicles: Vehicule[] }) => {
+const Voitures = async () => {
+  const vehicles = await getVehiclesList();
   return (
     <Section>
       <SectionHeader
@@ -24,15 +23,16 @@ const Voitures = ({ vehicles }: { vehicles: Vehicule[] }) => {
 
           <TabsContent value="classiques" className="w-full">
             <div className="mb-6 flex w-full flex-col items-center justify-between gap-y-12 xl:flex-row">
-              {vehicles.map((vehicle: Vehicule) => (
-                <CarCard
-                  key={vehicle.id}
-                  price={vehicle.price}
-                  boiteType={vehicle.boiteType}
-                  carType={vehicle.carType}
-                  kmNumber={vehicle.kmNumber}
-                  name={vehicle.name}
-                />
+              {vehicles.map((vehicle, index) => (
+                <li key={index}>
+                  <CarCard
+                    price={vehicle.price}
+                    boiteType={vehicle.boiteType}
+                    carType={vehicle.carType}
+                    kmNumber={vehicle.kmNumber}
+                    name={vehicle.name}
+                  />
+                </li>
               ))}
             </div>
             <Button asChild>
@@ -42,15 +42,16 @@ const Voitures = ({ vehicles }: { vehicles: Vehicule[] }) => {
 
           <TabsContent value="premium" className="w-full">
             <div className="mb-6 flex flex-col items-center justify-between gap-y-12 xl:flex-row ">
-              {vehicles.map((vehicle: Vehicule) => (
-                <CarCard
-                  key={vehicle.id}
-                  price={vehicle.price}
-                  boiteType={vehicle.boiteType}
-                  carType={vehicle.carType}
-                  kmNumber={vehicle.kmNumber}
-                  name={vehicle.name}
-                />
+              {vehicles.map((vehicle, index) => (
+                <li key={index}>
+                  <CarCard
+                    price={vehicle.price}
+                    boiteType={vehicle.boiteType}
+                    carType={vehicle.carType}
+                    kmNumber={vehicle.kmNumber}
+                    name={vehicle.name}
+                  />
+                </li>
               ))}
             </div>
             <Button asChild>
