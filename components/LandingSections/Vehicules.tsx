@@ -23,7 +23,7 @@ const Voitures = ({ vehicles }: { vehicles: Vehicule[] }) => {
           </TabsList>
 
           <TabsContent value="classiques" className="w-full">
-            <div className="mb-6 flex w-full flex-row justify-between">
+            <div className="mb-6 flex w-full flex-col items-center justify-between gap-y-12 xl:flex-row">
               {vehicles.map((vehicle: Vehicule) => (
                 <CarCard
                   key={vehicle.id}
@@ -41,7 +41,7 @@ const Voitures = ({ vehicles }: { vehicles: Vehicule[] }) => {
           </TabsContent>
 
           <TabsContent value="premium" className="w-full">
-            <div className="mb-6 flex flex-row justify-between ">
+            <div className="mb-6 flex flex-col items-center justify-between gap-y-12 xl:flex-row ">
               {vehicles.map((vehicle: Vehicule) => (
                 <CarCard
                   key={vehicle.id}
