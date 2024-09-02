@@ -17,27 +17,29 @@ const CarCard = ({
   price,
 }: CarCardProps) => {
   return (
-    <div className="rounded-lg border p-2">
+    <div >
       <div>
         <Image
           src="/images/CarCardImg.jpg"
           alt="Image voiture"
           width={300}
           height={300}
-          className="rounded-md"
+          className="rounded-t-md"
         />
       </div>
-      <div className="my-2 flex flex-row justify-between gap-x-2">
-        <span>{kmNumber} km</span>
-        <span className="border-x border-white px-2">{boiteType}</span>
-        <span>{carType}</span>
-      </div>
-      <div className="flex flex-col items-start">
-        <span>{name}</span>
+      <div className="rounded-b-lg border p-3">
+        <div className="text-left text-lg">{name}</div>
+        <div className="my-4 flex flex-row  gap-x-2 text-sm">
+          <span className="rounded-full bg-muted px-2.5 py-1 ">
+            {kmNumber} km
+          </span>
+          <span className="rounded-full bg-muted px-2.5 py-1">{boiteType}</span>
+          <span className="rounded-full bg-muted px-2.5 py-1">{carType}</span>
+        </div>
         <div className="flex w-full flex-row items-center justify-between gap-x-2">
           {" "}
-          <span>{price} euros</span>
-          <Button>Buy</Button>
+          <span className="text-2xl font-semibold">{price} €</span>
+          <Button>En savoir plus</Button>
         </div>
       </div>
     </div>
