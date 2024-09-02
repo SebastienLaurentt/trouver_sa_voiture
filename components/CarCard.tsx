@@ -22,8 +22,8 @@ const CarCard = ({
         <Image
           src="/images/CarCardImg.jpg"
           alt="Image voiture"
-          width={300}
-          height={300}
+          width={320}
+          height={320}
           className="rounded-t-md"
         />
       </div>

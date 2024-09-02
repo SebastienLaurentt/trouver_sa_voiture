@@ -4,7 +4,7 @@ import { Vehicule } from "@prisma/client";
 
 const ClassiquesVehiculesList = ({ vehicles }: { vehicles: Vehicule[] }) => {
   return (
-    <Section classname="flex flex-row gap-x-4" marginTop marginBottom>
+    <Section classname="flex flex-row justify-between gap-x-4" marginTop marginBottom>
       {vehicles.map((vehicle: Vehicule) => (
         <CarCard
           key={vehicle.id}
