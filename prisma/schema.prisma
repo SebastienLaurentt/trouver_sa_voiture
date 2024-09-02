@@ -15,7 +15,7 @@ datasource db {
 }
 
 model Vehicule {
-  id     Int     @id @default(autoincrement())
+  id     String     @id @default(cuid())
   name    String
   kmNumber Int
   boiteType String
