@@ -1,14 +1,16 @@
 import Hero from "@/components/LandingSections/Hero";
 import Services from "@/components/LandingSections/Services";
 import { Testimonials } from "@/components/LandingSections/Testimonials";
+import Vehicules from "@/components/LandingSections/Vehicules";
 
-import Voitures from "@/components/LandingSections/Voitures";
+import { getVehiclesList } from "@/lib/actions";
 
-export default function Home() {
+export default async function Home() {
+  const vehicles = await getVehiclesList();
   return (
     <main>
       <Hero />
-      <Voitures />
+      <Vehicules vehicles={vehicles} />
       <Services />
       <Testimonials />
     </main>
