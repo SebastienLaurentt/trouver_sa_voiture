@@ -1,8 +1,9 @@
-import CarCard from "@/components/CarCard";
 import PageHeader from "@/components/PageHeader";
-import Section from "@/components/Section";
+import { getVehiclesList } from "@/lib/actions";
+import ClassiquesVehiculesList from "./ClassiquesVehiculesList";
 
-const Classiques = () => {
+export default async function Classiques() {
+  const vehicles = await getVehiclesList();
   return (
     <main>
       <PageHeader
@@ -10,32 +11,7 @@ const Classiques = () => {
         description="Send your product, marketing, and transactional email with Loops.
 One simple interface, for all your email."
       />{" "}
-      <Section classname="flex flex-row gap-x-4" marginTop marginBottom>
-        <CarCard
-          price={10000}
-          boiteType="Manuelle"
-          carType="Berline"
-          kmNumber={1000}
-          name="PORSCHE 911 CARRERA 4S"
-        />
-        <CarCard
-          price={10000}
-          boiteType="Manuelle"
-          carType="Berline"
-          kmNumber={1000}
-          name="PORSCHE 911 CARRERA 4S"
-        />
-        <CarCard
-          price={10000}
-          boiteType="Manuelle"
-          carType="Berline"
-          kmNumber={1000}
-          name="PORSCHE 911 CARRERA 4S"
-        />
-        
-      </Section>
+      <ClassiquesVehiculesList vehicles={vehicles} />
     </main>
   );
-};
-
-export default Classiques;
+}
