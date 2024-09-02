@@ -16,13 +16,13 @@ const Voitures = async () => {
       />
       <div className="flex w-full flex-col items-center">
         <Tabs defaultValue="classiques" className="mx-auto w-full text-center">
-          <TabsList className="mb-2">
+          <TabsList className="">
             <TabsTrigger value="classiques">Classiques</TabsTrigger>
             <TabsTrigger value="premium">Premium</TabsTrigger>
           </TabsList>
 
           <TabsContent value="classiques" className="w-full">
-            <div className="mb-6 flex w-full flex-col items-center justify-between gap-y-12 xl:flex-row">
+            <div className="flex w-full flex-col items-center justify-between gap-y-12 py-4 xl:flex-row">
               {vehicles.map((vehicle, index) => (
                 <li key={index} className="list-none">
                   <CarCard
@@ -41,7 +41,7 @@ const Voitures = async () => {
           </TabsContent>
 
           <TabsContent value="premium" className="w-full">
-            <div className="mb-6 flex flex-col items-center justify-between gap-y-12 xl:flex-row ">
+            <div className="flex flex-col items-center justify-between gap-y-12 py-4 xl:flex-row ">
               {vehicles.map((vehicle, index) => (
                 <li key={index} className="list-none">
                   <CarCard
