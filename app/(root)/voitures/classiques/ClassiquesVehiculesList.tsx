@@ -11,7 +11,7 @@ const ClassiquesVehiculesList = async () => {
       marginBottom
     >
       {vehicles.map((vehicle, index) => (
-        <li key={index}>
+        <li key={index} className="list-none">
           <CarCard
             price={vehicle.price}
             boiteType={vehicle.boiteType}

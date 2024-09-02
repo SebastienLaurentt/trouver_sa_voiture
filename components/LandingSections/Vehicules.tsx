@@ -24,7 +24,7 @@ const Voitures = async () => {
           <TabsContent value="classiques" className="w-full">
             <div className="mb-6 flex w-full flex-col items-center justify-between gap-y-12 xl:flex-row">
               {vehicles.map((vehicle, index) => (
-                <li key={index}>
+                <li key={index} className="list-none">
                   <CarCard
                     price={vehicle.price}
                     boiteType={vehicle.boiteType}
@@ -43,7 +43,7 @@ const Voitures = async () => {
           <TabsContent value="premium" className="w-full">
             <div className="mb-6 flex flex-col items-center justify-between gap-y-12 xl:flex-row ">
               {vehicles.map((vehicle, index) => (
-                <li key={index}>
+                <li key={index} className="list-none">
                   <CarCard
                     price={vehicle.price}
                     boiteType={vehicle.boiteType}
