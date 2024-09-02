@@ -9,15 +9,14 @@ import { createVehicle } from "@/lib/actions";
 import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
 
-const CreateVehicule = () => {
+const CreateVehiculeForm = () => {
   const [name, setName] = useState("");
   const [kmNumber, setKmNumber] = useState("");
   const [boiteType, setBoiteType] = useState("");
   const [carType, setCarType] = useState("");
   const [price, setPrice] = useState("");
-  const [error, setError] = useState(""); // État pour gérer les erreurs
+  const [error, setError] = useState(""); 
 
-  // Mutation pour créer un véhicule
   const {
     mutate: createVehicleMutation,
     isPending,
@@ -35,7 +34,6 @@ const CreateVehicule = () => {
       }
     },
     onSuccess: () => {
-      // Réinitialiser les champs du formulaire après une soumission réussie
       setName("");
       setKmNumber("");
       setBoiteType("");
@@ -44,7 +42,6 @@ const CreateVehicule = () => {
       toast({ title: "Vehicle created successfully" });
     },
     onError: (error) => {
-      // Gérer les erreurs ici
       setError(error.message || "An unexpected error occurred.");
     },
   });
@@ -128,4 +125,4 @@ const CreateVehicule = () => {
   );
 };
 
-export default CreateVehicule;
+export default CreateVehiculeForm;

@@ -1,12 +1,11 @@
-import React from 'react'
-import CreateVehicule from './createVehicule'
+import CreateVehiculeForm from "./CreateVehiculeForm";
 
 const page = () => {
   return (
     <div>
-      <CreateVehicule />
+      <CreateVehiculeForm />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;
