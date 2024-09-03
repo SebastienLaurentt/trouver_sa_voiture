@@ -1,17 +1,17 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-
 import { CirclePlus } from "lucide-react";
 import { useState } from "react";
 import CreateVehiculeForm from "./CreateVehiculeForm";
 
 const VehiculeList = ({ vehicles }: { vehicles: any }) => {
   const [isFileInputVisible, setIsFileInputVisible] = useState(false);
+
   return (
     <div className="mx-auto max-w-6xl rounded-lg border border-white px-8 py-10">
-      <h1 className="text-2xl font-bold">Vehicle List</h1>
-      <div className="flex flex-row justify-between  py-4 ">
+      <h1 className="text-2xl font-bold">Liste des Véhicules</h1>
+      <div className="flex flex-row justify-between py-4">
         <div className="flex flex-row gap-x-4">
           <div className="flex flex-row gap-x-2">
             <Button
@@ -24,7 +24,7 @@ const VehiculeList = ({ vehicles }: { vehicles: any }) => {
         </div>
       </div>
 
-      <table className="min-w-full border border-gray-200 ">
+      <table className="min-w-full border border-gray-200">
         <thead>
           <tr className="text-left">
             <th className="border px-4 py-2">Nom</th>
@@ -32,6 +32,9 @@ const VehiculeList = ({ vehicles }: { vehicles: any }) => {
             <th className="border px-4 py-2">Boîte</th>
             <th className="border px-4 py-2">Type</th>
             <th className="border px-4 py-2">Prix</th>
+            <th className="border px-4 py-2">Premium</th>
+            <th className="border px-4 py-2">Vendu</th>
+            <th className="border px-4 py-2">Tag</th>
             <th className="border px-4 py-2">Éditer</th>
           </tr>
         </thead>
@@ -42,7 +45,16 @@ const VehiculeList = ({ vehicles }: { vehicles: any }) => {
               <td className="border px-4 py-2">{vehicle.kmNumber}</td>
               <td className="border px-4 py-2">{vehicle.boiteType}</td>
               <td className="border px-4 py-2">{vehicle.carType}</td>
-              <td className="border px-4 py-2">{vehicle.price}</td>
+              <td className="border px-4 py-2">{vehicle.price} €</td>
+              <td className="border px-4 py-2">
+                {vehicle.premium ? "Oui" : "Non"}
+              </td>
+              <td className="border px-4 py-2">
+                {vehicle.sold ? "Vendu" : "Disponible"}
+              </td>
+              <td className="border px-4 py-2">
+                {vehicle.tag ? vehicle.tag : "Aucun"}
+              </td>
               <td className="border px-4 py-2">Éditer</td>
             </tr>
           ))}

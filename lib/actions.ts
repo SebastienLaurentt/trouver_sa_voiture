@@ -5,14 +5,14 @@ import { z } from "zod";
 import { prisma } from "./prisma";
 
 const VehicleSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  kmNumber: z.number().int().positive("Kilometers must be a positive number"),
-  boiteType: z.string().min(1, "Transmission type is required"),
-  carType: z.string().min(1, "Car type is required"),
-  price: z.number().positive("Price must be a positive number"),
-  premium: z.boolean(), 
-  sold: z.boolean(),    
-  tag: z.string().optional(), 
+  name: z.string(),
+  kmNumber: z.number(),
+  boiteType: z.string(),
+  carType: z.string(),
+  price: z.number(),
+  premium: z.boolean(),
+  sold: z.boolean(),
+  tag: z.string().optional().nullable(),  
 });
 
 export const getVehiclesList = async () => {
