@@ -31,6 +31,8 @@ const Voitures = async () => {
                     carType={vehicle.carType}
                     kmNumber={vehicle.kmNumber}
                     name={vehicle.name}
+                    sold={vehicle.sold}
+                    tag={vehicle.tag || ""}
                   />
                 </li>
               ))}
@@ -50,6 +52,8 @@ const Voitures = async () => {
                     carType={vehicle.carType}
                     kmNumber={vehicle.kmNumber}
                     name={vehicle.name}
+                    sold={vehicle.sold}
+                    tag={vehicle.tag || ""}
                   />
                 </li>
               ))}

@@ -7,6 +7,8 @@ interface CarCardProps {
   carType: string;
   name: string;
   price: number;
+  sold: boolean;
+  tag?: string;
 }
 
 const CarCard = ({
@@ -15,10 +17,13 @@ const CarCard = ({
   carType,
   name,
   price,
+  sold,
+  tag,
 }: CarCardProps) => {
   return (
-    <div >
-      <div>
+    <div className="relative">
+      <div className="relative">
+        {/* Image et tags */}
         <Image
           src="/images/CarCardImg.jpg"
           alt="Image voiture"
@@ -26,18 +31,31 @@ const CarCard = ({
           height={320}
           className="rounded-t-md"
         />
+
+        {/* Tag "Nouveau" */}
+        {tag && (
+          <div className="absolute bottom-0 left-0 m-2  bg-primary px-2 py-1 text-xs font-bold text-white">
+            {tag}
+          </div>
+        )}
+
+        {/* Tag "Vendu" */}
+        {sold && (
+          <div className="absolute right-0 top-0 m-2 rounded-tr-md bg-red-500 px-2 py-1 text-xs font-bold text-white">
+            Vendu
+          </div>
+        )}
       </div>
       <div className="rounded-b-lg border p-3">
         <div className="text-left text-lg">{name}</div>
-        <div className="my-4 flex flex-row  gap-x-2 text-sm">
-          <span className="rounded-full bg-muted px-2.5 py-1 ">
+        <div className="my-4 flex flex-row gap-x-2 text-sm">
+          <span className="rounded-full bg-muted px-2.5 py-1">
             {kmNumber} km
           </span>
           <span className="rounded-full bg-muted px-2.5 py-1">{boiteType}</span>
           <span className="rounded-full bg-muted px-2.5 py-1">{carType}</span>
         </div>
         <div className="flex w-full flex-row items-center justify-between gap-x-2">
-          {" "}
           <span className="text-2xl font-semibold">{price} €</span>
           <Button>En savoir plus</Button>
         </div>
