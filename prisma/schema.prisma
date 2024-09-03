@@ -15,10 +15,13 @@ datasource db {
 }
 
 model Vehicule {
-  id     String     @id @default(cuid())
-  name    String
-  kmNumber Int
+  id        String   @id @default(cuid())
+  name      String
+  kmNumber  Int
   boiteType String
-  carType String
-  price Int
+  carType   String
+  price     Int
+  premium   Boolean  
+  sold      Boolean  
+  tag       String?   
 }
