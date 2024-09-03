@@ -24,14 +24,14 @@ const CarCard = ({
 }: CarCardProps) => {
   return (
     <div className="relative">
-      <div className="relative">
+      <div className="relative h-[200px] w-80">
         {/* Image et tags */}
         <Image
           src={src}
           alt={`Image de ${name}`}
           width={320}
           height={320}
-          className="rounded-t-md"
+          className="size-full rounded-t-md"
         />
 
         {/* Tag "Nouveau" */}
