@@ -1,6 +1,6 @@
 import { Atom, Menu, X } from "lucide-react";
 import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 
 interface IBurgerMenu {
   isOpen: boolean;
@@ -20,6 +20,19 @@ const navLinks = [
 ];
 
 export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
+  useEffect(() => {
+    // Désactiver le défilement de la page principale lorsque le menu est ouvert
+    if (isOpen) {
+      document.documentElement.classList.add("overflow-hidden");
+    } else {
+      document.documentElement.classList.remove("overflow-hidden");
+    }
+
+    // Nettoyage de l'effet
+    return () => {
+      document.documentElement.classList.remove("overflow-hidden");
+    };
+  }, [isOpen]);
   return (
     <>
       <button
@@ -31,7 +44,7 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
       </button>
 
       <div
-        className={`fixed left-0 top-0 z-40 flex h-screen w-full flex-col bg-black pb-24 pt-12 text-center transition-all duration-500 ease-in-out ${
+        className={`fixed left-0 top-0 z-40 flex min-h-screen w-full flex-col bg-black pb-24 pt-12 text-center transition-all duration-500 ease-in-out ${
           isOpen ? "opacity-100" : "hidden opacity-0"
         }`}
       >
