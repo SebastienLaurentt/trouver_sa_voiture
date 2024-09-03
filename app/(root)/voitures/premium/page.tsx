@@ -1,4 +1,5 @@
 import PageHeader from "@/components/PageHeader";
+import PremiumVehiculesList from "./PremiumVehiculesList";
 
 const Premium = () => {
   return (
@@ -8,6 +9,7 @@ const Premium = () => {
         description="Send your product, marketing, and transactional email with Loops.
 One simple interface, for all your email."
       />{" "}
+      <PremiumVehiculesList />
     </main>
   );
 };
