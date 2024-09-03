@@ -27,6 +27,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
   const [premium, setPremium] = useState(false);
   const [sold, setSold] = useState(false);
   const [tag, setTag] = useState("");
+  const [imageFile, setImageFile] = useState<File | null>(null); 
   const [error, setError] = useState("");
 
   const {
@@ -54,6 +55,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
       setPremium(false);
       setSold(false);
       setTag("");
+      setImageFile(null); 
       toast({ title: "Véhicule créé avec succès" });
     },
     onError: (error) => {
@@ -72,8 +74,16 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
     formData.set("premium", premium.toString());
     formData.set("sold", sold.toString());
     if (tag) formData.set("tag", tag);
+    if (imageFile) formData.set("image", imageFile); 
 
     createVehicleMutation(formData);
+  };
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setImageFile(file);
+    }
   };
 
   return (
@@ -195,6 +205,16 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
                 </SelectGroup>
               </SelectContent>
             </Select>
+          </div>
+
+          <div>
+            <Label htmlFor="image">Image du véhicule</Label>
+            <Input
+              id="image"
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
           </div>
 
           {isError && <p className="text-red-500">{error}</p>}

@@ -3,6 +3,7 @@
 import { z } from "zod";
 
 import { prisma } from "./prisma";
+import { supabase } from "./supabase";
 
 const VehicleSchema = z.object({
   name: z.string(),
@@ -13,6 +14,7 @@ const VehicleSchema = z.object({
   premium: z.boolean(),
   sold: z.boolean(),
   tag: z.string().optional().nullable(),  
+  imageUrl: z.any(),
 });
 
 
@@ -63,24 +65,24 @@ export const getNonPremiumVehicles = async () => {
 };
 
 export const createVehicle = async (formData: FormData) => {
+  // Conversion des données du formulaire en objet
   const data = Object.fromEntries(formData.entries());
 
+  // Préparation des données
   const parsedData = {
     ...data,
     kmNumber: parseFloat(data.kmNumber as string),
     price: parseFloat(data.price as string),
-    premium: data.premium === "true",  
-    sold: data.sold === "true",        
-    tag: data.tag ? data.tag : undefined, 
+    premium: data.premium === "true",
+    sold: data.sold === "true",
+    tag: data.tag ? data.tag : undefined,
   };
 
+  // Validation des champs
   const validatedFields = VehicleSchema.safeParse(parsedData);
 
   if (!validatedFields.success) {
-    console.error(
-      "Validation failed:",
-      validatedFields.error.flatten().fieldErrors
-    );
+    console.error("Validation failed:", validatedFields.error.flatten().fieldErrors);
     return {
       Error: validatedFields.error.flatten().fieldErrors,
       message: "Validation failed. Please check the input fields.",
@@ -88,6 +90,30 @@ export const createVehicle = async (formData: FormData) => {
   }
 
   try {
+    let imageUrl = null;  
+    const actualImageFile = formData.get("image") as File;
+
+    
+    if (actualImageFile && actualImageFile.size > 0) {
+      const { data: imageData, error: uploadError } = await supabase.storage
+        .from("images")  
+        .upload(
+          `images/${actualImageFile.name}-${Date.now()}`,  
+          actualImageFile,
+          {
+            cacheControl: "2592000",  
+            contentType: actualImageFile.type,
+          }
+        );
+
+      if (uploadError) {
+        console.error("Erreur lors de l'upload de l'image :", uploadError);
+        throw new Error("Erreur lors de l'upload de l'image");
+      }
+
+      imageUrl = imageData?.path;
+    }
+
     const newVehicle = await prisma.vehicule.create({
       data: {
         name: validatedFields.data.name,
@@ -97,14 +123,15 @@ export const createVehicle = async (formData: FormData) => {
         price: validatedFields.data.price,
         premium: validatedFields.data.premium,
         sold: validatedFields.data.sold,
-        tag: validatedFields.data.tag || null, 
+        tag: validatedFields.data.tag || null,
+        imageUrl,  
       },
     });
 
-    console.log("Vehicle created successfully:", newVehicle);
+    console.log("Véhicule créé avec succès :", newVehicle);
     return { vehicleId: newVehicle.id };
   } catch (error) {
-    console.error("Error creating vehicle:", error);
-    return { message: "Failed to create new vehicle", Error: error };
+    console.error("Erreur lors de la création du véhicule :", error);
+    return { message: "Échec de la création du véhicule", Error: error };
   }
 };

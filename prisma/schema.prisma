@@ -17,6 +17,7 @@ datasource db {
 model Vehicule {
   id        String   @id @default(cuid())
   name      String
+  imageUrl         String?
   kmNumber  Int
   boiteType String
   carType   String
