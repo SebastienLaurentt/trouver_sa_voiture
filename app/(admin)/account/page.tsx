@@ -1,14 +1,13 @@
-import { getVehiclesList } from '@/lib/actions';
-import React from 'react'
-import VehiculeList from './VehiculeList';
+import { getAllVehiclesList } from "@/lib/actions";
+import VehiculeList from "./VehiculeList";
 
 const Page = async () => {
-  const vehicles = await getVehiclesList();
+  const allVehicles = await getAllVehiclesList();
   return (
     <div>
-      <VehiculeList vehicles={vehicles} />
+      <VehiculeList allVehicles={allVehicles} />
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

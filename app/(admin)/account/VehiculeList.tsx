@@ -5,7 +5,7 @@ import { CirclePlus } from "lucide-react";
 import { useState } from "react";
 import CreateVehiculeForm from "./CreateVehiculeForm";
 
-const VehiculeList = ({ vehicles }: { vehicles: any }) => {
+const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
   const [isFileInputVisible, setIsFileInputVisible] = useState(false);
 
   return (
@@ -39,7 +39,7 @@ const VehiculeList = ({ vehicles }: { vehicles: any }) => {
           </tr>
         </thead>
         <tbody>
-          {vehicles.map((vehicle: any, index: any) => (
+          {allVehicles.map((vehicle: any, index: any) => (
             <tr key={index}>
               <td className="border px-4 py-2">{vehicle.name}</td>
               <td className="border px-4 py-2">{vehicle.kmNumber}</td>

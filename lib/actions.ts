@@ -15,7 +15,8 @@ const VehicleSchema = z.object({
   tag: z.string().optional().nullable(),  
 });
 
-export const getVehiclesList = async () => {
+
+export const getAllVehiclesList = async () => {
   try {
     const vehicles = await prisma.vehicule.findMany();
 
@@ -26,6 +27,38 @@ export const getVehiclesList = async () => {
     return validatedVehicles;
   } catch (error) {
     throw new Error("Failed to fetch vehicles data");
+  }
+};
+
+export const getPremiumVehicles = async () => {
+  try {
+    const premiumVehicles = await prisma.vehicule.findMany({
+      where: { premium: true },
+    });
+
+    const validatedVehicles = premiumVehicles.map((vehicle) =>
+      VehicleSchema.parse(vehicle)
+    );
+
+    return validatedVehicles;
+  } catch (error) {
+    throw new Error("Failed to fetch premium vehicles data");
+  }
+};
+
+export const getNonPremiumVehicles = async () => {
+  try {
+    const nonPremiumVehicles = await prisma.vehicule.findMany({
+      where: { premium: false },
+    });
+
+    const validatedVehicles = nonPremiumVehicles.map((vehicle) =>
+      VehicleSchema.parse(vehicle)
+    );
+
+    return validatedVehicles;
+  } catch (error) {
+    throw new Error("Failed to fetch non-premium vehicles data");
   }
 };
 
