@@ -7,7 +7,7 @@ const ClassiquesVehiculesList = async () => {
 
   return (
     <Section marginTop marginBottom>
-      <div className="grid grid-cols-1 justify-items-center gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 justify-items-center gap-x-4 gap-y-8 md:grid-cols-2 xl:grid-cols-3">
         {classicVehicles.map((vehicle, index) => (
           <li key={index} className="list-none">
             <CarCard
