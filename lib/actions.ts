@@ -9,7 +9,10 @@ const VehicleSchema = z.object({
   kmNumber: z.number().int().positive("Kilometers must be a positive number"),
   boiteType: z.string().min(1, "Transmission type is required"),
   carType: z.string().min(1, "Car type is required"),
-  price: z.number().positive("Price must be a positive number")
+  price: z.number().positive("Price must be a positive number"),
+  premium: z.boolean(), 
+  sold: z.boolean(),    
+  tag: z.string().optional(), 
 });
 
 export const getVehiclesList = async () => {
@@ -31,8 +34,11 @@ export const createVehicle = async (formData: FormData) => {
 
   const parsedData = {
     ...data,
-    kmNumber: parseFloat(data.kmNumber as string), 
-    price: parseFloat(data.price as string), 
+    kmNumber: parseFloat(data.kmNumber as string),
+    price: parseFloat(data.price as string),
+    premium: data.premium === "true",  
+    sold: data.sold === "true",        
+    tag: data.tag ? data.tag : undefined, 
   };
 
   const validatedFields = VehicleSchema.safeParse(parsedData);
@@ -56,6 +62,9 @@ export const createVehicle = async (formData: FormData) => {
         boiteType: validatedFields.data.boiteType,
         carType: validatedFields.data.carType,
         price: validatedFields.data.price,
+        premium: validatedFields.data.premium,
+        sold: validatedFields.data.sold,
+        tag: validatedFields.data.tag || null, 
       },
     });
 
