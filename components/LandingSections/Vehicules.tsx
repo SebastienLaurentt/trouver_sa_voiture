@@ -8,7 +8,6 @@ import { Button } from "../ui/button";
 
 const Voitures = async () => {
   const premiumVehicles = await getPremiumVehicles();
-
   const classicVehicles = await getNonPremiumVehicles();
 
   return (
@@ -24,9 +23,10 @@ const Voitures = async () => {
             <TabsTrigger value="premium">Premium</TabsTrigger>
           </TabsList>
 
+          {/* Contenu pour les véhicules classiques */}
           <TabsContent value="classiques" className="w-full">
             <div className="flex w-full flex-col items-center justify-between gap-y-12 py-4 xl:flex-row">
-              {classicVehicles.map((vehicle, index) => (
+              {classicVehicles.slice(0, 3).map((vehicle, index) => (
                 <li key={index} className="list-none">
                   <CarCard
                     price={vehicle.price}
@@ -45,9 +45,10 @@ const Voitures = async () => {
             </Button>
           </TabsContent>
 
+          {/* Contenu pour les véhicules premium */}
           <TabsContent value="premium" className="w-full">
-            <div className="flex flex-col items-center justify-between gap-y-12 py-4 xl:flex-row ">
-              {premiumVehicles.map((vehicle, index) => (
+            <div className="flex flex-col items-center justify-between gap-y-12 py-4 xl:flex-row">
+              {premiumVehicles.slice(0, 3).map((vehicle, index) => (
                 <li key={index} className="list-none">
                   <CarCard
                     price={vehicle.price}
