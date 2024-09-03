@@ -1,8 +1,17 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
 import { createVehicle } from "@/lib/actions";
 import { useMutation } from "@tanstack/react-query";
@@ -15,9 +24,9 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
   const [boiteType, setBoiteType] = useState("");
   const [carType, setCarType] = useState("");
   const [price, setPrice] = useState("");
-  const [premium, setPremium] = useState(false); // Ajout du champ premium
-  const [sold, setSold] = useState(false); // Ajout du champ sold
-  const [tag, setTag] = useState(""); // Ajout du champ tag (optionnel)
+  const [premium, setPremium] = useState(false);
+  const [sold, setSold] = useState(false);
+  const [tag, setTag] = useState("");
   const [error, setError] = useState("");
 
   const {
@@ -60,9 +69,9 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
     formData.set("boiteType", boiteType);
     formData.set("carType", carType);
     formData.set("price", price);
-    formData.set("premium", premium.toString()); // Convertir en string pour FormData
-    formData.set("sold", sold.toString()); // Convertir en string pour FormData
-    if (tag) formData.set("tag", tag); // Ajouter seulement si `tag` est défini
+    formData.set("premium", premium.toString());
+    formData.set("sold", sold.toString());
+    if (tag) formData.set("tag", tag);
 
     createVehicleMutation(formData);
   };
@@ -76,9 +85,9 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
         >
           <X />
         </button>
-        <h2 className="mb-4 text-xl font-bold">Créer un nouveau véhicule</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
+        <h2 className="mb-4 text-xl font-bold">Ajouter un nouveau véhicule</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
             <Label htmlFor="name">Nom</Label>
             <Input
               id="name"
@@ -88,7 +97,8 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
               required
             />
           </div>
-          <div className="mb-4">
+
+          <div>
             <Label htmlFor="kmNumber">Kilométrage</Label>
             <Input
               id="kmNumber"
@@ -98,27 +108,45 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
               required
             />
           </div>
-          <div className="mb-4">
-            <Label htmlFor="boiteType">Type de transmission</Label>
-            <Input
-              id="boiteType"
-              type="text"
+
+          <div>
+            <Label htmlFor="boiteType">Boîte de Vitesse</Label>
+            <Select
               value={boiteType}
-              onChange={(e) => setBoiteType(e.target.value)}
-              required
-            />
+              onValueChange={(value) => setBoiteType(value)}
+            >
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Choisir une boîte" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="Manuelle">Manuelle</SelectItem>
+                  <SelectItem value="Automatique">Automatique</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
-          <div className="mb-4">
+
+          <div>
             <Label htmlFor="carType">Type de véhicule</Label>
-            <Input
-              id="carType"
-              type="text"
+            <Select
               value={carType}
-              onChange={(e) => setCarType(e.target.value)}
-              required
-            />
+              onValueChange={(value) => setCarType(value)}
+            >
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Choisir un type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="Citadine">Citadine</SelectItem>
+                  <SelectItem value="Berline">Berline</SelectItem>
+                  <SelectItem value="SUV">SUV</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
-          <div className="mb-4">
+
+          <div>
             <Label htmlFor="price">Prix</Label>
             <Input
               id="price"
@@ -129,43 +157,53 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
             />
           </div>
 
-          {/* Nouveau champ pour Premium */}
-          <div className="mb-4">
-            <Label htmlFor="premium">Premium</Label>
-            <Input
+          <div className="flex flex-row items-center gap-x-2">
+            <Checkbox
               id="premium"
-              type="checkbox"
               checked={premium}
-              onChange={(e) => setPremium(e.target.checked)}
+              onCheckedChange={(checked) => setPremium(!!checked)}
             />
+            <Label htmlFor="premium">Premium</Label>
           </div>
 
-          {/* Nouveau champ pour Sold */}
-          <div className="mb-4">
-            <Label htmlFor="sold">Vendu</Label>
-            <Input
+          <div className="flex flex-row items-center gap-x-2">
+            <Checkbox
               id="sold"
-              type="checkbox"
               checked={sold}
-              onChange={(e) => setSold(e.target.checked)}
+              onCheckedChange={(checked) => setSold(!!checked)}
             />
+            <Label htmlFor="sold">Vendu</Label>
           </div>
 
-          {/* Nouveau champ pour Tag */}
-          <div className="mb-4">
-            <Label htmlFor="tag">Tag</Label>
-            <Input
-              id="tag"
-              type="text"
-              value={tag}
-              onChange={(e) => setTag(e.target.value)}
-              placeholder="Tag (optionnel)"
-            />
+          <div>
+            <Label htmlFor="tag">Tag (optionnel)</Label>
+            <Select value={tag} onValueChange={(value) => setTag(value)}>
+              <SelectTrigger className="w-[250px]">
+                <SelectValue placeholder="Choisir un tag" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="Idéal Jeune Conducteur">
+                    Idéal Jeune Conducteur
+                  </SelectItem>
+                  <SelectItem value="Très peu de kilomètres">
+                    Très peu de kilomètres
+                  </SelectItem>
+                  <SelectItem value="TVA Récupérable">
+                    TVA Récupérable
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
           </div>
 
           {isError && <p className="text-red-500">{error}</p>}
           <Button type="submit" disabled={isPending}>
-            {isPending ? "Création en cours..." : isSuccess ? "Créé !" : "Créer véhicule"}
+            {isPending
+              ? "Création en cours..."
+              : isSuccess
+              ? "Créé !"
+              : "Créer véhicule"}
           </Button>
         </form>
       </div>
