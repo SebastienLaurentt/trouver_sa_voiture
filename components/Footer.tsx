@@ -14,7 +14,7 @@ const Footer = () => {
           <p className="md:max-w-[360px]">
             Laissez-nous votre email et nous recontactons au plus vite !{" "}
           </p>
-          <div className="flex flex-row gap-x-2">
+          <div className="flex flex-row gap-x-2 px-6">
             <Input placeholder="Votre email" />
             <Button>Envoyer</Button>
           </div>
