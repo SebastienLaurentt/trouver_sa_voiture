@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 
 interface CarCardProps {
+  src: string;
   kmNumber: number;
   boiteType: string;
   carType: string;
@@ -12,6 +13,7 @@ interface CarCardProps {
 }
 
 const CarCard = ({
+  src,
   kmNumber,
   boiteType,
   carType,
@@ -25,8 +27,8 @@ const CarCard = ({
       <div className="relative">
         {/* Image et tags */}
         <Image
-          src="/images/CarCardImg.jpg"
-          alt="Image voiture"
+          src={src}
+          alt={`Image de ${name}`}
           width={320}
           height={320}
           className="rounded-t-md"

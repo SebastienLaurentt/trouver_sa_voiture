@@ -11,6 +11,7 @@ const PremiumVehiculesList = async () => {
         {premiumVehicles.map((vehicle, index) => (
           <li key={index} className="list-none">
             <CarCard
+              src={`https://aotdlnddxemcekzntizx.supabase.co/storage/v1/object/public/images/${vehicle.imageUrl}`}
               price={vehicle.price}
               boiteType={vehicle.boiteType}
               carType={vehicle.carType}
