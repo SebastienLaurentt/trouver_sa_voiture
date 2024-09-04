@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 
@@ -36,7 +37,7 @@ const CarCard = ({
 
         {/* Tag "Nouveau" */}
         {tag && (
-          <div className="absolute bottom-0 left-0 m-2  bg-primary px-2 py-1 text-xs font-bold text-white">
+          <div className="absolute bottom-0 left-0 bg-[#f59e0b] px-2 py-1 text-xs font-bold text-white">
             {tag}
           </div>
         )}
@@ -49,7 +50,7 @@ const CarCard = ({
         )}
       </div>
       <div className="rounded-b-lg border p-3">
-        <div className="text-left text-lg">{name}</div>
+        <div className="text-left text-lg font-medium">{name}</div>
         <div className="my-4 flex flex-row gap-x-2 text-sm">
           <span className="rounded-full bg-muted px-2.5 py-1">
             {kmNumber} km
@@ -59,7 +60,9 @@ const CarCard = ({
         </div>
         <div className="flex w-full flex-row items-center justify-between gap-x-2">
           <span className="text-2xl font-semibold">{price} €</span>
-          <Button>En savoir plus</Button>
+          <Button variant="ghost">
+            En savoir plus <ArrowRight className="ml-1" size={16} />
+          </Button>
         </div>
       </div>
     </div>
