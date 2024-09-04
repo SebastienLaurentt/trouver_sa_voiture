@@ -24,7 +24,7 @@ const CarCard = ({
   tag,
 }: CarCardProps) => {
   return (
-    <div className="relative">
+    <div className="relative rounded-lg border border-slate-800 shadow shadow-slate-800">
       <div className="relative h-[200px] w-80">
         {/* Image et tags */}
         <Image
@@ -49,7 +49,7 @@ const CarCard = ({
           </div>
         )}
       </div>
-      <div className="rounded-b-lg border p-3">
+      <div className="rounded-b-lg  p-3">
         <div className="text-left text-lg font-medium">{name}</div>
         <div className="my-4 flex flex-row gap-x-2 text-sm">
           <span className="rounded-full bg-muted px-2.5 py-1">
