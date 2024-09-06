@@ -11,23 +11,14 @@ import {
 } from "@/components/ui/navigation-menu";
 
 import { cn } from "@/lib/utils";
-import { gsap } from "gsap";
 import { Atom, ChartNoAxesCombined, Handshake } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import BurgerMenu from "./BurgerMenu";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    gsap.fromTo(
-      "#header",
-      { opacity: 0 },
-      { opacity: 1, duration: 1, delay: 0.5 }
-    );
-  }, []);
 
   const ListItem = React.forwardRef<
     React.ElementRef<"a">,
@@ -64,7 +55,7 @@ const Header: React.FC = () => {
   ListItem.displayName = "ListItem";
 
   return (
-    <header id="header" className=" opacity-0 shadow-md">
+    <header className="shadow-md">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4 ">
         <div className="flex flex-row items-center gap-x-1">
           <Atom size={28} className="text-primary" />
