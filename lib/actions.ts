@@ -5,8 +5,7 @@ import { z } from "zod";
 import { prisma } from "./prisma";
 import { supabase } from "./supabase";
 
-const VehicleSchema = z.object({
-  id: z.string(),
+const VehicleCreateSchema = z.object({
   name: z.string(),
   kmNumber: z.number(),
   boiteType: z.string(),
@@ -14,8 +13,21 @@ const VehicleSchema = z.object({
   price: z.number(),
   premium: z.boolean(),
   sold: z.boolean(),
-  tag: z.string().optional().nullable(),  
-  imageUrl: z.any(),
+  tag: z.string().optional().nullable(),
+  imageUrl: z.any(), 
+});
+
+const VehicleSchemaWithId = z.object({
+  id: z.string(),  
+  name: z.string(),
+  kmNumber: z.number(),
+  boiteType: z.string(),
+  carType: z.string(),
+  price: z.number(),
+  premium: z.boolean(),
+  sold: z.boolean(),
+  tag: z.string().optional().nullable(),
+  imageUrl: z.any(), 
 });
 
 
@@ -24,7 +36,7 @@ export const getAllVehiclesList = async () => {
     const vehicles = await prisma.vehicule.findMany();
 
     const validatedVehicles = vehicles.map((vehicle) =>
-      VehicleSchema.parse(vehicle)
+      VehicleSchemaWithId.parse(vehicle)
     );
 
     return validatedVehicles;
@@ -40,7 +52,7 @@ export const getPremiumVehicles = async () => {
     });
 
     const validatedVehicles = premiumVehicles.map((vehicle) =>
-      VehicleSchema.parse(vehicle)
+      VehicleSchemaWithId.parse(vehicle)
     );
 
     return validatedVehicles;
@@ -56,7 +68,7 @@ export const getNonPremiumVehicles = async () => {
     });
 
     const validatedVehicles = nonPremiumVehicles.map((vehicle) =>
-      VehicleSchema.parse(vehicle)
+      VehicleSchemaWithId.parse(vehicle)
     );
 
     return validatedVehicles;
@@ -66,10 +78,8 @@ export const getNonPremiumVehicles = async () => {
 };
 
 export const createVehicle = async (formData: FormData) => {
-  // Conversion des données du formulaire en objet
   const data = Object.fromEntries(formData.entries());
 
-  // Préparation des données
   const parsedData = {
     ...data,
     kmNumber: parseFloat(data.kmNumber as string),
@@ -79,8 +89,7 @@ export const createVehicle = async (formData: FormData) => {
     tag: data.tag ? data.tag : undefined,
   };
 
-  // Validation des champs
-  const validatedFields = VehicleSchema.safeParse(parsedData);
+  const validatedFields = VehicleCreateSchema.safeParse(parsedData);
 
   if (!validatedFields.success) {
     console.error("Validation failed:", validatedFields.error.flatten().fieldErrors);
