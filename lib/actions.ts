@@ -6,6 +6,7 @@ import { prisma } from "./prisma";
 import { supabase } from "./supabase";
 
 const VehicleSchema = z.object({
+  id: z.string(),
   name: z.string(),
   kmNumber: z.number(),
   boiteType: z.string(),
@@ -135,3 +136,23 @@ export const createVehicle = async (formData: FormData) => {
     return { message: "Échec de la création du véhicule", Error: error };
   }
 };
+
+export const deleteVehicule = async (id: string) => {
+  try {
+    const vehicle = await prisma.vehicule.findUnique({
+      where: { id },
+    });
+
+    if (!vehicle) {
+      console.error("Véhicule non trouvé", id);
+      throw new Error("Véhicule non trouvé");
+    }
+
+    await prisma.vehicule.delete({
+      where: { id },
+    });
+
+  } catch (error) {
+    throw new Error("Échec de la suppression du véhicule");
+  }
+}

@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { CirclePlus } from "lucide-react";
 import { useState } from "react";
 import CreateVehiculeForm from "./CreateVehiculeForm";
+import { DeleteVehicle } from "@/components/DeleteVehicule";
 
 const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
   const [isFileInputVisible, setIsFileInputVisible] = useState(false);
+  console.log(allVehicles);
 
   return (
     <div className="mx-auto max-w-6xl rounded-lg border border-white px-8 py-10">
@@ -55,7 +57,9 @@ const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
               <td className="border px-4 py-2">
                 {vehicle.tag ? vehicle.tag : "Aucun"}
               </td>
-              <td className="border px-4 py-2">Éditer</td>
+              <td className="border px-4 py-2">
+                <DeleteVehicle id={vehicle.id} />
+              </td>
             </tr>
           ))}
         </tbody>
