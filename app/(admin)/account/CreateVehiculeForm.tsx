@@ -57,6 +57,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
       setTag("");
       setImageFile(null); 
       toast({ title: "Véhicule créé avec succès" });
+      onClose();
     },
     onError: (error) => {
       setError(error.message || "Une erreur inattendue est survenue.");
