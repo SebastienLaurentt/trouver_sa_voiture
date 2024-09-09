@@ -4,6 +4,7 @@ import { z } from "zod";
 
 import { prisma } from "./prisma";
 import { supabase } from "./supabase";
+import { revalidatePath } from "next/cache";
 
 const VehicleCreateSchema = z.object({
   name: z.string(),
@@ -138,11 +139,12 @@ export const createVehicle = async (formData: FormData) => {
       },
     });
 
-    console.log("Véhicule créé avec succès :", newVehicle);
     return { vehicleId: newVehicle.id };
+    
   } catch (error) {
     console.error("Erreur lors de la création du véhicule :", error);
     return { message: "Échec de la création du véhicule", Error: error };
+    
   }
 };
 
@@ -164,4 +166,5 @@ export const deleteVehicule = async (id: string) => {
   } catch (error) {
     throw new Error("Échec de la suppression du véhicule");
   }
+  revalidatePath("/account");
 }
