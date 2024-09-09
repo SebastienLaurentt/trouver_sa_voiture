@@ -35,7 +35,7 @@ export const DeleteVehicle = ({ id }: { id: string }) => {
       <button disabled={isPending}>
         {isPending ? (
           <span className="flex flex-row items-center gap-x-2">
-            <Loader  />
+            <Loader color="border-red-500"  />
           </span>
         ) : (
           <span className="text-red-500 hover:text-red-700">

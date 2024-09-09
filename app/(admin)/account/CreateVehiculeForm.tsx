@@ -223,7 +223,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
           <Button type="submit" disabled={isPending}>
             {isPending || isSuccess ? (
               <span className="flex flex-row items-center gap-x-2">
-                Création en cours <Loader />
+                Création en cours <Loader color="border-slate-50" />
               </span>
             ) : (
               "Créer le véhicule"

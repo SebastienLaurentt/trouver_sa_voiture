@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
 
-const Loader = () => {
+type LoaderProps = {
+  color?: string;
+};
+
+const Loader: React.FC<LoaderProps> = ({ color }) => {
   return (
-    <div>Loader</div>
-  )
-}
+    <div
+      className={`animate-spin rounded-full ${color} size-5 border-4 border-t-transparent `}
+    />
+  );
+};
 
-export default Loader
+export default Loader;
