@@ -166,5 +166,5 @@ export const deleteVehicule = async (id: string) => {
   } catch (error) {
     throw new Error("Échec de la suppression du véhicule");
   }
-  revalidatePath("/");
+  revalidatePath("/", "layout");
 }
