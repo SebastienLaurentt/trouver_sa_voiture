@@ -2,9 +2,9 @@
 
 import { z } from "zod";
 
+import { revalidatePath } from "next/cache";
 import { prisma } from "./prisma";
 import { supabase } from "./supabase";
-import { revalidatePath } from "next/cache";
 
 const VehicleCreateSchema = z.object({
   name: z.string(),
@@ -15,11 +15,11 @@ const VehicleCreateSchema = z.object({
   premium: z.boolean(),
   sold: z.boolean(),
   tag: z.string().optional().nullable(),
-  imageUrl: z.any(), 
+  imageUrl: z.any(),
 });
 
 const VehicleSchemaWithId = z.object({
-  id: z.string(),  
+  id: z.string(),
   name: z.string(),
   kmNumber: z.number(),
   boiteType: z.string(),
@@ -28,9 +28,8 @@ const VehicleSchemaWithId = z.object({
   premium: z.boolean(),
   sold: z.boolean(),
   tag: z.string().optional().nullable(),
-  imageUrl: z.any(), 
+  imageUrl: z.any(),
 });
-
 
 export const getAllVehiclesList = async () => {
   try {
@@ -93,7 +92,10 @@ export const createVehicle = async (formData: FormData) => {
   const validatedFields = VehicleCreateSchema.safeParse(parsedData);
 
   if (!validatedFields.success) {
-    console.error("Validation failed:", validatedFields.error.flatten().fieldErrors);
+    console.error(
+      "Validation failed:",
+      validatedFields.error.flatten().fieldErrors
+    );
     return {
       Error: validatedFields.error.flatten().fieldErrors,
       message: "Validation failed. Please check the input fields.",
@@ -101,18 +103,17 @@ export const createVehicle = async (formData: FormData) => {
   }
 
   try {
-    let imageUrl = null;  
+    let imageUrl = null;
     const actualImageFile = formData.get("image") as File;
 
-    
     if (actualImageFile && actualImageFile.size > 0) {
       const { data: imageData, error: uploadError } = await supabase.storage
-        .from("images")  
+        .from("images")
         .upload(
-          `images/${actualImageFile.name}-${Date.now()}`,  
+          `images/${actualImageFile.name}-${Date.now()}`,
           actualImageFile,
           {
-            cacheControl: "2592000",  
+            cacheControl: "2592000",
             contentType: actualImageFile.type,
           }
         );
@@ -135,16 +136,15 @@ export const createVehicle = async (formData: FormData) => {
         premium: validatedFields.data.premium,
         sold: validatedFields.data.sold,
         tag: validatedFields.data.tag || null,
-        imageUrl,  
+        imageUrl,
       },
     });
 
+    revalidatePath("/", "layout");
     return { vehicleId: newVehicle.id };
-    
   } catch (error) {
     console.error("Erreur lors de la création du véhicule :", error);
     return { message: "Échec de la création du véhicule", Error: error };
-    
   }
 };
 
@@ -162,9 +162,8 @@ export const deleteVehicule = async (id: string) => {
     await prisma.vehicule.delete({
       where: { id },
     });
-
   } catch (error) {
     throw new Error("Échec de la suppression du véhicule");
   }
   revalidatePath("/", "layout");
-}
+};
