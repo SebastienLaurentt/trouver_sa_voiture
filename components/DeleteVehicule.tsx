@@ -5,6 +5,7 @@ import { deleteVehicule } from "@/lib/actions";
 
 import { useMutation } from "@tanstack/react-query";
 import { Trash } from "lucide-react";
+import Loader from "./Loader";
 
 export const DeleteVehicle = ({ id }: { id: string }) => {
   const { mutate: deleteVehicleMutation, isPending } = useMutation({
@@ -33,8 +34,8 @@ export const DeleteVehicle = ({ id }: { id: string }) => {
       <button disabled={isPending}>
         {isPending ? (
           <span className="flex flex-row items-center gap-x-2">
-            &quot;Suppression en cours...&quot;
-          </span>
+          <Loader color="red" />
+        </span>
         ) : (
           <span className="text-red-500 hover:text-red-700">
             <Trash />
