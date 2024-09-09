@@ -1,5 +1,6 @@
 "use client";
 
+import Loader from "@/components/Loader";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -27,7 +28,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
   const [premium, setPremium] = useState(false);
   const [sold, setSold] = useState(false);
   const [tag, setTag] = useState("");
-  const [imageFile, setImageFile] = useState<File | null>(null); 
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [error, setError] = useState("");
 
   const {
@@ -55,7 +56,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
       setPremium(false);
       setSold(false);
       setTag("");
-      setImageFile(null); 
+      setImageFile(null);
       toast({ title: "Véhicule créé avec succès !" });
       onClose();
     },
@@ -75,7 +76,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
     formData.set("premium", premium.toString());
     formData.set("sold", sold.toString());
     if (tag) formData.set("tag", tag);
-    if (imageFile) formData.set("image", imageFile); 
+    if (imageFile) formData.set("image", imageFile);
 
     createVehicleMutation(formData);
   };
@@ -220,11 +221,13 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
 
           {isError && <p className="text-red-500">{error}</p>}
           <Button type="submit" disabled={isPending}>
-            {isPending
-              ? "Création en cours..."
-              : isSuccess
-              ? "Créé !"
-              : "Créer véhicule"}
+            {isPending || isSuccess ? (
+              <span className="flex flex-row items-center gap-x-2">
+                Création en cours <Loader color="white"/>
+              </span>
+            ) : (
+              "Créer le véhicule"
+            )}
           </Button>
         </form>
       </div>

@@ -8,8 +8,9 @@ import CreateVehiculeForm from "./CreateVehiculeForm";
 import EditVehiculeForm from "./EditVehiculeForm";
 
 const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
-  const [isFileInputVisible, setIsFileInputVisible] = useState(false);
-  const [editVehicle, setEditVehicle] = useState<any>(null);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [vehicleInfo, setVehicleInfo] = useState<any>(null);
+
 
   return (
     <div className="mx-auto max-w-7xl rounded-lg border border-white px-8 py-10">
@@ -19,7 +20,7 @@ const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
           <div className="flex flex-row gap-x-2">
             <Button
               className="space-x-[5px]"
-              onClick={() => setIsFileInputVisible(true)}
+              onClick={() => setIsCreateModalOpen(true)}
             >
               <CirclePlus size={20} /> <span>Ajouter Véhicule</span>
             </Button>
@@ -60,7 +61,7 @@ const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
               </td>
               <td className="border px-4 py-2 ">
                 <div className="flex  justify-center gap-x-4">
-                  <button onClick={() => setEditVehicle(vehicle)}>
+                  <button onClick={() => setVehicleInfo(vehicle)}>
                     <Pencil
                       size={22}
                       className="text-blue-500 hover:text-blue-700"
@@ -74,14 +75,14 @@ const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
         </tbody>
       </table>
 
-      {isFileInputVisible && (
-        <CreateVehiculeForm onClose={() => setIsFileInputVisible(false)} />
+      {isCreateModalOpen && (
+        <CreateVehiculeForm onClose={() => setIsCreateModalOpen(false)} />
       )}
 
-      {editVehicle && (
+      {vehicleInfo && (
         <EditVehiculeForm
-          vehicle={editVehicle}
-          onClose={() => setEditVehicle(null)}
+          vehicle={vehicleInfo}
+          onClose={() => setVehicleInfo(null)}
         />
       )}
     </div>

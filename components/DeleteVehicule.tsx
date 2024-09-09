@@ -35,8 +35,8 @@ export const DeleteVehicle = ({ id }: { id: string }) => {
       <button disabled={isPending}>
         {isPending ? (
           <span className="flex flex-row items-center gap-x-2">
-          <Loader color="red" />
-        </span>
+            <Loader color="red" />
+          </span>
         ) : (
           <span className="text-red-500 hover:text-red-700">
             <Trash size={22} />
