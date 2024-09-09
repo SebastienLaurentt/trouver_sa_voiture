@@ -1,17 +1,17 @@
 "use client";
 
+import { DeleteVehicle } from "@/components/DeleteVehicule";
 import { Button } from "@/components/ui/button";
 import { CirclePlus } from "lucide-react";
 import { useState } from "react";
 import CreateVehiculeForm from "./CreateVehiculeForm";
-import { DeleteVehicle } from "@/components/DeleteVehicule";
 
 const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
   const [isFileInputVisible, setIsFileInputVisible] = useState(false);
   console.log(allVehicles);
 
   return (
-    <div className="mx-auto max-w-6xl rounded-lg border border-white px-8 py-10">
+    <div className="mx-auto max-w-7xl rounded-lg border border-white px-8 py-10">
       <h1 className="text-2xl font-bold">Liste des Véhicules</h1>
       <div className="flex flex-row justify-between py-4">
         <div className="flex flex-row gap-x-4">
@@ -29,14 +29,14 @@ const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
       <table className="min-w-full border border-gray-200">
         <thead>
           <tr className="text-left">
-            <th className="border px-4 py-2">Nom</th>
+            <th className=" w-[200px] border px-4 py-2">Nom</th>
             <th className="border px-4 py-2">Kilomètres</th>
             <th className="border px-4 py-2">Boîte</th>
             <th className="border px-4 py-2">Type</th>
-            <th className="border px-4 py-2">Prix</th>
+            <th className="w-[150px] border px-4 py-2">Prix</th>
             <th className="border px-4 py-2">Premium</th>
             <th className="border px-4 py-2">Vendu</th>
-            <th className="border px-4 py-2">Tag</th>
+            <th className="border px-4 py-2 ">Tag</th>
             <th className="border px-4 py-2">Éditer</th>
           </tr>
         </thead>
