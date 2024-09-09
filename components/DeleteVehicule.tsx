@@ -30,6 +30,7 @@ export const DeleteVehicle = ({ id }: { id: string }) => {
         e.preventDefault();
         deleteVehicleMutation();
       }}
+      className="flex"
     >
       <button disabled={isPending}>
         {isPending ? (
@@ -38,7 +39,7 @@ export const DeleteVehicle = ({ id }: { id: string }) => {
         </span>
         ) : (
           <span className="text-red-500 hover:text-red-700">
-            <Trash />
+            <Trash size={22} />
           </span>
         )}
       </button>

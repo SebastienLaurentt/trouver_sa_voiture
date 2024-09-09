@@ -2,13 +2,14 @@
 
 import { DeleteVehicle } from "@/components/DeleteVehicule";
 import { Button } from "@/components/ui/button";
-import { CirclePlus } from "lucide-react";
+import { CirclePlus, Pencil } from "lucide-react";
 import { useState } from "react";
 import CreateVehiculeForm from "./CreateVehiculeForm";
+import EditVehiculeForm from "./EditVehiculeForm";
 
 const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
   const [isFileInputVisible, setIsFileInputVisible] = useState(false);
-  console.log(allVehicles);
+  const [editVehicle, setEditVehicle] = useState<any>(null);
 
   return (
     <div className="mx-auto max-w-7xl rounded-lg border border-white px-8 py-10">
@@ -57,10 +58,17 @@ const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
               <td className="border px-4 py-2">
                 {vehicle.tag ? vehicle.tag : "Aucun"}
               </td>
-              <td className="border px-4 py-2 text-center">
-                <DeleteVehicle id={vehicle.id} />
+              <td className="border px-4 py-2 ">
+                <div className="flex  justify-center gap-x-4">
+                  <button onClick={() => setEditVehicle(vehicle)}>
+                    <Pencil
+                      size={22}
+                      className="text-blue-500 hover:text-blue-700"
+                    />
+                  </button>
+                  <DeleteVehicle id={vehicle.id} />
+                </div>
               </td>
-              
             </tr>
           ))}
         </tbody>
@@ -68,6 +76,13 @@ const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
 
       {isFileInputVisible && (
         <CreateVehiculeForm onClose={() => setIsFileInputVisible(false)} />
+      )}
+
+      {editVehicle && (
+        <EditVehiculeForm
+          vehicle={editVehicle}
+          onClose={() => setEditVehicle(null)}
+        />
       )}
     </div>
   );
