@@ -1,14 +1,9 @@
-import React from 'react';
-import { dotPulse } from "ldrs";
+import React from 'react'
 
-dotPulse.register();
-
-interface LoaderProps {
-  color?: string;
+const Loader = () => {
+  return (
+    <div>Loader</div>
+  )
 }
 
-const Loader: React.FC<LoaderProps> = ({ color = "black" }) => {
-  return <l-dot-pulse size="20" color={color} />;
-};
-
-export default Loader;
+export default Loader
