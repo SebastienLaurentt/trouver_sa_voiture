@@ -56,7 +56,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
       setSold(false);
       setTag("");
       setImageFile(null); 
-      toast({ title: "Véhicule créé avec succès" });
+      toast({ title: "Véhicule créé avec succès !" });
       onClose();
     },
     onError: (error) => {
