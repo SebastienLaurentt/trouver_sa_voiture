@@ -152,6 +152,7 @@ export const updateVehicle = async (id: string, formData: FormData) => {
   const data = Object.fromEntries(formData.entries());
 
   const parsedData = {
+    id,
     ...data,
     kmNumber: parseFloat(data.kmNumber as string),
     price: parseFloat(data.price as string),
