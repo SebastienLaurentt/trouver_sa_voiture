@@ -1,7 +1,5 @@
 "use client";
 
-
-import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { deleteVehicule } from "@/lib/actions";
 
@@ -32,15 +30,17 @@ export const DeleteVehicle = ({ id }: { id: string }) => {
         deleteVehicleMutation();
       }}
     >
-      <Button size="sm" disabled={isPending}>
+      <button disabled={isPending}>
         {isPending ? (
           <span className="flex flex-row items-center gap-x-2">
             &quot;Suppression en cours...&quot;
           </span>
         ) : (
-          <Trash />
+          <span className="text-red-500 hover:text-red-700">
+            <Trash />
+          </span>
         )}
-      </Button>
+      </button>
     </form>
   );
 };

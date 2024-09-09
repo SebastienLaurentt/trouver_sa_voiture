@@ -37,7 +37,7 @@ const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
             <th className="border px-4 py-2">Premium</th>
             <th className="border px-4 py-2">Vendu</th>
             <th className="border px-4 py-2 ">Tag</th>
-            <th className="border px-4 py-2">Éditer</th>
+            <th className="border px-4 py-2">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -57,9 +57,10 @@ const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
               <td className="border px-4 py-2">
                 {vehicle.tag ? vehicle.tag : "Aucun"}
               </td>
-              <td className="border px-4 py-2">
+              <td className="border px-4 py-2 text-center">
                 <DeleteVehicle id={vehicle.id} />
               </td>
+              
             </tr>
           ))}
         </tbody>
