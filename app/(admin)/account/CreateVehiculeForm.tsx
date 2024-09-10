@@ -92,7 +92,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="relative w-[500px] rounded-lg border border-white bg-background p-6 shadow-lg">
         <button
-          className="absolute right-2 top-2 text-gray-600 hover:text-black"
+          className="absolute right-2 top-2 text-foreground hover:text-foreground/80"
           onClick={onClose}
         >
           <X />
@@ -122,43 +122,6 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
           </div>
 
           <div>
-            <Label htmlFor="boiteType">Boîte de Vitesse</Label>
-            <Select
-              value={boiteType}
-              onValueChange={(value) => setBoiteType(value)}
-            >
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Choisir une boîte" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectItem value="Manuelle">Manuelle</SelectItem>
-                  <SelectItem value="Automatique">Automatique</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div>
-            <Label htmlFor="carType">Type de véhicule</Label>
-            <Select
-              value={carType}
-              onValueChange={(value) => setCarType(value)}
-            >
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Choisir un type" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectItem value="Citadine">Citadine</SelectItem>
-                  <SelectItem value="Berline">Berline</SelectItem>
-                  <SelectItem value="SUV">SUV</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div>
             <Label htmlFor="price">Prix</Label>
             <Input
               id="price"
@@ -169,22 +132,43 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
             />
           </div>
 
-          <div className="flex flex-row items-center gap-x-2">
-            <Checkbox
-              id="premium"
-              checked={premium}
-              onCheckedChange={(checked) => setPremium(!!checked)}
-            />
-            <Label htmlFor="premium">Premium</Label>
-          </div>
+          <div className="flex flex-row gap-x-4">
+            <div>
+              <Label htmlFor="boiteType">Boîte de Vitesse</Label>
+              <Select
+                value={boiteType}
+                onValueChange={(value) => setBoiteType(value)}
+              >
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Choisir une boîte" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value="Manuelle">Manuelle</SelectItem>
+                    <SelectItem value="Automatique">Automatique</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
 
-          <div className="flex flex-row items-center gap-x-2">
-            <Checkbox
-              id="sold"
-              checked={sold}
-              onCheckedChange={(checked) => setSold(!!checked)}
-            />
-            <Label htmlFor="sold">Vendu</Label>
+            <div>
+              <Label htmlFor="carType">Type de véhicule</Label>
+              <Select
+                value={carType}
+                onValueChange={(value) => setCarType(value)}
+              >
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Choisir un type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value="Citadine">Citadine</SelectItem>
+                    <SelectItem value="Berline">Berline</SelectItem>
+                    <SelectItem value="SUV">SUV</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           <div>
@@ -207,6 +191,26 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
                 </SelectGroup>
               </SelectContent>
             </Select>
+          </div>
+
+          <div className="flex flex-row gap-x-4">
+            <div className="flex flex-row items-center gap-x-2">
+              <Checkbox
+                id="premium"
+                checked={premium}
+                onCheckedChange={(checked) => setPremium(!!checked)}
+              />
+              <Label htmlFor="premium">Premium</Label>
+            </div>
+
+            <div className="flex flex-row items-center gap-x-2">
+              <Checkbox
+                id="sold"
+                checked={sold}
+                onCheckedChange={(checked) => setSold(!!checked)}
+              />
+              <Label htmlFor="sold">Vendu</Label>
+            </div>
           </div>
 
           <div>
