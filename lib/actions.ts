@@ -1,37 +1,11 @@
 "use server";
 
-import { z } from "zod";
-
 import { revalidatePath } from "next/cache";
-import { prisma } from "./prisma";
-import { supabase } from "./supabase";
 import { redirect } from "next/navigation";
+import { prisma } from "./prisma";
+import { createVehicleSchema, VehicleSchemaWithId } from "./schema";
 import { createClient } from "./server";
-
-const VehicleCreateSchema = z.object({
-  name: z.string(),
-  kmNumber: z.number(),
-  boiteType: z.string(),
-  carType: z.string(),
-  price: z.number(),
-  premium: z.boolean(),
-  sold: z.boolean(),
-  tag: z.string().optional().nullable(),
-  imageUrl: z.any(),
-});
-
-const VehicleSchemaWithId = z.object({
-  id: z.string(),
-  name: z.string(),
-  kmNumber: z.number(),
-  boiteType: z.string(),
-  carType: z.string(),
-  price: z.number(),
-  premium: z.boolean(),
-  sold: z.boolean(),
-  tag: z.string().optional().nullable(),
-  imageUrl: z.any(),
-});
+import { supabase } from "./supabase";
 
 export const getAllVehiclesList = async () => {
   try {
@@ -91,7 +65,7 @@ export const createVehicle = async (formData: FormData) => {
     tag: data.tag ? data.tag : undefined,
   };
 
-  const validatedFields = VehicleCreateSchema.safeParse(parsedData);
+  const validatedFields = createVehicleSchema.safeParse(parsedData);
 
   if (!validatedFields.success) {
     console.error(
@@ -224,7 +198,6 @@ export const updateVehicle = async (id: string, formData: FormData) => {
   }
 };
 
-
 export const deleteVehicule = async (id: string) => {
   try {
     const vehicle = await prisma.vehicule.findUnique({
@@ -246,37 +219,36 @@ export const deleteVehicule = async (id: string) => {
 };
 
 export async function login(formData: FormData) {
-  const supabase = createClient()
+  const supabase = createClient();
 
   // type-casting here for convenience
   // in practice, you should validate your inputs
   const data = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
-  }
+    email: formData.get("email") as string,
+    password: formData.get("password") as string,
+  };
 
-  const { error } = await supabase.auth.signInWithPassword(data)
+  const { error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
-    redirect('/error')
+    redirect("/error");
   }
 
-  revalidatePath('/', 'layout')
-  redirect('/account')
+  revalidatePath("/", "layout");
+  redirect("/account");
 }
 
 export async function logout() {
-  const supabase = createClient()
+  const supabase = createClient();
 
-
-  const { error } = await supabase.auth.signOut()
+  const { error } = await supabase.auth.signOut();
 
   if (error) {
-    redirect('/error')
+    redirect("/error");
   }
 
-  revalidatePath('/', 'layout')
-  redirect('/')
+  revalidatePath("/", "layout");
+  redirect("/");
 }
 
 // export async function signup(formData: FormData) {

@@ -1,6 +1,3 @@
-"use client";
-
-import Loader from "@/components/Loader";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -8,84 +5,69 @@ import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
 import { createVehicle } from "@/lib/actions";
+import { CreateVehicleFormData, createVehicleSchema } from "@/lib/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { X } from "lucide-react";
-import React, { useState } from "react";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 
 const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
-  const [name, setName] = useState("");
-  const [kmNumber, setKmNumber] = useState("");
-  const [boiteType, setBoiteType] = useState("");
-  const [carType, setCarType] = useState("");
-  const [price, setPrice] = useState("");
-  const [premium, setPremium] = useState(false);
-  const [sold, setSold] = useState(false);
-  const [tag, setTag] = useState("");
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [error, setError] = useState("");
-
   const {
-    mutate: createVehicleMutation,
-    isPending,
-    isSuccess,
-    isError,
-    error: mutationError,
-  } = useMutation({
-    mutationKey: ["create-vehicle"],
-    mutationFn: async (formData: FormData) => {
-      try {
-        const result = await createVehicle(formData);
-        return result;
-      } catch (error) {
-        throw new Error("Échec de la création du véhicule");
-      }
-    },
-    onSuccess: () => {
-      setName("");
-      setKmNumber("");
-      setBoiteType("");
-      setCarType("");
-      setPrice("");
-      setPremium(false);
-      setSold(false);
-      setTag("");
-      setImageFile(null);
-      toast({ title: "Véhicule créé avec succès !" });
-      onClose();
-    },
-    onError: (error) => {
-      setError(error.message || "Une erreur inattendue est survenue.");
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    setValue,
+  } = useForm<CreateVehicleFormData>({
+    resolver: zodResolver(createVehicleSchema),
+    defaultValues: {
+      premium: false,
+      sold: false,
     },
   });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData();
-    formData.set("name", name);
-    formData.set("kmNumber", kmNumber);
-    formData.set("boiteType", boiteType);
-    formData.set("carType", carType);
-    formData.set("price", price);
-    formData.set("premium", premium.toString());
-    formData.set("sold", sold.toString());
-    if (tag) formData.set("tag", tag);
-    if (imageFile) formData.set("image", imageFile);
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
-    createVehicleMutation(formData);
-  };
+  const mutation = useMutation({
+    mutationKey: ["create-vehicle"],
+    mutationFn: async (data: CreateVehicleFormData) => {
+      const formData = new FormData();
+      Object.entries(data).forEach(([key, value]) => {
+        if (value instanceof File) {
+          formData.append(key, value);
+        } else if (typeof value !== "undefined") {
+          formData.append(key, value.toString());
+        }
+      });
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      setImageFile(file);
-    }
+      if (imageFile) {
+        formData.append("image", imageFile);
+      }
+
+      return createVehicle(formData);
+    },
+    onSuccess: () => {
+      toast({ title: "Véhicule créé avec succès !" });
+      onClose();
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Erreur lors de la création du véhicule",
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
+  const onSubmit = (data: CreateVehicleFormData) => {
+    mutation.mutate(data);
   };
 
   return (
@@ -98,16 +80,13 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
           <X />
         </button>
         <h2 className="mb-4 text-xl font-bold">Ajouter un nouveau véhicule</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <Label htmlFor="name">Nom</Label>
-            <Input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
+            <Input id="name" {...register("name")} />
+            {errors.name && (
+              <p className="text-red-500">{errors.name.message}</p>
+            )}
           </div>
 
           <div>
@@ -115,10 +94,11 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
             <Input
               id="kmNumber"
               type="number"
-              value={kmNumber}
-              onChange={(e) => setKmNumber(e.target.value)}
-              required
+              {...register("kmNumber", { valueAsNumber: true })}
             />
+            {errors.kmNumber && (
+              <p className="text-red-500">{errors.kmNumber.message}</p>
+            )}
           </div>
 
           <div>
@@ -126,88 +106,113 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
             <Input
               id="price"
               type="number"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              required
+              {...register("price", { valueAsNumber: true })}
             />
+            {errors.price && (
+              <p className="text-red-500">{errors.price.message}</p>
+            )}
           </div>
 
           <div className="flex flex-row gap-x-4">
             <div>
               <Label htmlFor="boiteType">Boîte de Vitesse</Label>
-              <Select
-                value={boiteType}
-                onValueChange={(value) => setBoiteType(value)}
-              >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Choisir une boîte" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="Manuelle">Manuelle</SelectItem>
-                    <SelectItem value="Automatique">Automatique</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
+              <Controller
+                name="boiteType"
+                control={control}
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Choisir une boîte" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Manuelle">Manuelle</SelectItem>
+                      <SelectItem value="Automatique">Automatique</SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.boiteType && (
+                <p className="text-red-500">{errors.boiteType.message}</p>
+              )}
             </div>
 
             <div>
               <Label htmlFor="carType">Type de véhicule</Label>
-              <Select
-                value={carType}
-                onValueChange={(value) => setCarType(value)}
-              >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Choisir un type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="Citadine">Citadine</SelectItem>
-                    <SelectItem value="Berline">Berline</SelectItem>
-                    <SelectItem value="SUV">SUV</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
+              <Controller
+                name="carType"
+                control={control}
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Choisir un type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Citadine">Citadine</SelectItem>
+                      <SelectItem value="Berline">Berline</SelectItem>
+                      <SelectItem value="SUV">SUV</SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.carType && (
+                <p className="text-red-500">{errors.carType.message}</p>
+              )}
             </div>
           </div>
 
           <div>
             <Label htmlFor="tag">Tag (optionnel)</Label>
-            <Select value={tag} onValueChange={(value) => setTag(value)}>
-              <SelectTrigger className="w-[250px]">
-                <SelectValue placeholder="Choisir un tag" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectItem value="Idéal Jeune Conducteur">
-                    Idéal Jeune Conducteur
-                  </SelectItem>
-                  <SelectItem value="Très peu de kilomètres">
-                    Très peu de kilomètres
-                  </SelectItem>
-                  <SelectItem value="TVA Récupérable">
-                    TVA Récupérable
-                  </SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+            <Controller
+              name="tag"
+              control={control}
+              render={({ field }) => (
+                <Select onValueChange={field.onChange} value={field.value}>
+                  <SelectTrigger className="w-[250px]">
+                    <SelectValue placeholder="Choisir un tag" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Idéal Jeune Conducteur">
+                      Idéal Jeune Conducteur
+                    </SelectItem>
+                    <SelectItem value="Très peu de kilomètres">
+                      Très peu de kilomètres
+                    </SelectItem>
+                    <SelectItem value="TVA Récupérable">
+                      TVA Récupérable
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              )}
+            />
           </div>
 
           <div className="flex flex-row gap-x-4">
             <div className="flex flex-row items-center gap-x-2">
-              <Checkbox
-                id="premium"
-                checked={premium}
-                onCheckedChange={(checked) => setPremium(!!checked)}
+              <Controller
+                name="premium"
+                control={control}
+                render={({ field }) => (
+                  <Checkbox
+                    id="premium"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                )}
               />
               <Label htmlFor="premium">Premium</Label>
             </div>
 
             <div className="flex flex-row items-center gap-x-2">
-              <Checkbox
-                id="sold"
-                checked={sold}
-                onCheckedChange={(checked) => setSold(!!checked)}
+              <Controller
+                name="sold"
+                control={control}
+                render={({ field }) => (
+                  <Checkbox
+                    id="sold"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                )}
               />
               <Label htmlFor="sold">Vendu</Label>
             </div>
@@ -219,19 +224,17 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
               id="image"
               type="file"
               accept="image/*"
-              onChange={handleImageChange}
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  setImageFile(file);
+                }
+              }}
             />
           </div>
 
-          {isError && <p className="text-red-500">{error}</p>}
-          <Button type="submit" disabled={isPending}>
-            {isPending || isSuccess ? (
-              <span className="flex flex-row items-center gap-x-2">
-                Création en cours <Loader color="border-slate-50" />
-              </span>
-            ) : (
-              "Créer le véhicule"
-            )}
+          <Button type="submit" disabled={mutation.isPending}>
+            {mutation.isPending ? "Création en cours..." : "Créer le véhicule"}
           </Button>
         </form>
       </div>
