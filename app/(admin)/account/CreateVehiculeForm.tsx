@@ -1,3 +1,4 @@
+import FormError from "@/components/FormError";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
@@ -84,25 +85,19 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
           <div>
             <Label htmlFor="name">Nom</Label>
             <Input id="name" {...register("name")} />
-            {errors.name && (
-              <p className="text-red-500">{errors.name.message}</p>
-            )}
+            {errors.name && <FormError message={errors.name.message} />}
           </div>
 
           <div>
             <Label htmlFor="kmNumber">Kilométrage</Label>
             <Input id="kmNumber" type="number" {...register("kmNumber")} />
-            {errors.kmNumber && (
-              <p className="text-red-500">{errors.kmNumber.message}</p>
-            )}
+            {errors.kmNumber && <FormError message={errors.kmNumber.message} />}
           </div>
 
           <div>
             <Label htmlFor="price">Prix</Label>
             <Input id="price" type="number" {...register("price")} />
-            {errors.price && (
-              <p className="text-red-500">{errors.price.message}</p>
-            )}
+            {errors.price && <FormError message={errors.price.message} />}
           </div>
 
           <div className="flex flex-row gap-x-4">
@@ -124,7 +119,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
                 )}
               />
               {errors.boiteType && (
-                <p className="text-red-500">{errors.boiteType.message}</p>
+                <FormError message={errors.boiteType.message} />
               )}
             </div>
 
@@ -146,9 +141,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
                   </Select>
                 )}
               />
-              {errors.carType && (
-                <p className="text-red-500">{errors.carType.message}</p>
-              )}
+              {errors.carType && <FormError message={errors.carType.message} />}
             </div>
           </div>
 
