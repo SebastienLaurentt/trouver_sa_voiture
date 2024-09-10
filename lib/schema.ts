@@ -2,10 +2,16 @@ import { z } from "zod";
 
 export const createVehicleSchema = z.object({
   name: z.string().min(1, "Le nom est requis"),
-  kmNumber: z.number().min(0, "Le kilométrage doit être positif"),
-  boiteType: z.enum(["Manuelle", "Automatique"]),
-  carType: z.enum(["Citadine", "Berline", "SUV"]),
-  price: z.number().min(0, "Le prix doit être positif"),
+  kmNumber: z.coerce
+    .number()
+    .gte(1, "Le kilomètrage est requis"),
+  boiteType: z.enum(["Manuelle", "Automatique"], {
+    errorMap: () => ({ message: "Boite de vitesse requise" }),
+  }),
+  carType: z.enum(["Citadine", "Berline", "SUV"], {
+    errorMap: () => ({ message: "Type de véhicule requis" }),
+  }),
+  price: z.coerce.number().gte(1, "Le prix est requis"),
   premium: z.boolean(),
   sold: z.boolean(),
   tag: z.string().optional(),

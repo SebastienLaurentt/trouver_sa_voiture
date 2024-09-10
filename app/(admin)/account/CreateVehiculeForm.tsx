@@ -91,11 +91,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
 
           <div>
             <Label htmlFor="kmNumber">Kilométrage</Label>
-            <Input
-              id="kmNumber"
-              type="number"
-              {...register("kmNumber", { valueAsNumber: true })}
-            />
+            <Input id="kmNumber" type="number" {...register("kmNumber")} />
             {errors.kmNumber && (
               <p className="text-red-500">{errors.kmNumber.message}</p>
             )}
@@ -103,11 +99,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
 
           <div>
             <Label htmlFor="price">Prix</Label>
-            <Input
-              id="price"
-              type="number"
-              {...register("price", { valueAsNumber: true })}
-            />
+            <Input id="price" type="number" {...register("price")} />
             {errors.price && (
               <p className="text-red-500">{errors.price.message}</p>
             )}
@@ -224,6 +216,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
               id="image"
               type="file"
               accept="image/*"
+              required
               onChange={(e) => {
                 const file = e.target.files?.[0];
                 if (file) {
