@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { login } from "@/lib/actions";
 import { ArrowLeftToLine } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -16,10 +17,14 @@ export default function LoginPage() {
             </span>
           </div>
           <form className="mx-auto  flex  flex-col justify-center gap-y-3">
-            <Label htmlFor="email">Email:</Label>
-            <Input id="email" name="email" type="email" required />
-            <Label htmlFor="password">Mot de Passe:</Label>
-            <Input id="password" name="password" type="password" required />
+            <div>
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" name="email" type="email" required />
+            </div>
+            <div>
+              <Label htmlFor="password">Mot de Passe</Label>
+              <Input id="password" name="password" type="password" required />
+            </div>
             <Button formAction={login}>Connexion</Button>
             <Link
               href="/"
@@ -32,10 +37,12 @@ export default function LoginPage() {
       </div>
 
       <div className="w-full">
-        <img
+        <Image
           src="/images/HeroImg.jpg"
           alt="Image de voiture"
           className="lg:rounded-lg"
+          width={1000}
+          height={1000}
         />
       </div>
     </div>
