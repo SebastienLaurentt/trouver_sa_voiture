@@ -137,7 +137,16 @@ export const updateVehicle = async (id: string, formData: FormData) => {
   }
 
   try {
-    let imageUrl = validatedFields.data.imageUrl;
+    const existingVehicle = await prisma.vehicule.findUnique({
+      where: { id },
+      select: { imageUrl: true },
+    });
+
+    if (!existingVehicle) {
+      throw new Error("Véhicule non trouvé");
+    }
+
+    let imageUrl = existingVehicle.imageUrl; 
 
     const actualImageFile = formData.get("image") as File;
 
@@ -158,7 +167,22 @@ export const updateVehicle = async (id: string, formData: FormData) => {
         throw new Error("Erreur lors de l'upload de l'image");
       }
 
+
       imageUrl = imageData?.path;
+
+      if (existingVehicle.imageUrl) {
+        const { error: deleteError } = await supabase.storage
+          .from("images")
+          .remove([existingVehicle.imageUrl]);
+
+        if (deleteError) {
+          console.error(
+            "Erreur lors de la suppression de l'ancienne image :",
+            deleteError
+          );
+          throw new Error("Erreur lors de la suppression de l'ancienne image");
+        }
+      }
     }
 
     const updatedVehicle = await prisma.vehicule.update({
@@ -201,7 +225,10 @@ export const deleteVehicule = async (id: string) => {
         .remove([vehicle.imageUrl]);
 
       if (deleteError) {
-        console.error("Erreur lors de la suppression de l'image :", deleteError);
+        console.error(
+          "Erreur lors de la suppression de l'image :",
+          deleteError
+        );
         throw new Error("Erreur lors de la suppression de l'image");
       }
     }
@@ -209,7 +236,6 @@ export const deleteVehicule = async (id: string) => {
     await prisma.vehicule.delete({
       where: { id },
     });
-
   } catch (error) {
     console.error("Erreur lors de la suppression du véhicule :", error);
     throw new Error("Échec de la suppression du véhicule");
