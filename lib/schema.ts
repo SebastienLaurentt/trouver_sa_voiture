@@ -12,8 +12,8 @@ export const createVehicleSchema = z.object({
     errorMap: () => ({ message: "Type de véhicule requis" }),
   }),
   price: z.coerce.number().gte(1, "Le prix est requis"),
-  premium: z.boolean(),
-  sold: z.boolean(),
+  premium: z.coerce.boolean(),
+  sold: z.coerce.boolean(),
   tag: z.string().optional(),
   imageUrl: z.any(),
 });

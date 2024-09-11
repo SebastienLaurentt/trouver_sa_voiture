@@ -54,27 +54,13 @@ export const getNonPremiumVehicles = async () => {
 };
 
 export const createVehicle = async (formData: FormData) => {
-  const data = Object.fromEntries(formData.entries());
-
-  const parsedData = {
-    ...data,
-    kmNumber: parseFloat(data.kmNumber as string),
-    price: parseFloat(data.price as string),
-    premium: data.premium === "true",
-    sold: data.sold === "true",
-    tag: data.tag ? data.tag : undefined,
-  };
-
-  const validatedFields = createVehicleSchema.safeParse(parsedData);
+  const validatedFields = createVehicleSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
 
   if (!validatedFields.success) {
-    console.error(
-      "Validation failed:",
-      validatedFields.error.flatten().fieldErrors
-    );
     return {
       Error: validatedFields.error.flatten().fieldErrors,
-      message: "Validation failed. Please check the input fields.",
     };
   }
 
