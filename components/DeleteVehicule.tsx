@@ -1,11 +1,12 @@
 "use client";
 
 import { toast } from "@/components/ui/use-toast";
-import { deleteVehicule } from "@/lib/actions";
+
 
 import { useMutation } from "@tanstack/react-query";
 import { Trash } from "lucide-react";
 import Loader from "./Loader";
+import { deleteVehicule } from "@/lib/actions";
 
 export const DeleteVehicle = ({ id }: { id: string }) => {
   const { mutate: deleteVehicleMutation, isPending } = useMutation({

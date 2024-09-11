@@ -195,12 +195,26 @@ export const deleteVehicule = async (id: string) => {
       throw new Error("Véhicule non trouvé");
     }
 
+    if (vehicle.imageUrl) {
+      const { error: deleteError } = await supabase.storage
+        .from("images")
+        .remove([vehicle.imageUrl]);
+
+      if (deleteError) {
+        console.error("Erreur lors de la suppression de l'image :", deleteError);
+        throw new Error("Erreur lors de la suppression de l'image");
+      }
+    }
+
     await prisma.vehicule.delete({
       where: { id },
     });
+
   } catch (error) {
+    console.error("Erreur lors de la suppression du véhicule :", error);
     throw new Error("Échec de la suppression du véhicule");
   }
+
   revalidatePath("/", "layout");
 };
 
