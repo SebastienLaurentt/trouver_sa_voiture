@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createVehicleSchema = z.object({
+export const vehicleSchemaWithoutId = z.object({
   name: z.string().min(1, "Le nom est requis"),
   kmNumber: z.coerce.number().gte(1, "Le kilomètrage est requis"),
   boiteType: z.enum(["Manuelle", "Automatique"], {
@@ -16,9 +16,9 @@ export const createVehicleSchema = z.object({
   imageUrl: z.any(),
 });
 
-export type CreateVehicleFormData = z.infer<typeof createVehicleSchema>;
+export type CreateVehicleFormData = z.infer<typeof vehicleSchemaWithoutId>;
 
-export const VehicleSchemaWithId = z.object({
+export const vehicleSchemaWithId = z.object({
   id: z.string(),
   name: z.string().min(1, "Le nom est requis"),
   kmNumber: z.coerce.number().gte(1, "Le kilomètrage est requis"),
@@ -35,4 +35,4 @@ export const VehicleSchemaWithId = z.object({
   imageUrl: z.any(),
 });
 
-export type EditVehicleFormData = z.infer<typeof VehicleSchemaWithId>;
+export type EditVehicleFormData = z.infer<typeof vehicleSchemaWithId>;

@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
 import { createVehicle } from "@/lib/actions";
-import { CreateVehicleFormData, createVehicleSchema } from "@/lib/schema";
+import { CreateVehicleFormData, vehicleSchemaWithoutId } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { X } from "lucide-react";
@@ -35,7 +35,7 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
     formState: { errors },
     control,
   } = useForm<CreateVehicleFormData>({
-    resolver: zodResolver(createVehicleSchema),
+    resolver: zodResolver(vehicleSchemaWithoutId),
     defaultValues: {
       premium: false,
       sold: false,

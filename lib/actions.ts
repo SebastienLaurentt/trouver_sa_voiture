@@ -3,16 +3,17 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "./prisma";
-import { createVehicleSchema, VehicleSchemaWithId } from "./schema";
+
 import { createClient } from "./server";
 import { supabase } from "./supabase";
+import { vehicleSchemaWithId, vehicleSchemaWithoutId } from "./schema";
 
 export const getAllVehiclesList = async () => {
   try {
     const vehicles = await prisma.vehicule.findMany();
 
     const validatedVehicles = vehicles.map((vehicle) =>
-      VehicleSchemaWithId.parse(vehicle)
+      vehicleSchemaWithId.parse(vehicle)
     );
 
     return validatedVehicles;
@@ -28,7 +29,7 @@ export const getPremiumVehicles = async () => {
     });
 
     const validatedVehicles = premiumVehicles.map((vehicle) =>
-      VehicleSchemaWithId.parse(vehicle)
+      vehicleSchemaWithId.parse(vehicle)
     );
 
     return validatedVehicles;
@@ -44,7 +45,7 @@ export const getNonPremiumVehicles = async () => {
     });
 
     const validatedVehicles = nonPremiumVehicles.map((vehicle) =>
-      VehicleSchemaWithId.parse(vehicle)
+      vehicleSchemaWithId.parse(vehicle)
     );
 
     return validatedVehicles;
@@ -54,7 +55,7 @@ export const getNonPremiumVehicles = async () => {
 };
 
 export const createVehicle = async (formData: FormData) => {
-  const validatedFields = createVehicleSchema.safeParse(
+  const validatedFields = vehicleSchemaWithoutId.safeParse(
     Object.fromEntries(formData.entries())
   );
 
@@ -111,7 +112,7 @@ export const createVehicle = async (formData: FormData) => {
 };
 
 export const updateVehicle = async (id: string, formData: FormData) => {
-  const validatedFields = VehicleSchemaWithId.safeParse(
+  const validatedFields = vehicleSchemaWithId.safeParse(
     Object.fromEntries(formData.entries())
   );
 

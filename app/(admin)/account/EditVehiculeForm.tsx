@@ -23,7 +23,8 @@ import {
 } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
 import { updateVehicle } from "@/lib/actions";
-import { EditVehicleFormData, VehicleSchemaWithId } from "@/lib/schema";
+import { EditVehicleFormData, vehicleSchemaWithId } from "@/lib/schema";
+
 
 const EditVehiculeForm = ({
   vehicle,
@@ -46,7 +47,7 @@ const EditVehiculeForm = ({
     formState: { errors },
     control,
   } = useForm<EditVehicleFormData>({
-    resolver: zodResolver(VehicleSchemaWithId),
+    resolver: zodResolver(vehicleSchemaWithId),
     defaultValues: {
       ...vehicle,
       kmNumber: Number(vehicle.kmNumber),
