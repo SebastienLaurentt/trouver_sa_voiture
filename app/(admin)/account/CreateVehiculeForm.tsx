@@ -16,16 +16,24 @@ import { CreateVehicleFormData, createVehicleSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { X } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
+  const [image, setImage] = useState<{
+    file: File | null;
+    preview: string | null;
+  }>({
+    file: null,
+    preview: null,
+  });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
-    setValue,
   } = useForm<CreateVehicleFormData>({
     resolver: zodResolver(createVehicleSchema),
     defaultValues: {
@@ -33,8 +41,6 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
       sold: false,
     },
   });
-
-  const [imageFile, setImageFile] = useState<File | null>(null);
 
   const mutation = useMutation({
     mutationKey: ["create-vehicle"],
@@ -48,8 +54,8 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
         }
       });
 
-      if (imageFile) {
-        formData.append("image", imageFile);
+      if (image.file) {
+        formData.append("image", image.file);
       }
 
       return createVehicle(formData);
@@ -69,6 +75,19 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
 
   const onSubmit = (data: CreateVehicleFormData) => {
     mutation.mutate(data);
+  };
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImage({ file, preview: e.target?.result as string });
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setImage({ file: null, preview: null });
+    }
   };
 
   return (
@@ -210,13 +229,20 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
               type="file"
               accept="image/*"
               required
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) {
-                  setImageFile(file);
-                }
-              }}
+              onChange={handleImageChange}
             />
+            {image.preview && (
+              <div className="mt-2">
+                <span className="italic">Aperçu Image</span>
+                <Image
+                  alt="Aperçu de l'image sélectionnée"
+                  src={image.preview}
+                  height={200}
+                  width={200}
+                  className="rounded-md"
+                />
+              </div>
+            )}
           </div>
 
           <Button type="submit" disabled={mutation.isPending}>
