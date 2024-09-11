@@ -60,9 +60,7 @@ export const createVehicle = async (formData: FormData) => {
   );
 
   if (!validatedFields.success) {
-    return {
-      Error: validatedFields.error.flatten().fieldErrors,
-    };
+    throw new Error("Validation échouée: " + JSON.stringify(validatedFields.error.flatten().fieldErrors));
   }
 
   try {
@@ -96,8 +94,8 @@ export const createVehicle = async (formData: FormData) => {
         boiteType: validatedFields.data.boiteType,
         carType: validatedFields.data.carType,
         price: validatedFields.data.price,
-        premium: validatedFields.data.premium,
-        sold: validatedFields.data.sold,
+        premium: validatedFields.data.premium || false, 
+        sold: validatedFields.data.sold || false,
         tag: validatedFields.data.tag || null,
         imageUrl,
       },
