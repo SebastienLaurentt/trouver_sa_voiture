@@ -111,28 +111,13 @@ export const createVehicle = async (formData: FormData) => {
 };
 
 export const updateVehicle = async (id: string, formData: FormData) => {
-  const data = Object.fromEntries(formData.entries());
-
-  const parsedData = {
-    id,
-    ...data,
-    kmNumber: parseFloat(data.kmNumber as string),
-    price: parseFloat(data.price as string),
-    premium: data.premium === "true",
-    sold: data.sold === "true",
-    tag: data.tag ? data.tag : undefined,
-  };
-
-  const validatedFields = VehicleSchemaWithId.safeParse(parsedData);
+  const validatedFields = VehicleSchemaWithId.safeParse(
+    Object.fromEntries(formData.entries())
+  );
 
   if (!validatedFields.success) {
-    console.error(
-      "Validation failed:",
-      validatedFields.error.flatten().fieldErrors
-    );
     return {
       Error: validatedFields.error.flatten().fieldErrors,
-      message: "Validation failed. Please check the input fields.",
     };
   }
 
@@ -146,7 +131,7 @@ export const updateVehicle = async (id: string, formData: FormData) => {
       throw new Error("Véhicule non trouvé");
     }
 
-    let imageUrl = existingVehicle.imageUrl; 
+    let imageUrl = existingVehicle.imageUrl;
 
     const actualImageFile = formData.get("image") as File;
 
@@ -166,7 +151,6 @@ export const updateVehicle = async (id: string, formData: FormData) => {
         console.error("Erreur lors de l'upload de l'image :", uploadError);
         throw new Error("Erreur lors de l'upload de l'image");
       }
-
 
       imageUrl = imageData?.path;
 

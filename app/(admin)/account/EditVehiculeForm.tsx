@@ -1,5 +1,13 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { X } from "lucide-react";
+import Image from "next/image";
+import React, { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+
+import FormError from "@/components/FormError";
 import Loader from "@/components/Loader";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -15,49 +23,56 @@ import {
 } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
 import { updateVehicle } from "@/lib/actions";
-import { useMutation } from "@tanstack/react-query";
-import { X } from "lucide-react";
-import Image from "next/image";
-import React, { useState } from "react";
+import { EditVehicleFormData, VehicleSchemaWithId } from "@/lib/schema";
 
 const EditVehiculeForm = ({
   vehicle,
   onClose,
 }: {
-  vehicle: any;
+  vehicle: EditVehicleFormData;
   onClose: () => void;
 }) => {
-  const [id, setId] = useState(vehicle.id); // Stockez l'ID
-  const [name, setName] = useState(vehicle.name);
-  const [kmNumber, setKmNumber] = useState(vehicle.kmNumber);
-  const [boiteType, setBoiteType] = useState(vehicle.boiteType);
-  const [carType, setCarType] = useState(vehicle.carType);
-  const [price, setPrice] = useState(vehicle.price);
-  const [premium, setPremium] = useState(vehicle.premium);
-  const [sold, setSold] = useState(vehicle.sold);
-  const [tag, setTag] = useState(vehicle.tag);
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [imageState, setImageState] = useState<{
+    currentImage: string;
+    newImage?: string;
+    imageFile?: File;
+  }>({
+    currentImage: `https://aotdlnddxemcekzntizx.supabase.co/storage/v1/object/public/images/${vehicle.imageUrl}`,
+  });
 
   const {
-    mutate: updateVehicleMutation,
-    isPending,
-    isSuccess,
-  } = useMutation({
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+  } = useForm<EditVehicleFormData>({
+    resolver: zodResolver(VehicleSchemaWithId),
+    defaultValues: {
+      ...vehicle,
+      kmNumber: Number(vehicle.kmNumber),
+      price: Number(vehicle.price),
+    },
+  });
+
+  const mutation = useMutation({
     mutationKey: ["update-vehicle"],
-    mutationFn: async (formData: FormData) => {
-      try {
-        const result = await updateVehicle(vehicle.id, formData);
-        return result;
-      } catch (error) {
-        throw new Error("Échec de la mise à jour du véhicule");
+    mutationFn: async (data: EditVehicleFormData) => {
+      const formData = new FormData();
+      Object.entries(data).forEach(([key, value]) => {
+        if (value !== undefined && value !== null) {
+          formData.append(key, value.toString());
+        }
+      });
+      if (imageState.imageFile) {
+        formData.append("image", imageState.imageFile);
       }
+      return updateVehicle(vehicle.id, formData);
     },
     onSuccess: () => {
       toast({ title: "Véhicule mis à jour avec succès !" });
       onClose();
     },
-    onError: (error: any) => {
+    onError: (error: Error) => {
       toast({
         title: "Échec de la mise à jour",
         description: error.message,
@@ -66,34 +81,8 @@ const EditVehiculeForm = ({
     },
   });
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setSelectedImage(e.target?.result as string);
-      };
-      reader.readAsDataURL(file);
-      setImageFile(file); // Mettre à jour l'état avec le fichier sélectionné
-    }
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData();
-    formData.set("id", id);
-    formData.set("name", name);
-    formData.set("kmNumber", kmNumber);
-    formData.set("boiteType", boiteType);
-    formData.set("carType", carType);
-    formData.set("price", price);
-    formData.set("premium", premium.toString());
-    formData.set("sold", sold.toString());
-    if (tag) formData.set("tag", tag);
-    if (imageFile) formData.set("image", imageFile); // Ajoutez l'image sélectionnée
-
-    console.log("formData", formData);
-    updateVehicleMutation(formData);
+  const onSubmit = (data: EditVehicleFormData) => {
+    mutation.mutate(data);
   };
 
   return (
@@ -106,16 +95,11 @@ const EditVehiculeForm = ({
           <X />
         </button>
         <h2 className="mb-4 text-xl font-bold">Modifier le véhicule</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <Label htmlFor="name">Nom</Label>
-            <Input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
+            <Input id="name" {...register("name")} />
+            {errors.name && <FormError message={errors.name.message} />}
           </div>
 
           <div>
@@ -123,97 +107,123 @@ const EditVehiculeForm = ({
             <Input
               id="kmNumber"
               type="number"
-              value={kmNumber}
-              onChange={(e) => setKmNumber(e.target.value)}
-              required
+              {...register("kmNumber", { valueAsNumber: true })}
             />
+            {errors.kmNumber && <FormError message={errors.kmNumber.message} />}
           </div>
+
           <div>
             <Label htmlFor="price">Prix</Label>
             <Input
               id="price"
               type="number"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              required
+              {...register("price", { valueAsNumber: true })}
             />
+            {errors.price && <FormError message={errors.price.message} />}
           </div>
+
           <div className="flex flex-row gap-x-4">
             <div>
               <Label htmlFor="boiteType">Boîte de Vitesse</Label>
-              <Select
-                value={boiteType}
-                onValueChange={(value) => setBoiteType(value)}
-              >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Choisir une boîte" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="Manuelle">Manuelle</SelectItem>
-                    <SelectItem value="Automatique">Automatique</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
+              <Controller
+                name="boiteType"
+                control={control}
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Choisir une boîte" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="Manuelle">Manuelle</SelectItem>
+                        <SelectItem value="Automatique">Automatique</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.boiteType && <FormError message={errors.boiteType.message} />}
             </div>
 
             <div>
               <Label htmlFor="carType">Type de véhicule</Label>
-              <Select
-                value={carType}
-                onValueChange={(value) => setCarType(value)}
-              >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Choisir un type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="Citadine">Citadine</SelectItem>
-                    <SelectItem value="Berline">Berline</SelectItem>
-                    <SelectItem value="SUV">SUV</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
+              <Controller
+                name="carType"
+                control={control}
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange} value={field.value}>
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Choisir un type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectItem value="Citadine">Citadine</SelectItem>
+                        <SelectItem value="Berline">Berline</SelectItem>
+                        <SelectItem value="SUV">SUV</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.carType && <FormError message={errors.carType.message} />}
             </div>
           </div>
 
           <div>
             <Label htmlFor="tag">Tag (optionnel)</Label>
-            <Select value={tag} onValueChange={(value) => setTag(value)}>
-              <SelectTrigger className="w-[250px]">
-                <SelectValue placeholder="Choisir un tag" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectItem value="Idéal Jeune Conducteur">
-                    Idéal Jeune Conducteur
-                  </SelectItem>
-                  <SelectItem value="Très peu de kilomètres">
-                    Très peu de kilomètres
-                  </SelectItem>
-                  <SelectItem value="TVA Récupérable">
-                    TVA Récupérable
-                  </SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+            <Controller
+              name="tag"
+              control={control}
+              render={({ field }) => (
+                <Select onValueChange={field.onChange} value={field.value || undefined}>
+                  <SelectTrigger className="w-[250px]">
+                    <SelectValue placeholder="Choisir un tag" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectItem value="Idéal Jeune Conducteur">
+                        Idéal Jeune Conducteur
+                      </SelectItem>
+                      <SelectItem value="Très peu de kilomètres">
+                        Très peu de kilomètres
+                      </SelectItem>
+                      <SelectItem value="TVA Récupérable">
+                        TVA Récupérable
+                      </SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              )}
+            />
           </div>
 
           <div className="flex flex-row gap-x-4">
             <div className="flex gap-x-2">
-              <Checkbox
-                id="premium"
-                checked={premium}
-                onCheckedChange={(value) => setPremium(value)}
+              <Controller
+                name="premium"
+                control={control}
+                render={({ field }) => (
+                  <Checkbox
+                    id="premium"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                )}
               />
               <Label htmlFor="premium">Premium</Label>
             </div>
 
             <div className="flex gap-x-2">
-              <Checkbox
-                id="sold"
-                checked={sold}
-                onCheckedChange={(value) => setSold(value)}
+              <Controller
+                name="sold"
+                control={control}
+                render={({ field }) => (
+                  <Checkbox
+                    id="sold"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                )}
               />
               <Label htmlFor="sold">Vendu</Label>
             </div>
@@ -221,7 +231,24 @@ const EditVehiculeForm = ({
 
           <div>
             <Label htmlFor="image">Image</Label>
-            <Input id="image" type="file" onChange={handleImageChange} />
+            <Input
+              id="image"
+              type="file"
+              onChange={(event) => {
+                const file = event.target.files?.[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = (e) => {
+                    setImageState((prevState) => ({
+                      ...prevState,
+                      newImage: e.target?.result as string,
+                      imageFile: file,
+                    }));
+                  };
+                  reader.readAsDataURL(file);
+                }
+              }}
+            />
           </div>
 
           <div className="mt-3 flex flex-row gap-x-4">
@@ -229,30 +256,30 @@ const EditVehiculeForm = ({
               <span className="italic">Image Actuelle</span>
               <Image
                 alt="image du véhicule"
-                src={`https://aotdlnddxemcekzntizx.supabase.co/storage/v1/object/public/images/${vehicle.imageUrl}`}
+                src={imageState.currentImage}
                 height={200}
                 width={200}
                 className="rounded-md"
-                blurDataURL={`https://aotdlnddxemcekzntizx.supabase.co/storage/v1/object/public/images/${vehicle.imageUrl}`}
+                blurDataURL={imageState.currentImage}
               />
             </div>
-            {selectedImage && (
+            {imageState.newImage && (
               <div className="flex flex-col gap-y-1">
                 <span className="italic">Nouvelle Image</span>
                 <Image
                   alt="image sélectionnée"
-                  src={selectedImage}
+                  src={imageState.newImage}
                   height={200}
                   width={200}
                   className="rounded-md"
-                  blurDataURL={selectedImage}
+                  blurDataURL={imageState.newImage}
                 />
               </div>
             )}
           </div>
 
-          <Button type="submit" disabled={isPending}>
-            {isPending || isSuccess ? (
+          <Button type="submit" disabled={mutation.isPending}>
+            {mutation.isPending ? (
               <span className="flex flex-row items-center gap-x-2">
                 Mise à jour en cours <Loader color="border-slate-50" />
               </span>
