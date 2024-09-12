@@ -5,9 +5,8 @@ export default async function Classiques() {
   return (
     <main>
       <PageHeader
-        title="Email for modern software companies"
-        description="Send your product, marketing, and transactional email with Loops.
-One simple interface, for all your email."
+        title="Notre sélection de voitures classiques"
+        description="Des modèles intemporels qui allient style et authenticité."
       />
       <ClassiquesVehiculesList />
     </main>

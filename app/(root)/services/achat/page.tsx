@@ -4,10 +4,9 @@ const Achat = () => {
   return (
     <main>
       <PageHeader
-        title="Email for modern software companies"
-        description="Send your product, marketing, and transactional email with Loops.
-One simple interface, for all your email."
-      />{" "}
+        title="Votre partenaire pour l'achat idéal"
+        description="Profitez de notre expertise pour trouver et acquérir la voiture qui correspond à vos attentes, sans stress ni tracas."
+      />
     </main>
   );
 };

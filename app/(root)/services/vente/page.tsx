@@ -4,10 +4,9 @@ const Vente = () => {
   return (
     <main>
       <PageHeader
-        title="Email for modern software companies"
-        description="Send your product, marketing, and transactional email with Loops.
-One simple interface, for all your email."
-      />{" "}
+        title="Vendez votre voiture en toute confiance"
+        description="Simplifiez la vente de votre véhicule avec notre service personnalisé, rapide et sécurisé, pour obtenir le meilleur prix."
+      />
     </main>
   );
 };

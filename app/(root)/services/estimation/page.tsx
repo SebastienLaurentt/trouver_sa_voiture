@@ -4,10 +4,9 @@ const Estimation = () => {
   return (
     <main>
       <PageHeader
-        title="Email for modern software companies"
-        description="Send your product, marketing, and transactional email with Loops.
-One simple interface, for all your email."
-      />{" "}
+        title="Estimez la valeur de votre véhicule"
+        description="Obtenez une estimation précise et rapide pour connaître la valeur réelle de votre voiture sur le marché actuel."
+      />
     </main>
   );
 };

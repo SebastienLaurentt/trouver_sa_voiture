@@ -4,10 +4,9 @@ const Contact = () => {
   return (
     <main>
       <PageHeader
-        title="Email for modern software companies"
-        description="Send your product, marketing, and transactional email with Loops.
-One simple interface, for all your email."
-      />{" "}
+        title="Contactez-nous pour toutes vos questions"
+        description="Notre équipe est à votre écoute pour vous accompagner dans l'achat, la vente, ou l'estimation de votre véhicule."
+      />
     </main>
   );
 };
