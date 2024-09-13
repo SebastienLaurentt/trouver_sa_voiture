@@ -4,10 +4,9 @@ const About = () => {
   return (
     <main>
       <PageHeader
-        title="Email for modern software companies"
-        description="Send your product, marketing, and transactional email with Loops.
-One simple interface, for all your email."
-      />{" "}
+        title="Rencontrez notre équipe dédiée"
+        description="Passionnés d'automobile et experts du marché, nous mettons notre savoir-faire à votre service pour vous offrir une expérience unique et personnalisée."
+      />
     </main>
   );
 };

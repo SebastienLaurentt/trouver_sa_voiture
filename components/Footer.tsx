@@ -1,13 +1,18 @@
+"use client";
+
 import { Atom } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
 const Footer = () => {
+  const pathname = usePathname();
+  const isCtaHidden = pathname === "/contact";
   return (
     <footer>
       <div className="mx-auto px-6 md:max-w-2xl md:px-0 lg:max-w-4xl">
-        <div className="py-8">
+        <div className={`${isCtaHidden ? "hidden" : "py-8"}`}>
           <div className="flex flex-col items-center  gap-y-4 rounded-xl bg-muted  px-4 py-12 text-center md:gap-y-6 md:py-16">
             <h2 className="font-semibold md:max-w-[400px]">
               Vous avez besoin d&apos;être accompagné ?

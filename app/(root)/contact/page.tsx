@@ -4,8 +4,8 @@ const Contact = () => {
   return (
     <main>
       <PageHeader
-        title="Contactez-nous pour toutes vos questions !"
-        description="Notre équipe est à votre écoute pour vous accompagner dans l'achat, la vente, ou l'estimation de votre véhicule."
+        title="Restons en contact"
+        description="Besoin d'informations supplémentaires ? Contactez-nous et nous vous répondrons rapidement pour répondre à vos besoins en achat, vente ou estimation de véhicule."
       />
     </main>
   );
