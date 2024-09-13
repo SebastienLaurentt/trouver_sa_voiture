@@ -103,19 +103,19 @@ const CreateVehiculeForm = ({ onClose }: { onClose: () => void }) => {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <Label htmlFor="name">Nom</Label>
-            <Input id="name" {...register("name")} />
+            <Input id="name" {...register("name")} placeholder="Nom du véhicule" />
             {errors.name && <FormError message={errors.name.message} />}
           </div>
 
           <div>
             <Label htmlFor="kmNumber">Kilométrage</Label>
-            <Input id="kmNumber" type="number" {...register("kmNumber")} />
+            <Input id="kmNumber" type="number" {...register("kmNumber")} placeholder="Kilométrage du véhicule"/>
             {errors.kmNumber && <FormError message={errors.kmNumber.message} />}
           </div>
 
           <div>
             <Label htmlFor="price">Prix</Label>
-            <Input id="price" type="number" {...register("price")} />
+            <Input id="price" type="number" {...register("price")} placeholder="Prix du véhicule" />
             {errors.price && <FormError message={errors.price.message} />}
           </div>
 
