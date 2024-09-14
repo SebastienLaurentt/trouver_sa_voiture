@@ -33,7 +33,7 @@ const Hero = () => {
         <Button>
           <Link href="/">Trouver ma voiture</Link>
         </Button>
-        <div className="mt-6 flex flex-col items-center justify-center gap-y-2 md:flex-row md:gap-x-3">
+        <Link href="https://g.co/kgs/6c2xQVQ" className="mt-6 flex flex-col items-center justify-center gap-y-2 md:flex-row md:gap-x-3">
           <div className="flex flex-col items-center">
             <div className="flex flex-row items-center gap-x-1 font-bold">
               <Image
@@ -55,7 +55,7 @@ const Hero = () => {
           <span className="w-[200px] text-center text-sm md:text-left ">
             +90 clients sont satisfaits par nos différents services
           </span>
-        </div>
+        </Link>
       </div>
       <div
         id="hero-img"
