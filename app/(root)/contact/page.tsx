@@ -13,7 +13,7 @@ const Contact = () => {
         title="Besoin d'informations supplémentaires ?"
         description="Remplissez le formulaire et nous vous répondrons rapidement pour répondre à votre demande."
       />
-      <Section marginBottom classname="mt-8">
+      <Section  classname="my-16">
         <div className="mx-auto space-y-4 rounded-xl border p-6 shadow shadow-slate-800 xl:w-[800px] xl:p-8">
           <div className="flex flex-col md:flex-row md:gap-x-4">
             <div className="md:w-1/2">
