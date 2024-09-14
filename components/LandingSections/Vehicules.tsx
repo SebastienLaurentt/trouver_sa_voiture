@@ -43,7 +43,7 @@ const Voitures = async () => {
           <TabsContent value="premium" className="w-full">
             <Carrousel vehicles={premiumVehicles.slice(0, 3)} />{" "}
             {/* Limite à 6 véhicules */}
-            <Button asChild>
+            <Button asChild className="bg-[#cead6f] text-slate-950 hover:bg-[#cead6f]/80">
               <Link href="/voitures/premium" className="flex flex-row gap-x-2">
                 {" "}
                 <Notebook size={18} /> Voir Catalogue Premium

@@ -85,7 +85,7 @@ const CarCard = ({
         <div className="flex w-full flex-row items-center justify-between gap-x-2">
           <span
             className={`text-2xl font-semibold ${
-              premium ? "text-[#d8A444]" : ""
+              premium ? "text-[#cead6f]" : ""
             }`}
           >
             {price} €
