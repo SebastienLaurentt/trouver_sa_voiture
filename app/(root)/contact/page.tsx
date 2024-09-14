@@ -8,7 +8,7 @@ import { Mail } from "lucide-react";
 
 const Contact = () => {
   return (
-    <main>
+    <main >
       <PageHeader
         title="Besoin d'informations supplémentaires ?"
         description="Remplissez le formulaire et nous vous répondrons rapidement pour répondre à votre demande."
