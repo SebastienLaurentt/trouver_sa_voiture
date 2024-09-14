@@ -1,10 +1,11 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getNonPremiumVehicles, getPremiumVehicles } from "@/lib/actions";
 import Link from "next/link";
-import CarCard from "../CarCard";
+
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
 import { Button } from "../ui/button";
+import Carrousel from "../Carrousel";
 
 const Voitures = async () => {
   const premiumVehicles = await getPremiumVehicles();
@@ -25,22 +26,8 @@ const Voitures = async () => {
 
           {/* Contenu pour les véhicules classiques */}
           <TabsContent value="classiques" className="w-full">
-            <div className="flex w-full flex-col items-center justify-between gap-y-12 py-4 xl:flex-row">
-              {classicVehicles.slice(0, 3).map((vehicle, index) => (
-                <li key={index} className="list-none">
-                  <CarCard
-                    src={`https://aotdlnddxemcekzntizx.supabase.co/storage/v1/object/public/images/${vehicle.imageUrl}`}
-                    price={vehicle.price}
-                    boiteType={vehicle.boiteType}
-                    carType={vehicle.carType}
-                    kmNumber={vehicle.kmNumber}
-                    name={vehicle.name}
-                    sold={vehicle.sold}
-                    tag={vehicle.tag || ""}
-                  />
-                </li>
-              ))}
-            </div>
+            <Carrousel vehicles={classicVehicles.slice(0, 3)} />{" "}
+            {/* Limite à 6 véhicules */}
             <Button asChild>
               <Link href="/voitures/classiques">Catalogue Classique</Link>
             </Button>
@@ -48,22 +35,8 @@ const Voitures = async () => {
 
           {/* Contenu pour les véhicules premium */}
           <TabsContent value="premium" className="w-full">
-            <div className="flex flex-col items-center justify-between gap-y-12 py-4 xl:flex-row">
-              {premiumVehicles.slice(0, 3).map((vehicle, index) => (
-                <li key={index} className="list-none">
-                  <CarCard
-                    src={`https://aotdlnddxemcekzntizx.supabase.co/storage/v1/object/public/images/${vehicle.imageUrl}`}
-                    price={vehicle.price}
-                    boiteType={vehicle.boiteType}
-                    carType={vehicle.carType}
-                    kmNumber={vehicle.kmNumber}
-                    name={vehicle.name}
-                    sold={vehicle.sold}
-                    tag={vehicle.tag || ""}
-                  />
-                </li>
-              ))}
-            </div>
+            <Carrousel vehicles={premiumVehicles.slice(0, 3)} />{" "}
+            {/* Limite à 6 véhicules */}
             <Button asChild>
               <Link href="/voitures/premium">Catalogue Premium</Link>
             </Button>
