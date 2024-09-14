@@ -10,8 +10,7 @@ interface IBurgerMenu {
 // Liste des liens de navigation
 const navLinks = [
   { href: "/", label: "Accueil" },
-  { href: "/voitures/classiques", label: "Voiture Classiques" },
-  { href: "/voitures/premium", label: "Voiture Premium" },
+  { href: "/vehicules", label: "Nos Véhicules" },
   { href: "/services/estimation", label: "Estimation" },
   { href: "/services/achat", label: "Achat" },
   { href: "/services/vente", label: "Vente" },

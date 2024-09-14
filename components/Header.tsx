@@ -12,7 +12,6 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Atom, ChartNoAxesCombined, Handshake } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import BurgerMenu from "./BurgerMenu";
@@ -71,31 +70,14 @@ const Header: React.FC = () => {
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Véhicules</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-3">
-                    <NavigationMenuLink asChild>
-                      <Image
-                        src="/images/Car50.avif"
-                        alt="Photo de voiture"
-                        width={180}
-                        height={180}
-                        className="rounded-md"
-                      />
-                    </NavigationMenuLink>
-                  </li>
-                  <ListItem href="/voitures/classiques" title="Classiques">
-                    Venez découvrir les vehicules classiques de notre catalogue.
-                  </ListItem>
-                  <ListItem href="/voitures/premium" title="Premium">
-                    Venez découvrir les vehicules premium de notre catalogue.
-                  </ListItem>
-                </ul>
-              </NavigationMenuContent>
+              <Link href="/vehicules" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Nos Véhicules
+                </NavigationMenuLink>
+              </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Services</NavigationMenuTrigger>
+              <NavigationMenuTrigger>Nos Services</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="p-6 md:w-[400px]">
                   <ListItem

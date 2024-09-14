@@ -1,14 +1,14 @@
 import CarCard from "@/components/CarCard";
 import Section from "@/components/Section";
-import { getNonPremiumVehicles } from "@/lib/actions";
+import { getAllVehiclesList } from "@/lib/actions";
 
-const ClassiquesVehiculesList = async () => {
-  const classicVehicles = await getNonPremiumVehicles();
+const VehiculesList = async () => {
+  const vehicles = await getAllVehiclesList();
 
   return (
     <Section marginTop marginBottom>
       <div className="grid grid-cols-1 justify-items-center gap-x-4 gap-y-8 md:grid-cols-2 xl:grid-cols-3">
-        {classicVehicles.map((vehicle, index) => (
+        {vehicles.map((vehicle, index) => (
           <li key={index} className="list-none">
             <CarCard
               src={`https://aotdlnddxemcekzntizx.supabase.co/storage/v1/object/public/images/${vehicle.imageUrl}`}
@@ -27,4 +27,4 @@ const ClassiquesVehiculesList = async () => {
   );
 };
 
-export default ClassiquesVehiculesList;
+export default VehiculesList;
