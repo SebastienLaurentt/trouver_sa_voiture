@@ -11,6 +11,7 @@ interface CarCardProps {
   price: number;
   sold: boolean;
   tag?: string;
+  premium?: boolean; // Add the premium prop
 }
 
 const CarCard = ({
@@ -22,6 +23,7 @@ const CarCard = ({
   price,
   sold,
   tag,
+  premium,
 }: CarCardProps) => {
   return (
     <div className="relative rounded-lg border shadow shadow-slate-800">
@@ -49,17 +51,45 @@ const CarCard = ({
           </div>
         )}
       </div>
-      <div className="rounded-b-lg  p-3">
-        <div className="text-left text-lg font-medium">{name}</div>
+      <div className="rounded-b-lg p-3 ">
+        <div
+          className={`text-left text-lg font-medium ${
+            premium ? "text-[#cead6f]" : ""
+          }`}
+        >
+          {name}
+        </div>
         <div className="my-4 flex flex-row gap-x-2 text-sm">
-          <span className="rounded-full bg-muted px-2.5 py-1">
+          <span
+            className={`rounded-full px-2.5 py-1 ${
+              premium ? "bg-[#cead6f] text-slate-950" : "bg-muted"
+            }`}
+          >
             {kmNumber} km
           </span>
-          <span className="rounded-full bg-muted px-2.5 py-1">{boiteType}</span>
-          <span className="rounded-full bg-muted px-2.5 py-1">{carType}</span>
+          <span
+            className={`rounded-full px-2.5 py-1 ${
+              premium ? "bg-[#cead6f] text-slate-950" : "bg-muted"
+            }`}
+          >
+            {boiteType}
+          </span>
+          <span
+            className={`rounded-full px-2.5 py-1 ${
+              premium ? "bg-[#cead6f] text-slate-950" : "bg-muted"
+            }`}
+          >
+            {carType}
+          </span>
         </div>
         <div className="flex w-full flex-row items-center justify-between gap-x-2">
-          <span className="text-2xl font-semibold">{price} €</span>
+          <span
+            className={`text-2xl font-semibold ${
+              premium ? "text-[#d8A444]" : ""
+            }`}
+          >
+            {price} €
+          </span>
           <Button variant="ghost">
             En savoir plus <ArrowRight className="ml-1" size={16} />
           </Button>

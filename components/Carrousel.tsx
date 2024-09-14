@@ -81,6 +81,7 @@ const Carrousel = ({ vehicles }: { vehicles: EditVehicleFormData[] }) => {
             name={vehicle.name}
             sold={vehicle.sold}
             tag={vehicle.tag || ""}
+            premium={vehicle.premium}
           />
         ))}
       </div>
@@ -114,6 +115,7 @@ const Carrousel = ({ vehicles }: { vehicles: EditVehicleFormData[] }) => {
                 name={vehicle.name}
                 sold={vehicle.sold}
                 tag={vehicle.tag || ""}
+                premium={vehicle.premium}
               />
             </div>
           </div>
