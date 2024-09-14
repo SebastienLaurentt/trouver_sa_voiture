@@ -24,7 +24,7 @@ const CarCard = ({
   tag,
 }: CarCardProps) => {
   return (
-    <div className="relative rounded-lg border border-slate-800 shadow shadow-slate-800">
+    <div className="relative rounded-lg border shadow shadow-slate-800">
       <div className="relative h-[200px] w-80">
         {/* Image et tags */}
         <Image
