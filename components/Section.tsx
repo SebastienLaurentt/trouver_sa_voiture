@@ -19,7 +19,7 @@ const Section = ({
   return (
     <section
       id={id}
-      className={`${classname} ${isMarginBottom} ${isMarginTop} mx-auto px-2 md:max-w-2xl lg:max-w-3xl xl:max-w-5xl `}
+      className={`${classname} ${isMarginBottom} ${isMarginTop} mx-auto px-4 md:max-w-2xl lg:max-w-3xl xl:max-w-5xl `}
     >
       {children}
     </section>
