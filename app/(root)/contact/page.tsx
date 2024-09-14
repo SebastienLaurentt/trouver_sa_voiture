@@ -15,7 +15,7 @@ const Contact = () => {
       />
       <Section classname="my-16 ">
         <div className="space-y-4 rounded-xl border p-6 shadow shadow-slate-800 md:mx-20  xl:p-8">
-          <div className="flex flex-col md:flex-row md:gap-x-4">
+          <div className="flex flex-col  gap-y-4 md:flex-row md:gap-x-4 md:gap-y-0">
             <div className="md:w-1/2">
               <Label htmlFor="firstname">Prénom</Label>
               <Input id="firstname" placeholder="Votre Prénom" />

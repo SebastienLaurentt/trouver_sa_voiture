@@ -2,10 +2,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getNonPremiumVehicles, getPremiumVehicles } from "@/lib/actions";
 import Link from "next/link";
 
+import { Notebook } from "lucide-react";
+import Carrousel from "../Carrousel";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
 import { Button } from "../ui/button";
-import Carrousel from "../Carrousel";
 
 const Voitures = async () => {
   const premiumVehicles = await getPremiumVehicles();
@@ -29,7 +30,12 @@ const Voitures = async () => {
             <Carrousel vehicles={classicVehicles.slice(0, 3)} />{" "}
             {/* Limite à 6 véhicules */}
             <Button asChild>
-              <Link href="/voitures/classiques">Catalogue Classique</Link>
+              <Link
+                href="/voitures/classiques"
+                className="flex flex-row gap-x-2"
+              >
+                <Notebook size={18} /> Voir Catalogue Classique
+              </Link>
             </Button>
           </TabsContent>
 
@@ -38,7 +44,10 @@ const Voitures = async () => {
             <Carrousel vehicles={premiumVehicles.slice(0, 3)} />{" "}
             {/* Limite à 6 véhicules */}
             <Button asChild>
-              <Link href="/voitures/premium">Catalogue Premium</Link>
+              <Link href="/voitures/premium" className="flex flex-row gap-x-2">
+                {" "}
+                <Notebook size={18} /> Voir Catalogue Premium
+              </Link>
             </Button>
           </TabsContent>
         </Tabs>
