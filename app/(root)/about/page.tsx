@@ -17,11 +17,12 @@ const About = () => {
           description="A votre service depuis 2010"
         />
       </Section> */}
-      <SectionHeader
-        tag="Notre équipe"
-        description="Un groupe de passionnés à votre service"
-      />
+
       <Section marginBottom marginTop>
+        <SectionHeader
+          tag="Notre équipe"
+          description="Un groupe de passionnés à votre service"
+        />
         <div className="flex flex-col gap-y-8 xl:flex-row xl:items-center xl:gap-x-6 xl:gap-y-0">
           <div className="mx-auto w-4/5 xl:w-2/5">
             {" "}
