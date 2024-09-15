@@ -90,7 +90,7 @@ const Footer = () => {
               </span>
               <ul className="flex flex-col gap-y-1 text-foreground/90">
                 <Link href="/about" className="xl:hover:text-foreground">
-                  Equipe
+                À propos
                 </Link>
                 <Link href="/contact" className="xl:hover:text-foreground">
                   Contact
