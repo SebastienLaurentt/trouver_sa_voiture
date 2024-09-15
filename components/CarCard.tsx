@@ -26,7 +26,7 @@ const CarCard = ({
   premium,
 }: CarCardProps) => {
   return (
-    <div className="relative rounded-lg border shadow shadow-slate-800">
+    <div className="relative rounded-lg border shadow shadow-slate-800 w-[320px]">
       <div className="relative h-[200px] w-full">
         {/* Image et tags */}
         <Image
