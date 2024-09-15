@@ -23,7 +23,7 @@ const Hero = () => {
       <div id="hero-text" className="opacity-0">
         <h1>
           L&apos;agence automobile qui{" "}
-          <span className="text-primary">concrétise</span> votre projets en tout sérénité.
+          <span className="text-primary">concrétise</span> votre projet en tout sérénité.
         </h1>
         <p className="subtitle my-4 text-muted-foreground">
           Estimation, achat, vente : bénéficiez d&apos;un accompagnement expert selon vos besoins. 
