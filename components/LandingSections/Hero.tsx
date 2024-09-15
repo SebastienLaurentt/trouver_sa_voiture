@@ -22,11 +22,11 @@ const Hero = () => {
     <Section classname="my-32 text-center ">
       <div id="hero-text" className="opacity-0">
         <h1>
-          L'agence automobile qui{" "}
+          L&apos;agence automobile qui{" "}
           <span className="text-primary">concrétise</span> votre projets en tout sérénité.
         </h1>
         <p className="subtitle my-4 text-muted-foreground">
-          Estimation, achat, vente : bénéficiez d'un accompagnement expert selon vos besoins. 
+          Estimation, achat, vente : bénéficiez d&apos;un accompagnement expert selon vos besoins. 
         </p>
         <Button>
           <Link href="/vehicules">Trouver ma voiture</Link>
