@@ -11,7 +11,7 @@ interface CarCardProps {
   price: number;
   sold: boolean;
   tag?: string;
-  premium?: boolean; // Add the premium prop
+  premium?: boolean; 
 }
 
 const CarCard = ({
@@ -39,7 +39,7 @@ const CarCard = ({
 
         {/* Tag "Nouveau" */}
         {tag && (
-          <div className="absolute bottom-0 left-0 bg-[#f59e0b] px-2 py-1 text-xs font-bold text-white">
+          <div className="absolute bottom-0 left-0 bg-primary px-2 py-1 text-xs font-bold text-white">
             {tag}
           </div>
         )}
@@ -54,7 +54,7 @@ const CarCard = ({
       <div className="rounded-b-lg p-3 ">
         <div
           className={`text-left text-lg font-medium ${
-            premium ? "text-[#cead6f]" : ""
+            premium ? "text-tertiary" : ""
           }`}
         >
           {name}
@@ -62,21 +62,21 @@ const CarCard = ({
         <div className="my-4 flex flex-row gap-x-2 text-sm">
           <span
             className={`rounded-full px-2.5 py-1 ${
-              premium ? "bg-[#cead6f] text-slate-950" : "bg-muted"
+              premium ? "bg-tertiary text-slate-950" : "bg-muted"
             }`}
           >
             {kmNumber} km
           </span>
           <span
             className={`rounded-full px-2.5 py-1 ${
-              premium ? "bg-[#cead6f] text-slate-950" : "bg-muted"
+              premium ? "bg-tertiary text-slate-950" : "bg-muted"
             }`}
           >
             {boiteType}
           </span>
           <span
             className={`rounded-full px-2.5 py-1 ${
-              premium ? "bg-[#cead6f] text-slate-950" : "bg-muted"
+              premium ? "bg-tertiary text-slate-950" : "bg-muted"
             }`}
           >
             {carType}
@@ -85,7 +85,7 @@ const CarCard = ({
         <div className="flex w-full flex-row items-center justify-between gap-x-2">
           <span
             className={`text-2xl font-semibold ${
-              premium ? "text-[#cead6f]" : ""
+              premium ? "text-tertiary" : ""
             }`}
           >
             {price} €

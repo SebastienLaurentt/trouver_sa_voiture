@@ -142,11 +142,11 @@ function Review({
       <span className="mt-4 block text-sm ">{name}</span>
       <span className="font-semibold text-primary">{experienceType}</span>
       <div className="mt-2 flex flex-row gap-x-0">
-        <Star fill="#f59e0b" color="#f59e0b" />
-        <Star fill="#f59e0b" color="#f59e0b" />
-        <Star fill="#f59e0b" color="#f59e0b" />
-        <Star fill="#f59e0b" color="#f59e0b" />
-        <Star fill="#f59e0b" color="#f59e0b" />
+        <Star fill="#cead6f" color="#cead6f" />
+        <Star fill="#cead6f" color="#cead6f" />
+        <Star fill="#cead6f" color="#cead6f" />
+        <Star fill="#cead6f" color="#cead6f" />
+        <Star fill="#cead6f" color="#cead6f" />
       </div>
     </div>
   );

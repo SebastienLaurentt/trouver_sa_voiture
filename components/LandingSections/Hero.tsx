@@ -33,7 +33,10 @@ const Hero = () => {
         <Button>
           <Link href="/">Trouver ma voiture</Link>
         </Button>
-        <Link href="https://g.co/kgs/6c2xQVQ" className="mt-6 flex flex-col items-center justify-center gap-y-2 md:flex-row md:gap-x-3">
+        <Link
+          href="https://g.co/kgs/6c2xQVQ"
+          className="mt-6 flex flex-col items-center justify-center gap-y-2 md:flex-row md:gap-x-3"
+        >
           <div className="flex flex-col items-center">
             <div className="flex flex-row items-center gap-x-1 font-bold">
               <Image
@@ -45,11 +48,11 @@ const Hero = () => {
               <span>5/5</span>
             </div>
             <div className="flex flex-row justify-center gap-x-0">
-              <Star fill="#f59e0b" color="#f59e0b" />
-              <Star fill="#f59e0b" color="#f59e0b" />
-              <Star fill="#f59e0b" color="#f59e0b" />
-              <Star fill="#f59e0b" color="#f59e0b" />
-              <Star fill="#f59e0b" color="#f59e0b" />
+              <Star fill="#cead6f" color="#cead6f" />
+              <Star fill="#cead6f" color="#cead6f" />
+              <Star fill="#cead6f" color="#cead6f" />
+              <Star fill="#cead6f" color="#cead6f" />
+              <Star fill="#cead6f" color="#cead6f" />
             </div>
           </div>
           <span className="w-[200px] text-center text-sm md:text-left ">
