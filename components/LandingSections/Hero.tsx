@@ -29,7 +29,7 @@ const Hero = () => {
           Estimation, achat, vente : bénéficiez d'un accompagnement expert selon vos besoins. 
         </p>
         <Button>
-          <Link href="/">Trouver ma voiture</Link>
+          <Link href="/vehicules">Trouver ma voiture</Link>
         </Button>
         <Link
           href="https://g.co/kgs/6c2xQVQ"
