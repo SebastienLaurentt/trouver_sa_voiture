@@ -46,7 +46,7 @@ const CarCard = ({
 
         {/* Tag "Vendu" */}
         {sold && (
-          <div className="absolute right-0 top-0  rounded-tr-md bg-red-500 px-2 py-1 text-xs font-bold text-white">
+          <div className="absolute right-0 top-0  rounded-tr-md bg-red-800 px-2 py-1 text-xs font-bold text-white">
             Vendu
           </div>
         )}
