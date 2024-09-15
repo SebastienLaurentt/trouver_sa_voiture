@@ -27,8 +27,10 @@ const Voitures = async () => {
 
           {/* Contenu pour les véhicules classiques */}
           <TabsContent value="classiques" className="w-full">
-            <Carrousel vehicles={classicVehicles.slice(0, 3)} />{" "}
-            {/* Limite à 6 véhicules */}
+            <Carrousel
+              vehicles={classicVehicles.slice(0, 3)}
+              isPremium={false}
+            />{" "}
             <Button asChild>
               <Link
                 href="/voitures/classiques"
@@ -41,11 +43,15 @@ const Voitures = async () => {
 
           {/* Contenu pour les véhicules premium */}
           <TabsContent value="premium" className="w-full">
-            <Carrousel vehicles={premiumVehicles.slice(0, 3)} />{" "}
-            {/* Limite à 6 véhicules */}
-            <Button asChild className="bg-tertiary text-slate-950 hover:bg-tertiary/80">
+            <Carrousel
+              vehicles={premiumVehicles.slice(0, 3)}
+              isPremium={true}
+            />{" "}
+            <Button
+              asChild
+              className="bg-tertiary text-slate-950 hover:bg-tertiary/80"
+            >
               <Link href="/voitures/premium" className="flex flex-row gap-x-2">
-                {" "}
                 <Notebook size={18} /> Voir Catalogue Premium
               </Link>
             </Button>

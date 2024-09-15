@@ -3,7 +3,13 @@ import { EditVehicleFormData } from "@/lib/schema";
 import { TouchEvent, useEffect, useRef, useState } from "react";
 import CarCard from "./CarCard";
 
-const Carrousel = ({ vehicles }: { vehicles: EditVehicleFormData[] }) => {
+const Carrousel = ({
+  vehicles,
+  isPremium = false,
+}: {
+  vehicles: EditVehicleFormData[];
+  isPremium?: boolean;
+}) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [touchStartX, setTouchStartX] = useState<number>(0);
   const [touchEndX, setTouchEndX] = useState<number>(0);
@@ -124,14 +130,18 @@ const Carrousel = ({ vehicles }: { vehicles: EditVehicleFormData[] }) => {
 
       {/* Bullet pagination */}
       {windowWidth < 1280 && (
-        <div className="inset-x-0 mt-4 flex justify-center space-x-2">
+        <div className="inset-x-0 mt-4 flex justify-center space-x-4">
           {Array.from({
             length: Math.ceil(vehicles.length / cardsPerView()),
           }).map((_, index) => (
             <button
               key={index}
-              className={`size-2 rounded-full ${
-                currentIndex === index ? "bg-primary" : "bg-gray-400"
+              className={`size-1.5 rounded-full ${
+                currentIndex === index
+                  ? isPremium
+                    ? "bg-tertiary" 
+                    : "bg-primary" 
+                  : "bg-gray-400"
               }`}
               onClick={() => setCurrentIndex(index)}
             ></button>
