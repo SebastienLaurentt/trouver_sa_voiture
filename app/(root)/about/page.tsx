@@ -23,8 +23,8 @@ const About = () => {
           tag="Notre équipe"
           description="Un groupe de passionnés à votre service"
         />
-        <div className="flex flex-col gap-y-8 xl:flex-row xl:items-center xl:gap-x-6 xl:gap-y-0">
-          <div className="mx-auto w-4/5 xl:w-2/5">
+        <div className="flex flex-col gap-y-8 xl:flex-row xl:items-center xl:gap-x-4 xl:gap-y-0">
+          <div className="mx-auto w-full xl:w-2/5">
             {" "}
             <Image
               src="/images/Serge.jpeg"
@@ -34,7 +34,7 @@ const About = () => {
               className="rounded-md"
             />
           </div>
-          <div className="flex flex-1 flex-col gap-y-4">
+          <div className="flex flex-1 flex-col gap-y-3">
             <div className="flex flex-row items-center justify-center gap-x-2 xl:justify-start">
               <h3>Serge Noukandjo </h3> -
               <span className="text-lg italic">Agent Automobile</span>
