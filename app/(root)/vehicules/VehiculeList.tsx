@@ -14,6 +14,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { DualRangeSlider } from "@/components/ui/slider";
 import { EditVehicleFormData } from "@/lib/schema";
+import { Filter } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
 interface VehiculesListProps {
@@ -173,9 +174,9 @@ const VehiculesList: React.FC<VehiculesListProps> = ({ vehicles }) => {
 
       <Sheet>
         <SheetTrigger asChild>
-          <div className="fixed inset-x-0 bottom-4 z-50 flex justify-center xl:hidden">
-            <Button variant="default" className="px-8 py-2">
-              Filtres
+          <div className="fixed inset-x-0 bottom-0 z-50 flex justify-center bg-gradient-to-t from-transparent/100 via-transparent/60 to-transparent py-4 xl:hidden">
+            <Button className="flex w-[200px] flex-row gap-x-2 bg-slate-200 px-8 py-2 text-slate-950">
+              Filtrer <Filter size={18} />
             </Button>
           </div>
         </SheetTrigger>
