@@ -23,8 +23,8 @@ const PageHeader = ({ title, description }: PageHeaderProps) => {
   }, []);
 
   return (
-    <div className="mx-auto mt-20 flex flex-col items-center px-4 text-center md:max-w-xl lg:max-w-3xl xl:w-[700px] xl:max-w-5xl">
-      <h1 id="title" className="mb-4 opacity-0 text-balance">
+    <div className="mx-auto mt-12 flex flex-col items-center px-4 text-center md:max-w-xl lg:max-w-3xl xl:w-[700px] xl:max-w-5xl">
+      <h1 id="title" className="mb-4 text-balance opacity-0">
         {title}
       </h1>
       <p id="description" className="subtitle opacity-0">
