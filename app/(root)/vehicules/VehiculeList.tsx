@@ -153,22 +153,28 @@ const VehiculesList: React.FC<VehiculesListProps> = ({ vehicles }) => {
 
       <div className="w-full xl:ml-72 2xl:ml-0">
         <Section marginTop marginBottom>
-          <div className="grid grid-cols-1 justify-items-center gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {filteredVehicles.map((vehicle, index) => (
-              <li key={index} className="list-none">
-                <CarCard
-                  src={`https://aotdlnddxemcekzntizx.supabase.co/storage/v1/object/public/images/${vehicle.imageUrl}`}
-                  price={vehicle.price}
-                  boiteType={vehicle.boiteType}
-                  carType={vehicle.carType}
-                  kmNumber={vehicle.kmNumber}
-                  name={vehicle.name}
-                  sold={vehicle.sold}
-                  tag={vehicle.tag || ""}
-                />
-              </li>
-            ))}
-          </div>
+          {filteredVehicles.length > 0 ? (
+            <div className="grid grid-cols-1 justify-items-center gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {filteredVehicles.map((vehicle, index) => (
+                <li key={index} className="list-none">
+                  <CarCard
+                    src={`https://aotdlnddxemcekzntizx.supabase.co/storage/v1/object/public/images/${vehicle.imageUrl}`}
+                    price={vehicle.price}
+                    boiteType={vehicle.boiteType}
+                    carType={vehicle.carType}
+                    kmNumber={vehicle.kmNumber}
+                    name={vehicle.name}
+                    sold={vehicle.sold}
+                    tag={vehicle.tag || ""}
+                  />
+                </li>
+              ))}
+            </div>
+          ) : (
+            <p className="text-center">
+              Aucun véhicule ne correspond à cette recherche !
+            </p>
+          )}
         </Section>
       </div>
 
