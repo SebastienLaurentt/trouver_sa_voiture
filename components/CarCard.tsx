@@ -11,7 +11,7 @@ interface CarCardProps {
   price: number;
   sold: boolean;
   tag?: string;
-  premium?: boolean; 
+  premium?: boolean;
 }
 
 const CarCard = ({
@@ -26,7 +26,7 @@ const CarCard = ({
   premium,
 }: CarCardProps) => {
   return (
-    <div className="relative rounded-lg border shadow shadow-slate-800 w-[320px]">
+    <div className="relative w-[320px] rounded-lg border shadow shadow-slate-800">
       <div className="relative h-[200px] w-full">
         {/* Image et tags */}
         <Image
@@ -39,7 +39,7 @@ const CarCard = ({
 
         {/* Tag "Nouveau" */}
         {tag && (
-          <div className="absolute bottom-0 left-0 bg-primary px-2 py-1 text-xs font-bold text-white">
+          <div className="absolute left-0 top-0 rounded-tl-md bg-primary px-2 py-1 text-xs font-bold text-white">
             {tag}
           </div>
         )}
