@@ -66,7 +66,7 @@ const VehiculesList: React.FC<VehiculesListProps> = ({ vehicles }) => {
 
   return (
     <div className="flex">
-      <div className="fixed left-12 mt-28 hidden space-y-5 px-4 xl:block 2xl:w-80">
+      <div className="fixed left-4 2xl:left-12 mt-28 hidden space-y-5 px-4 xl:block 2xl:w-80">
         <h2 className="mb-4 text-xl font-bold">Filtres</h2>
         <Input
           placeholder="Rechercher..."
@@ -148,7 +148,7 @@ const VehiculesList: React.FC<VehiculesListProps> = ({ vehicles }) => {
         </div>
       </div>
 
-      <div className="ml-72 w-full 2xl:ml-0">
+      <div className="xl:ml-72 w-full 2xl:ml-0">
         <Section marginTop marginBottom>
           <div className="grid grid-cols-1 justify-items-center gap-x-4 gap-y-8 md:grid-cols-2 xl:grid-cols-3">
             {filteredVehicles.map((vehicle, index) => (
