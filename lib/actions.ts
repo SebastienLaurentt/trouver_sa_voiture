@@ -6,7 +6,7 @@ import { prisma } from "./prisma";
 
 import { createClient } from "./server";
 import { supabase } from "./supabase";
-import { vehicleSchemaWithId, vehicleSchemaWithoutId } from "./schema";
+import { estimationSchema, vehicleSchemaWithId, vehicleSchemaWithoutId } from "./schema";
 
 export const getAllVehiclesList = async () => {
   try {
@@ -245,6 +245,44 @@ export const deleteVehicule = async (id: string) => {
   }
 
   revalidatePath("/", "layout");
+};
+
+export const submitEstimation = async (formData: FormData) => {
+  const validatedFields = estimationSchema.safeParse(
+    Object.fromEntries(formData.entries())
+  );
+
+  if (!validatedFields.success) {
+    throw new Error("Validation échouée: " + JSON.stringify(validatedFields.error.flatten().fieldErrors));
+  }
+
+  try {
+    const newEstimation = await prisma.estimation.create({
+      data: {
+        firstName: validatedFields.data.firstName,
+        lastName: validatedFields.data.lastName,
+        email: validatedFields.data.email,
+        phone: validatedFields.data.phone,
+        postalCode: validatedFields.data.postalCode,
+        brand: validatedFields.data.brand,
+        model: validatedFields.data.model,
+        fuelType: validatedFields.data.fuelType,
+        boiteType: validatedFields.data.boiteType,
+        kmNumber: validatedFields.data.kmNumber,
+        immatriculation: validatedFields.data.immatriculation,
+        sellingPeriod: validatedFields.data.sellingPeriod,
+        buyingOption: validatedFields.data.buyingOption,
+      },
+    });
+
+    console.log("Estimation créée:", newEstimation);
+
+    revalidatePath("/services/estimation", "layout");
+    return { message: "Estimation soumise avec succès", estimationId: newEstimation.id };
+  } catch (error) {
+    console.error("Erreur lors du traitement de l'estimation :", error);
+    return { message: "Échec du traitement de l'estimation", Error: error };
+  }
 };
 
 export async function login(formData: FormData) {

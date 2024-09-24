@@ -17,7 +17,7 @@ datasource db {
 model Vehicule {
   id        String   @id @default(cuid())
   name      String
-  imageUrl         String?
+  imageUrl  String?
   kmNumber  Int
   boiteType String
   carType   String
@@ -25,4 +25,22 @@ model Vehicule {
   premium   Boolean  
   sold      Boolean  
   tag       String?   
+}
+
+model Estimation {
+  id              String   @id @default(cuid())
+  firstName       String
+  lastName        String
+  email           String
+  phone           String
+  postalCode      String
+  brand           String
+  model           String
+  fuelType        String
+  boiteType       String
+  kmNumber        Int
+  immatriculation String
+  sellingPeriod   String
+  buyingOption    String
+  createdAt       DateTime @default(now())
 }

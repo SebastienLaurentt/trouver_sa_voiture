@@ -40,3 +40,29 @@ export const vehicleSchemaWithId = z.object({
 });
 
 export type EditVehicleFormData = z.infer<typeof vehicleSchemaWithId>;
+
+export const estimationSchema = z.object({
+  firstName: z.string().min(1, "Le prénom est requis"),
+  lastName: z.string().min(1, "Le nom est requis"),
+  email: z.string().email("L'email n'est pas valide"),
+  phone: z.string().min(10, "Le numéro doit avoir au moins 10 chiffres"),
+  postalCode: z.string().min(5, "Le code postal doit avoir au moins 5 chiffres"),
+  brand: z.string().min(1, "La marque est requise"),
+  model: z.string().min(1, "Le modèle est requis"),
+  fuelType: z.enum(["Diesel", "Essence", "Autre"], {
+    errorMap: () => ({ message: "Type de carburant requis" }),
+  }),
+  boiteType: z.enum(["Manuelle", "Automatique"], {
+    errorMap: () => ({ message: "Type de boîte de vitesse requis" }),
+  }),
+  kmNumber: z.coerce.number().gte(1, "Le kilometrage est requis"),
+  immatriculation: z.string().min(1, "L'immatriculation est requise"),
+  sellingPeriod: z.enum(["Dès que possible", "Dans les 3 mois", "Dans les 6 mois", "Je ne souhaite pas vendre"], {
+    errorMap: () => ({ message: "Ce choix est requis" }),
+  }),
+  buyingOption: z.enum(["Oui, une voiture neuve", "Oui, une voiture d'occasion", "Non, je n'ai pas de projet d'achat"], {
+    errorMap: () => ({ message: "Ce choix est requis" }),
+  }),
+});
+
+export type EstimationFormData = z.infer<typeof estimationSchema>;
