@@ -14,7 +14,7 @@ const Section = ({
   children,
 }: SectionProps) => {
   const isMarginBottom = marginBottom ? "mb-32 md:mb-36 xl:mb-48" : "";
-  const isMarginTop = marginTop ? "mt-12 2xl:mt-20" : "";
+  const isMarginTop = marginTop ? "mt-20" : "";
 
   return (
     <section

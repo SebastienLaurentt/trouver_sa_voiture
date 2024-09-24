@@ -11,7 +11,7 @@ const Footer = () => {
   const isCtaHidden = pathname === "/contact";
   return (
     <footer>
-      <div className="mx-auto px-6 md:max-w-2xl md:px-0 lg:max-w-4xl xl:max-w-5xl">
+      <div className="mx-auto px-6 md:max-w-2xl md:px-0 lg:max-w-4xl xl:max-w-5xl ">
         <div className={`${isCtaHidden ? "hidden" : "py-8"}`}>
           <div className="flex flex-col items-center  gap-y-4 rounded-xl bg-muted  px-4 py-12 text-center md:gap-y-6 md:py-16">
             <h2 className="font-semibold md:max-w-[400px]">
@@ -90,7 +90,7 @@ const Footer = () => {
               </span>
               <ul className="flex flex-col gap-y-1 text-foreground/90">
                 <Link href="/about" className="xl:hover:text-foreground">
-                À propos
+                  À propos
                 </Link>
                 <Link href="/contact" className="xl:hover:text-foreground">
                   Contact

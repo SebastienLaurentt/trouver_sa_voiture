@@ -3,6 +3,8 @@ import PriceCard from "@/components/PriceCard";
 import Section from "@/components/Section";
 import SectionHeader from "@/components/SectionHeader";
 import Step from "@/components/Step";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Achat = () => {
   return (
@@ -29,6 +31,11 @@ const Achat = () => {
             title="Achat et livraison"
             description="Nous négocions le prix, organisons la livraison et vous accompagnons jusqu'à la prise en main de votre véhicule."
           />
+        </div>
+        <div className="mt-8 flex justify-center lg:mt-12">
+          <Button asChild>
+            <Link href="/vehicules">Voir le catalogue</Link>
+          </Button>
         </div>
       </Section>
       <Section marginTop marginBottom>

@@ -4,6 +4,8 @@ import PriceCard from "@/components/PriceCard";
 import Section from "@/components/Section";
 import SectionHeader from "@/components/SectionHeader";
 import Step from "@/components/Step";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Vente = () => {
   return (
@@ -35,6 +37,11 @@ const Vente = () => {
             title="Vente sécurisée"
             description="Nous vérifions et sécurisons le paiement de votre voiture avec le moyen  de votre choix. Votre conseiller est présent pour vous guider."
           />
+        </div>
+        <div className="mt-8 flex justify-center lg:mt-12">
+          <Button asChild>
+            <Link href="/services/estimation">Estimer ma voiture</Link>
+          </Button>
         </div>
       </Section>
       <Section marginTop marginBottom>
