@@ -33,7 +33,7 @@ const Voitures = async () => {
             />{" "}
             <Button asChild>
               <Link
-                href="/voitures/classiques"
+                href="/vehicules"
                 className="flex flex-row gap-x-2"
               >
                 <Notebook size={18} /> Voir Catalogue Classique
@@ -51,7 +51,7 @@ const Voitures = async () => {
               asChild
               className="bg-tertiary text-slate-950 hover:bg-tertiary/80"
             >
-              <Link href="/voitures/premium" className="flex flex-row gap-x-2">
+              <Link href="/vehicules" className="flex flex-row gap-x-2">
                 <Notebook size={18} /> Voir Catalogue Premium
               </Link>
             </Button>
