@@ -12,7 +12,7 @@ const Vente = () => {
         title="Vendez votre voiture en toute confiance"
         description="Simplifiez la vente de votre véhicule avec notre service personnalisé, rapide et sécurisé, pour obtenir le meilleur prix."
       />
-      <Section marginTop>
+      <Section marginTop marginBottom>
         <SectionHeader tag="Notre méthode" description="Comment ça marche ?" />
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <Step
@@ -42,7 +42,7 @@ const Vente = () => {
           tag="Nos tarifs"
           description="Combien cela vous coûte ?"
         />
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
           <PriceCard type="Vente" commission="10%" description="< 5000€" />
           <PriceCard
             type="Vente"

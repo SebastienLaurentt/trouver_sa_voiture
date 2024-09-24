@@ -11,7 +11,7 @@ const Step = ({ number, title, description }: StepProps) => {
       <span className="rounded-full border border-primary px-4 py-2 text-primary">
         {number}
       </span>
-      <h3>{title}</h3>
+      <h3 className="text-center lg:text-[28px]">{title}</h3>
       <p className="text-balance text-center ">{description}</p>
     </div>
   );

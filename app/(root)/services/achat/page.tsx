@@ -11,9 +11,9 @@ const Achat = () => {
         title="Votre partenaire pour l'achat idéal"
         description="Profitez de notre expertise pour trouver et acquérir la voiture qui correspond à vos attentes, sans stress ni tracas."
       />
-      <Section marginTop>
+      <Section marginTop marginBottom>
         <SectionHeader tag="Notre méthode" description="Comment ça marche ?" />
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-1 md:grid-cols-3 xl:gap-4">
           <Step
             number={1}
             title="Prise de contact"
@@ -22,7 +22,7 @@ const Achat = () => {
           <Step
             number={2}
             title="Recherche"
-            description="L'expert recherche votre voiture, examine les annonces et expertise les véhicules pour vous présenter le meilleur choix."
+            description="L'expert examine les annonces et expertise les véhicules pour vous présenter le meilleur choix."
           />
           <Step
             number={3}
@@ -36,7 +36,7 @@ const Achat = () => {
           tag="Nos tarifs"
           description="Combien cela vous coûte ?"
         />
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ">
           <PriceCard
             type="Achat"
             commission="600€"
