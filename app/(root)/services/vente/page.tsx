@@ -1,4 +1,7 @@
 import PageHeader from "@/components/PageHeader";
+import Section from "@/components/Section";
+import SectionHeader from "@/components/SectionHeader";
+import Step from "@/components/Step";
 
 const Vente = () => {
   return (
@@ -7,6 +10,31 @@ const Vente = () => {
         title="Vendez votre voiture en toute confiance"
         description="Simplifiez la vente de votre véhicule avec notre service personnalisé, rapide et sécurisé, pour obtenir le meilleur prix."
       />
+      <Section marginTop>
+        <SectionHeader tag="Notre méthode" description="Comment ça marche ?" />
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <Step
+            number={1}
+            title="Estimation du prix"
+            description="Renseignez les infos de votre voiture via le formulaire ou par téléphone. Un conseiller établit une côte marché en 12h et vous recontacte."
+          />
+          <Step
+            number={2}
+            title="Expertise gratuite"
+            description="Votre conseiller prend rendez-vous et se déplace gratuitement pour inspecter votre véhicule. Nous affinons ensemble la valeur et fixons un prix de vente."
+          />
+          <Step
+            number={3}
+            title="Vente de votre voiture"
+            description="Vous signez un mandat non exclusif de 20 jours pour que nous puissions publier des annonces et proposer votre véhicule à nos clients. Votre conseiller s'occupe des visites."
+          />
+          <Step
+            number={4}
+            title="Vente sécurisée"
+            description="Nous vérifions et sécurisons le paiement de votre voiture avec le moyen  de votre choix. Votre conseiller est présent pour vous guider."
+          />
+        </div>
+      </Section>
     </main>
   );
 };
