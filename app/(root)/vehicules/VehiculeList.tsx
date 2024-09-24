@@ -158,6 +158,7 @@ const VehiculesList: React.FC<VehiculesListProps> = ({ vehicles }) => {
               {filteredVehicles.map((vehicle, index) => (
                 <li key={index} className="list-none">
                   <CarCard
+                    id={vehicle.id}
                     src={`https://aotdlnddxemcekzntizx.supabase.co/storage/v1/object/public/images/${vehicle.imageUrl}`}
                     price={vehicle.price}
                     boiteType={vehicle.boiteType}

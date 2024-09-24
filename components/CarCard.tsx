@@ -1,8 +1,10 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import Link from "next/link";
 
 interface CarCardProps {
+  id: string;
   src: string;
   kmNumber: number;
   boiteType: string;
@@ -15,6 +17,7 @@ interface CarCardProps {
 }
 
 const CarCard = ({
+  id,
   src,
   kmNumber,
   boiteType,
@@ -26,7 +29,7 @@ const CarCard = ({
   premium,
 }: CarCardProps) => {
   return (
-    <div className="relative w-[320px] rounded-lg border shadow shadow-slate-800">
+    <Link href={`/vehicules/${id}`} className="relative w-[320px] rounded-lg border shadow shadow-slate-800">
       <div className="relative h-[200px] w-full">
         {/* Image et tags */}
         <Image
@@ -95,7 +98,7 @@ const CarCard = ({
           </Button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

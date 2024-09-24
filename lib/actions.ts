@@ -54,6 +54,26 @@ export const getNonPremiumVehicles = async () => {
   }
 };
 
+export const getVehicleById = async (id: string) => {
+  try {
+    const vehicle = await prisma.vehicule.findUnique({
+      where: { id },
+    });
+
+    if (!vehicle) {
+      throw new Error("Véhicule non trouvé");
+    }
+
+    const validatedVehicle = vehicleSchemaWithId.parse(vehicle);
+
+    return validatedVehicle;
+  } catch (error) {
+    console.error("Erreur lors de la récupération du véhicule :", error);
+    throw new Error("Échec de la récupération du véhicule");
+  }
+};
+
+
 export const createVehicle = async (formData: FormData) => {
   const validatedFields = vehicleSchemaWithoutId.safeParse(
     Object.fromEntries(formData.entries())

@@ -79,6 +79,7 @@ const Carrousel = ({
         {vehicles.slice(0, 3).map((vehicle, index) => (
           <CarCard
             key={index}
+            id={vehicle.id}
             src={`https://aotdlnddxemcekzntizx.supabase.co/storage/v1/object/public/images/${vehicle.imageUrl}`}
             price={vehicle.price}
             boiteType={vehicle.boiteType}
@@ -113,6 +114,7 @@ const Carrousel = ({
           >
             <div className="flex justify-center">
               <CarCard
+                id={vehicle.id}
                 src={`https://aotdlnddxemcekzntizx.supabase.co/storage/v1/object/public/images/${vehicle.imageUrl}`}
                 price={vehicle.price}
                 boiteType={vehicle.boiteType}
@@ -139,8 +141,8 @@ const Carrousel = ({
               className={`size-1.5 rounded-full ${
                 currentIndex === index
                   ? isPremium
-                    ? "bg-tertiary" 
-                    : "bg-primary" 
+                    ? "bg-tertiary"
+                    : "bg-primary"
                   : "bg-gray-400"
               }`}
               onClick={() => setCurrentIndex(index)}
