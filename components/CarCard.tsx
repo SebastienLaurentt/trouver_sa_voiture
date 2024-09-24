@@ -57,7 +57,7 @@ const CarCard = ({
         </div>
         <div className="rounded-b-lg p-3 ">
           <div
-            className={`text-left text-lg font-medium ${
+            className={`text-left text-lg font-semibold ${
               premium ? "text-tertiary" : ""
             }`}
           >
@@ -88,7 +88,7 @@ const CarCard = ({
           </div>
           <div className="flex w-full flex-row items-center justify-between gap-x-2">
             <span
-              className={`text-2xl font-semibold ${
+              className={`text-2xl font-bold ${
                 premium ? "text-tertiary" : ""
               }`}
             >

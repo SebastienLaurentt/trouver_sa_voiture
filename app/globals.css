@@ -5,14 +5,14 @@
 @layer base {
   :root {
     --background: 0 0% 0%;
-    --foreground: 210 40% 98%;
+    --foreground: 210 40% 96.1%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
     --primary: 201.3 96.3% 32.2%;
     --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 240 3.8% 46.1%;
+    --secondary: 210 40% 96.1%;
     --secondary-foreground: 24 5.4% 63.9%;
     --tertiary: 39 49% 62%;
     --tertiary-foreground: 39 49% 62%;
@@ -42,13 +42,13 @@
     @apply bg-background text-foreground;
   }
   h1 {
-    @apply text-3xl md:text-4xl lg:text-5xl md:w-[480px] lg:w-[600px] mx-auto;
+    @apply text-3xl md:text-4xl lg:text-5xl lg:leading-[56px] font-semibold md:w-[480px] lg:w-[600px] mx-auto;
   }
   h2 {
-    @apply text-2xl md:text-3xl lg:text-4xl;
+    @apply text-2xl md:text-3xl lg:text-4xl font-medium;
   }
   h3 {
-    @apply text-xl md:text-2xl lg:text-3xl font-semibold;
+    @apply text-xl md:text-2xl lg:text-3xl font-medium;
   }
 
 

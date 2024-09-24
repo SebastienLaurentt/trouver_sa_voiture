@@ -6,12 +6,12 @@ interface StepProps {
 
 const Step = ({ number, title, description }: StepProps) => {
   return (
-    <div className="flex flex-col items-center gap-2 ">
+    <div className="flex flex-col items-center">
       {" "}
-      <span className="rounded-full border border-primary px-4 py-2 text-primary">
+      <span className="mb-2 flex size-12 items-center justify-center rounded-full border-2 border-primary text-xl font-bold text-primary">
         {number}
       </span>
-      <h3 className="text-center lg:text-[28px]">{title}</h3>
+      <h3 className="mb-0.5 text-center lg:text-[28px]">{title}</h3>
       <p className="text-balance text-center ">{description}</p>
     </div>
   );
