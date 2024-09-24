@@ -101,10 +101,10 @@ const Footer = () => {
         </div>
         <div className="mx-auto flex flex-col justify-between gap-y-2 border-t  py-6 text-sm text-foreground/70 md:max-w-2xl md:flex-row md:gap-y-0 lg:max-w-4xl">
           <div className="flex flex-row gap-x-4">
-            <Link href="/" className="xl:hover:text-foreground">
+            <Link href="/cgv" className="xl:hover:text-foreground">
               CGV
             </Link>
-            <Link href="/" className="xl:hover:text-foreground">
+            <Link href="/mentions" className="xl:hover:text-foreground">
               Mentions légales
             </Link>
           </div>
