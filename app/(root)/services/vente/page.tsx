@@ -1,4 +1,6 @@
 import PageHeader from "@/components/PageHeader";
+import PriceCard from "@/components/PriceCard";
+
 import Section from "@/components/Section";
 import SectionHeader from "@/components/SectionHeader";
 import Step from "@/components/Step";
@@ -33,6 +35,26 @@ const Vente = () => {
             title="Vente sécurisée"
             description="Nous vérifions et sécurisons le paiement de votre voiture avec le moyen  de votre choix. Votre conseiller est présent pour vous guider."
           />
+        </div>
+      </Section>
+      <Section marginTop marginBottom>
+        <SectionHeader
+          tag="Nos tarifs"
+          description="Combien cela vous coûte ?"
+        />
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+          <PriceCard type="Vente" commission="10%" description="< 5000€" />
+          <PriceCard
+            type="Vente"
+            commission="9%"
+            description="5000€ - 10000€"
+          />
+          <PriceCard
+            type="Vente"
+            commission="7%"
+            description="10000€ - 20000€"
+          />
+          <PriceCard type="Vente" commission="6%" description=" > 20000€" />
         </div>
       </Section>
     </main>

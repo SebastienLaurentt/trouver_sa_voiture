@@ -55,7 +55,7 @@ const Header: React.FC = () => {
 
   return (
     <header className="shadow-md">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4 md:max-w-2xl md:px-0 lg:max-w-4xl ">
+      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4 md:max-w-2xl md:px-0 lg:max-w-5xl ">
         <div className="flex flex-row items-center gap-x-1">
           <Atom size={28} className="text-primary" />
           <span className="text-3xl font-semibold">TSV</span>
