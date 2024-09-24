@@ -14,7 +14,7 @@ const Vente = () => {
       />
       <Section marginTop marginBottom>
         <SectionHeader tag="Notre méthode" description="Comment ça marche ?" />
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-6">
           <Step
             number={1}
             title="Estimation du prix"

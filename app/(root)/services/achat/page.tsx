@@ -13,7 +13,7 @@ const Achat = () => {
       />
       <Section marginTop marginBottom>
         <SectionHeader tag="Notre méthode" description="Comment ça marche ?" />
-        <div className="grid grid-cols-1 gap-1 md:grid-cols-3 xl:gap-4">
+        <div className="grid grid-cols-1 gap-x-1 gap-y-8 md:grid-cols-3 xl:gap-4">
           <Step
             number={1}
             title="Prise de contact"
