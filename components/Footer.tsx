@@ -46,13 +46,13 @@ const Footer = () => {
               </span>
               <ul className="flex flex-col gap-y-1 text-foreground/90">
                 <Link
-                  href="/voitures/classiques"
+                  href="/vehicules"
                   className="xl:hover:text-foreground"
                 >
                   Classiques
                 </Link>
                 <Link
-                  href="/voitures/premium"
+                  href="/vehicules"
                   className="xl:hover:text-foreground"
                 >
                   Premium
