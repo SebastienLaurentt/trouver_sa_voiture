@@ -373,7 +373,7 @@ export async function login(formData: FormData) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/account");
+  redirect("/account/vehicules");
 }
 
 export async function logout() {
