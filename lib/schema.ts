@@ -42,6 +42,7 @@ export const vehicleSchemaWithId = z.object({
 export type EditVehicleFormData = z.infer<typeof vehicleSchemaWithId>;
 
 export const estimationSchema = z.object({
+  id: z.string(),
   firstName: z.string().min(1, "Le prénom est requis"),
   lastName: z.string().min(1, "Le nom est requis"),
   email: z.string().email("L'email n'est pas valide"),

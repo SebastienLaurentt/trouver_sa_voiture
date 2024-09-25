@@ -324,11 +324,6 @@ const Estimation = () => {
             </div>
           )}
 
-          {mutation.isSuccess && (
-            <div className="mt-4">
-              <p className="text-green-500">Estimation soumise avec succès !</p>
-            </div>
-          )}
         </form>
       </Section>
     </main>

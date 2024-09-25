@@ -4,9 +4,13 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "./prisma";
 
+import {
+  estimationSchema,
+  vehicleSchemaWithId,
+  vehicleSchemaWithoutId,
+} from "./schema";
 import { createClient } from "./server";
 import { supabase } from "./supabase";
-import { estimationSchema, vehicleSchemaWithId, vehicleSchemaWithoutId } from "./schema";
 
 export const getAllVehiclesList = async () => {
   try {
@@ -73,14 +77,16 @@ export const getVehicleById = async (id: string) => {
   }
 };
 
-
 export const createVehicle = async (formData: FormData) => {
   const validatedFields = vehicleSchemaWithoutId.safeParse(
     Object.fromEntries(formData.entries())
   );
 
   if (!validatedFields.success) {
-    throw new Error("Validation échouée: " + JSON.stringify(validatedFields.error.flatten().fieldErrors));
+    throw new Error(
+      "Validation échouée: " +
+        JSON.stringify(validatedFields.error.flatten().fieldErrors)
+    );
   }
 
   try {
@@ -114,7 +120,7 @@ export const createVehicle = async (formData: FormData) => {
         boiteType: validatedFields.data.boiteType,
         carType: validatedFields.data.carType,
         price: validatedFields.data.price,
-        premium: validatedFields.data.premium || false, 
+        premium: validatedFields.data.premium || false,
         sold: validatedFields.data.sold || false,
         tag: validatedFields.data.tag || null,
         imageUrl,
@@ -253,7 +259,10 @@ export const submitEstimation = async (formData: FormData) => {
   );
 
   if (!validatedFields.success) {
-    throw new Error("Validation échouée: " + JSON.stringify(validatedFields.error.flatten().fieldErrors));
+    throw new Error(
+      "Validation échouée: " +
+        JSON.stringify(validatedFields.error.flatten().fieldErrors)
+    );
   }
 
   try {
@@ -278,11 +287,72 @@ export const submitEstimation = async (formData: FormData) => {
     console.log("Estimation créée:", newEstimation);
 
     revalidatePath("/services/estimation", "layout");
-    return { message: "Estimation soumise avec succès", estimationId: newEstimation.id };
+    return {
+      message: "Estimation soumise avec succès",
+      estimationId: newEstimation.id,
+    };
   } catch (error) {
     console.error("Erreur lors du traitement de l'estimation :", error);
     return { message: "Échec du traitement de l'estimation", Error: error };
   }
+};
+
+export const getAllEstimations = async () => {
+  try {
+    const estimations = await prisma.estimation.findMany();
+
+    const validatedEstimations = estimations.map((estimation) =>
+      estimationSchema.parse(estimation)
+    );
+
+    return validatedEstimations;
+  } catch (error) {
+    throw new Error("Failed to fetch estimations data");
+  }
+};
+
+export const getEstimationById = async (id: string) => {
+  try {
+    const estimation = await prisma.estimation.findUnique({
+      where: { id },
+    });
+
+    if (!estimation) {
+      throw new Error("Estimation non trouvée");
+    }
+
+    const validatedEstimation = estimationSchema.parse(estimation);
+
+    return validatedEstimation;
+  } catch (error) {
+    console.error("Erreur lors de la récupération de l'estimation :", error);
+    throw new Error("Échec de la récupération de l'estimation");
+  }
+};
+
+
+export const deleteEstimation = async (id: string) => {
+  try {
+    const estimation = await prisma.estimation.findUnique({
+      where: { id },
+    });
+
+    if (!estimation) {
+      console.error("Estimation non trouvée", id);
+      throw new Error("Estimation non trouvée");
+    }
+
+    await prisma.estimation.delete({
+      where: { id },
+    });
+
+    console.log("Estimation supprimée avec succès:", id);
+  } catch (error) {
+    console.error("Erreur lors de la suppression de l'estimation :", error);
+    throw new Error("Échec de la suppression de l'estimation");
+  }
+
+  revalidatePath("/", "layout");
 };
 
 export async function login(formData: FormData) {

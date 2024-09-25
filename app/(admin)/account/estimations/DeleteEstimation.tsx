@@ -1,17 +1,15 @@
 "use client";
 
+import Loader from "@/components/Loader";
 import { toast } from "@/components/ui/use-toast";
-
-
+import { deleteEstimation } from "@/lib/actions";
 import { useMutation } from "@tanstack/react-query";
 import { Trash } from "lucide-react";
-import Loader from "./Loader";
-import { deleteVehicule } from "@/lib/actions";
 
-export const DeleteVehicle = ({ id }: { id: string }) => {
-  const { mutate: deleteVehicleMutation, isPending } = useMutation({
-    mutationKey: ["delete-vehicle"],
-    mutationFn: () => deleteVehicule(id),
+export const DeleteEstimation = ({ id }: { id: string }) => {
+  const { mutate: deleteEstimationMutation, isPending } = useMutation({
+    mutationKey: ["delete-estimation"],
+    mutationFn: () => deleteEstimation(id),
     onMutate: () => {},
     onSuccess: () => {
       toast({ title: "Véhicule supprimé !" });
@@ -29,14 +27,14 @@ export const DeleteVehicle = ({ id }: { id: string }) => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        deleteVehicleMutation();
+        deleteEstimationMutation();
       }}
       className="flex"
     >
       <button disabled={isPending}>
         {isPending ? (
           <span className="flex flex-row items-center gap-x-2">
-            <Loader color="border-red-500"  />
+            <Loader color="border-red-500" />
           </span>
         ) : (
           <span className="text-red-500 hover:text-red-700">

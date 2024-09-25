@@ -1,20 +1,19 @@
 "use client";
 
-import { DeleteVehicle } from "@/components/DeleteVehicule";
 import { Button } from "@/components/ui/button";
 import { CirclePlus, Pencil } from "lucide-react";
 import { useState } from "react";
 import CreateVehiculeForm from "./CreateVehiculeForm";
+import { DeleteVehicle } from "./DeleteVehicule";
 import EditVehiculeForm from "./EditVehiculeForm";
 
 const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [vehicleInfo, setVehicleInfo] = useState<any>(null);
 
-
   return (
     <div className="mx-auto max-w-7xl rounded-lg border border-white px-8 py-10">
-      <h1 className="text-2xl font-bold">Liste des Véhicules</h1>
+      <h2 className="text-2xl font-bold">Liste des Véhicules</h2>
       <div className="flex flex-row justify-between py-4">
         <div className="flex flex-row gap-x-4">
           <div className="flex flex-row gap-x-2">
@@ -60,7 +59,7 @@ const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
                 {vehicle.tag ? vehicle.tag : "Aucun"}
               </td>
               <td className="border px-4 py-2 ">
-                <div className="flex  justify-center gap-x-4">
+                <div className="flex justify-center gap-x-4">
                   <button onClick={() => setVehicleInfo(vehicle)}>
                     <Pencil
                       size={22}
