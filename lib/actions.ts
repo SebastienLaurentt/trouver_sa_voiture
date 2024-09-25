@@ -5,7 +5,9 @@ import { redirect } from "next/navigation";
 import { prisma } from "./prisma";
 
 import {
-  estimationSchema,
+
+  estimationSchemaWithId,
+  estimationSchemaWithoutId,
   vehicleSchemaWithId,
   vehicleSchemaWithoutId,
 } from "./schema";
@@ -254,7 +256,7 @@ export const deleteVehicule = async (id: string) => {
 };
 
 export const submitEstimation = async (formData: FormData) => {
-  const validatedFields = estimationSchema.safeParse(
+  const validatedFields = estimationSchemaWithoutId.safeParse(
     Object.fromEntries(formData.entries())
   );
 
@@ -281,6 +283,7 @@ export const submitEstimation = async (formData: FormData) => {
         immatriculation: validatedFields.data.immatriculation,
         sellingPeriod: validatedFields.data.sellingPeriod,
         buyingOption: validatedFields.data.buyingOption,
+        purchaseDate: validatedFields.data.purchaseDate,
       },
     });
 
@@ -302,7 +305,7 @@ export const getAllEstimations = async () => {
     const estimations = await prisma.estimation.findMany();
 
     const validatedEstimations = estimations.map((estimation) =>
-      estimationSchema.parse(estimation)
+      estimationSchemaWithId.parse(estimation)
     );
 
     return validatedEstimations;
@@ -321,7 +324,7 @@ export const getEstimationById = async (id: string) => {
       throw new Error("Estimation non trouvée");
     }
 
-    const validatedEstimation = estimationSchema.parse(estimation);
+    const validatedEstimation = estimationSchemaWithId.parse(estimation);
 
     return validatedEstimation;
   } catch (error) {

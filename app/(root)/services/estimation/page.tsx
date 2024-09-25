@@ -4,6 +4,7 @@ import FormError from "@/components/FormError";
 import PageHeader from "@/components/PageHeader";
 import Section from "@/components/Section";
 import { Button } from "@/components/ui/button";
+import { DatePicker } from "@/components/ui/datePicker";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -13,14 +14,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { toast } from "@/components/ui/use-toast";
 import { submitEstimation } from "@/lib/actions";
-import { EstimationFormData, estimationSchema } from "@/lib/schema";
+import { CreateEstimationData, estimationSchemaWithoutId } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { Mail } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
-
-import { toast } from "@/components/ui/use-toast";
-import { useMutation } from "@tanstack/react-query";
 
 const Estimation = () => {
   const {
@@ -28,13 +28,16 @@ const Estimation = () => {
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<EstimationFormData>({
-    resolver: zodResolver(estimationSchema),
+  } = useForm<CreateEstimationData>({
+    resolver: zodResolver(estimationSchemaWithoutId),
+    defaultValues: {
+      purchaseDate: '',
+    },
   });
 
   const mutation = useMutation({
     mutationKey: ["submit-estimation"],
-    mutationFn: async (data: EstimationFormData) => {
+    mutationFn: async (data: CreateEstimationData) => {
       const formData = new FormData();
       Object.entries(data).forEach(([key, value]) => {
         formData.append(key, String(value));
@@ -53,7 +56,7 @@ const Estimation = () => {
     },
   });
 
-  const onSubmit = (data: EstimationFormData) => {
+  const onSubmit = (data: CreateEstimationData) => {
     mutation.mutate(data);
   };
 
@@ -70,7 +73,9 @@ const Estimation = () => {
         >
           {/* Vehicule Informations */}
           <div>
-            <span className="text-xl font-bold text-muted-foreground">Informations du véhicule</span>
+            <span className="text-xl font-bold text-muted-foreground">
+              Informations du véhicule
+            </span>
             <div className="mt-1.5 space-y-3">
               <div className="flex flex-col gap-y-4 md:flex-row md:gap-x-4 md:gap-y-0">
                 <div className="md:w-1/2">
@@ -90,6 +95,30 @@ const Estimation = () => {
                     placeholder="Modèle de votre véhicule"
                   />
                   {errors.model && <FormError message={errors.model.message} />}
+                </div>
+              </div>
+              <div className="flex flex-col gap-y-4 md:flex-row md:gap-x-4 md:gap-y-0">
+                <div className="flex flex-col gap-y-1.5 md:w-1/2">
+                  <Label htmlFor="purchaseDate">Date d&apos;achat</Label>
+                  <Controller
+                    name="purchaseDate"
+                    control={control}
+                    render={({ field }) => (
+                      <DatePicker
+                        onChange={(date) => {
+                          if (date) {
+                            const formattedDate = date
+                              .toISOString()
+                              .split("T")[0]; 
+                            field.onChange(formattedDate);
+                          } else {
+                            field.onChange("");
+                          }
+                        }}
+                        value={field.value ? new Date(field.value) : undefined}
+                      />
+                    )}
+                  />
                 </div>
               </div>
               <div className="flex flex-col gap-y-4 md:flex-row md:gap-x-4 md:gap-y-0">
@@ -246,7 +275,9 @@ const Estimation = () => {
 
           {/* Personal Informations */}
           <div>
-            <span className="text-xl font-bold text-muted-foreground">Informations personnelles</span>
+            <span className="text-xl font-bold text-muted-foreground">
+              Informations personnelles
+            </span>
             <div className="mt-1.5 space-y-3">
               <div className="flex flex-col gap-y-4 md:flex-row md:gap-x-4 md:gap-y-0">
                 <div className="md:w-1/2">
@@ -323,7 +354,6 @@ const Estimation = () => {
               </p>
             </div>
           )}
-
         </form>
       </Section>
     </main>

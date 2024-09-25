@@ -32,7 +32,7 @@ const EstimationsList = ({ allEstimations }: { allEstimations: any }) => {
               <td className="border px-4 py-2">{estimation.phone}</td>
               <td className="border px-4 py-2">{estimation.brand}</td>
               <td className="border px-4 py-2">{estimation.model}</td>
-              <td className="border px-4 py-2"></td>
+              <td className="border px-4 py-2">{estimation.purchaseDate}</td>
               <td className="border px-4 py-2 ">
                 <div className="flex  justify-center gap-x-4">
                   <Link href={`/account/estimations/${estimation.id}`}>

@@ -43,4 +43,5 @@ model Estimation {
   sellingPeriod   String
   buyingOption    String
   createdAt       DateTime @default(now())
+  purchaseDate    String
 }
