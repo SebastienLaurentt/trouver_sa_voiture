@@ -287,7 +287,6 @@ export const submitEstimation = async (formData: FormData) => {
       },
     });
 
-    console.log("Estimation créée:", newEstimation);
 
     revalidatePath("/services/estimation", "layout");
     return {
@@ -349,7 +348,6 @@ export const deleteEstimation = async (id: string) => {
       where: { id },
     });
 
-    console.log("Estimation supprimée avec succès:", id);
   } catch (error) {
     console.error("Erreur lors de la suppression de l'estimation :", error);
     throw new Error("Échec de la suppression de l'estimation");

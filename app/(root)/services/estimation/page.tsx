@@ -31,7 +31,7 @@ const Estimation = () => {
   } = useForm<CreateEstimationData>({
     resolver: zodResolver(estimationSchemaWithoutId),
     defaultValues: {
-      purchaseDate: '',
+      purchaseDate: "",
     },
   });
 
@@ -45,7 +45,10 @@ const Estimation = () => {
       return submitEstimation(formData);
     },
     onSuccess: () => {
-      toast({ title: "Estimation soumise avec succès !" });
+      toast({
+        title: "Demande d'estimation envoyée avec succès !",
+        description: "Nous vous recontacterons dans les plus brefs délais. ",
+      });
     },
     onError: (error: Error) => {
       toast({
@@ -69,7 +72,7 @@ const Estimation = () => {
       <Section marginTop marginBottom>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="space-y-6 rounded-xl border p-6 shadow shadow-slate-800   xl:mx-20 xl:p-8"
+          className="mx-auto w-[320px] space-y-6 rounded-xl border p-4 shadow shadow-slate-800 md:w-full md:p-6   xl:mx-20 xl:p-8"
         >
           {/* Vehicule Informations */}
           <div>
@@ -109,7 +112,7 @@ const Estimation = () => {
                           if (date) {
                             const formattedDate = date
                               .toISOString()
-                              .split("T")[0]; 
+                              .split("T")[0];
                             field.onChange(formattedDate);
                           } else {
                             field.onChange("");
@@ -119,7 +122,11 @@ const Estimation = () => {
                       />
                     )}
                   />
+                  {errors.purchaseDate && (
+                    <FormError message={errors.purchaseDate.message} />
+                  )}
                 </div>
+                <div className="md:w-1/2"></div>
               </div>
               <div className="flex flex-col gap-y-4 md:flex-row md:gap-x-4 md:gap-y-0">
                 <div className="md:w-1/2">
