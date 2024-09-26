@@ -1,12 +1,12 @@
 "use client";
 
 import { Eye } from "lucide-react";
-import { DeleteEstimation } from "./DeleteEstimation";
 import Link from "next/link";
+import { DeleteEstimation } from "./DeleteEstimation";
 
 const EstimationsList = ({ allEstimations }: { allEstimations: any }) => {
   return (
-    <div className="mx-auto max-w-7xl rounded-lg border border-white px-8 py-10">
+    <>
       <h2 className="text-2xl font-bold">Liste des Estimations</h2>
       <div className="flex flex-row justify-between py-4"></div>
 
@@ -20,7 +20,7 @@ const EstimationsList = ({ allEstimations }: { allEstimations: any }) => {
             <th className="border px-4 py-2">Marque</th>
             <th className="border px-4 py-2">Modèle</th>
             <th className="border px-4 py-2">Année</th>
-            <th className="border px-4 py-2">Actions</th>
+            <th className="border px-4 py-2 text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -38,7 +38,7 @@ const EstimationsList = ({ allEstimations }: { allEstimations: any }) => {
                   <Link href={`/account/estimations/${estimation.id}`}>
                     <Eye
                       size={22}
-                      className="text-blue-500 hover:text-blue-700"
+                      className="text-primary hover:text-blue-700"
                     />
                   </Link>
                   <DeleteEstimation id={estimation.id} />
@@ -48,7 +48,7 @@ const EstimationsList = ({ allEstimations }: { allEstimations: any }) => {
           ))}
         </tbody>
       </table>
-    </div>
+    </>
   );
 };
 

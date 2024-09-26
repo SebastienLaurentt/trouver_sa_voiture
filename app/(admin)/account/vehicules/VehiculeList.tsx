@@ -12,7 +12,7 @@ const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
   const [vehicleInfo, setVehicleInfo] = useState<any>(null);
 
   return (
-    <div className="mx-auto max-w-7xl rounded-lg border border-white px-8 py-10">
+    <>
       <h2 className="text-2xl font-bold">Liste des Véhicules</h2>
       <div className="flex flex-row justify-between py-4">
         <div className="flex flex-row gap-x-4">
@@ -38,7 +38,7 @@ const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
             <th className="border px-4 py-2">Premium</th>
             <th className="border px-4 py-2">Vendu</th>
             <th className="border px-4 py-2 ">Tag</th>
-            <th className="border px-4 py-2">Actions</th>
+            <th className="border px-4 py-2 text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -63,7 +63,7 @@ const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
                   <button onClick={() => setVehicleInfo(vehicle)}>
                     <Pencil
                       size={22}
-                      className="text-blue-500 hover:text-blue-700"
+                      className="text-primary hover:text-blue-700"
                     />
                   </button>
                   <DeleteVehicle id={vehicle.id} />
@@ -84,7 +84,7 @@ const VehiculeList = ({ allVehicles }: { allVehicles: any }) => {
           onClose={() => setVehicleInfo(null)}
         />
       )}
-    </div>
+    </>
   );
 };
 
