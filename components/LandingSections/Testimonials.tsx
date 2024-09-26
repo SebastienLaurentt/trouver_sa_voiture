@@ -11,32 +11,32 @@ const TESTIMONIALS = [
   {
     text: "Très content de mon achat. Vendeur sympa qui a bien répondu à mes attentes. Satisfait également du montant de la reprise de mon ancien véhicule, ce qui m’a évité de gérer moi même la vente. Je recommande ce pro",
     name: "Laurent",
-    experienceType: "Juin 2024",
+    date: "Juin 2024",
   },
   {
     text: "Nous avons acheté notre véhicule PGO et tout s'est très bien passé. Un excellent contact, du sérieux, des réponses franches à vos interrogations. Tout est simple. Nous sommes venus en train de Normandie et Serge est venu nous récupérer , je recommande cette entreprise si vous cherchez un véhicule spécifique, n'hésitez pas à le contacter.",
     name: "Delphine",
-    experienceType: "Avril 2023",
+    date: "Avril 2023",
   },
   {
     text: "Encore merci Serge pour la vente de mon ancienne voiture et l’acquisition de la nouvelle … je suis très très satisfaite de la prestation que ce soit pour la vente ou pour l’achat. Toujours arrangeant et aidant !!! Tout s’est goupillé parfaitement bien !!! La voiture acquise correspond à 100% à mes attentes (budget, modèle, finition …) !! A bientôt pour la vente et l’achat de mon prochain véhicule !!",
     name: "Inès",
-    experienceType: "Mars 2024",
+    date: "Mars 2024",
   },
   {
     text: "J’ai acheté une voiture dans ce garage, je le recommande très fortement, j’ai eu à faire a Amaury et aussi à Serge, tout les deux sont super et extrêmement pro ! Encore merci !",
     name: "Thomas",
-    experienceType: "Juin 2024",
+    date: "Juin 2024",
   },
   {
     text: "Nous sommes ravis d'avoir vendu notre véhicule avec les services de 'Trouver sa voiture' à Civrieux. Le patron Serge est au top, je vous le conseille ! C'est quelqu'un de sérieux et aux petits soins pour ses clients qu'on soit acheteurs ou vendeurs. Très belle expérience, en leur souhaitant une belle continuation !",
     name: "Yoann",
-    experienceType: "Janvier 2023",
+    date: "Janvier 2023",
   },
   {
     text: "Je suis plus que satisfait de mon achat 🤩 J'ai pour habitude de ne jamais passer par des professionnels pour l'achat de mes véhicules ! Mais alors là, je qualifierais Serge de passionné, professionnel et sérieux ! N'hésitez pas avec 'Trouver sa voiture' Je peux que vous le recommander, vous serez plus que satisfait !!!",
     name: "Fabien",
-    experienceType: "Novembre 2023",
+    date: "Novembre 2023",
   },
 ];
 
@@ -60,7 +60,7 @@ function ReviewColumn({
   reviewClassName,
   msPerPixel = 0,
 }: {
-  reviews: { text: string; name: string; experienceType: string }[];
+  reviews: { text: string; name: string; date: string }[];
   className?: string;
   reviewClassName?: (reviewIndex: number) => string;
   msPerPixel?: number;
@@ -95,7 +95,7 @@ function ReviewColumn({
           className={reviewClassName?.(reviewIndex % reviews.length)}
           text={review.text}
           name={review.name}
-          experienceType={review.experienceType}
+          date={review.date}
         />
       ))}
     </div>
@@ -105,16 +105,10 @@ function ReviewColumn({
 interface ReviewProps extends HTMLAttributes<HTMLDivElement> {
   text: string;
   name: string;
-  experienceType: string;
+  date: string;
 }
 
-function Review({
-  text,
-  name,
-  experienceType,
-  className,
-  ...props
-}: ReviewProps) {
+function Review({ text, name, date, className, ...props }: ReviewProps) {
   const POSSIBLE_ANIMATION_DELAYS = [
     "0s",
     "0.1s",
@@ -140,7 +134,7 @@ function Review({
     >
       <p className="text-pretty">{text}</p>
       <span className="mt-4 block text-sm ">{name}</span>
-      <span className="font-semibold text-primary">{experienceType}</span>
+      <span className="font-semibold text-primary">{date}</span>
       <div className="mt-2 flex flex-row gap-x-0">
         <Star fill="#cead6f" color="#cead6f" />
         <Star fill="#cead6f" color="#cead6f" />
@@ -163,7 +157,7 @@ function ReviewGrid({ isVisible }: { isVisible: boolean }) {
     <div
       ref={containerRef}
       className={cn(
-        "relative  mt-16 grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden px-4 sm:mt-20 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3", // Add xl:grid-cols-3
+        "relative  mt-16 grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden  sm:mt-20 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3", // Add xl:grid-cols-3
         isVisible && "animate-fade-in"
       )}
     >
@@ -196,7 +190,7 @@ export function Testimonials() {
     <Section marginBottom marginTop>
       <div
         ref={containerRef}
-        className="px-4 opacity-0 transition-opacity duration-700 ease-in-out"
+        className=" opacity-0 transition-opacity duration-700 ease-in-out"
         style={{ opacity: isInView ? 1 : 0 }}
       >
         <SectionHeader

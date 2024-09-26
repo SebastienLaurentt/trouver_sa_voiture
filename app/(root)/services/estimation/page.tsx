@@ -72,11 +72,11 @@ const Estimation = () => {
       <Section marginTop marginBottom>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mx-auto w-[320px] space-y-6 rounded-xl border p-4 shadow shadow-slate-800 md:w-auto md:p-6   xl:mx-20 xl:p-8"
+          className="mx-auto w-[325px] space-y-6 rounded-xl border p-6 shadow shadow-slate-800 md:w-auto    xl:mx-20 xl:p-8"
         >
           {/* Vehicule Informations */}
           <div>
-            <span className="text-xl font-bold text-muted-foreground">
+            <span className="text-xl  font-bold text-muted-foreground">
               Informations du véhicule
             </span>
             <div className="mt-1.5 space-y-3">

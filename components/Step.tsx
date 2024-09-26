@@ -12,7 +12,7 @@ const Step = ({ number, title, description }: StepProps) => {
         {number}
       </span>
       <h3 className="mb-0.5 text-center lg:text-[28px]">{title}</h3>
-      <p className="text-balance text-center ">{description}</p>
+      <p className="text-balance text-center text-muted-foreground ">{description}</p>
     </div>
   );
 };

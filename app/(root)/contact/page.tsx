@@ -11,7 +11,7 @@ const Contact = () => {
     <main>
       <PageHeader
         title="Besoin d'informations supplémentaires ?"
-        description="Remplissez le formulaire et nous vous répondrons rapidement pour répondre à votre demande."
+        description="Remplissez le formulaire et nous répondrons rapidement à votre demande."
       />
       <Section classname="my-16 ">
         <div className="space-y-4 rounded-xl border p-6 shadow shadow-slate-800 md:mx-20  xl:p-8">

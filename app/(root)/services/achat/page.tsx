@@ -4,6 +4,7 @@ import Section from "@/components/Section";
 import SectionHeader from "@/components/SectionHeader";
 import Step from "@/components/Step";
 import { Button } from "@/components/ui/button";
+import { BookOpen } from "lucide-react";
 import Link from "next/link";
 
 const Achat = () => {
@@ -34,7 +35,9 @@ const Achat = () => {
         </div>
         <div className="mt-8 flex justify-center lg:mt-12">
           <Button asChild>
-            <Link href="/vehicules">Voir le catalogue</Link>
+            <Link href="/vehicules" className="flex flex-row gap-x-2">
+              Voir le catalogue <BookOpen size={18} />
+            </Link>
           </Button>
         </div>
       </Section>
