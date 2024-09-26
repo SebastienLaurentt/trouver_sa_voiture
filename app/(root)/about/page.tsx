@@ -36,7 +36,7 @@ const About = () => {
           </div>
           <div className="flex flex-1 flex-col gap-y-3">
             <div className="flex flex-row items-center justify-center gap-x-2 xl:justify-start">
-              <h3>Serge Noukandjo </h3> -
+              <h3>Serge Noukoudjo </h3> -
               <span className="text-lg italic">Agent Automobile</span>
             </div>
             <div className="flex flex-col gap-y-4 text-muted-foreground">
