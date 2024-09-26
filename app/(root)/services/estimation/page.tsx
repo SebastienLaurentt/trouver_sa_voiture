@@ -19,7 +19,7 @@ import { submitEstimation } from "@/lib/actions";
 import { CreateEstimationData, estimationSchemaWithoutId } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { Mail } from "lucide-react";
+import { Send } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 
 const Estimation = () => {
@@ -72,7 +72,7 @@ const Estimation = () => {
       <Section marginTop marginBottom>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="mx-auto w-[320px] space-y-6 rounded-xl border p-4 shadow shadow-slate-800 md:w-full md:p-6   xl:mx-20 xl:p-8"
+          className="mx-auto w-[320px] space-y-6 rounded-xl border p-4 shadow shadow-slate-800 md:w-auto md:p-6   xl:mx-20 xl:p-8"
         >
           {/* Vehicule Informations */}
           <div>
@@ -245,7 +245,7 @@ const Estimation = () => {
                 </div>
                 <div className="md:w-1/2">
                   <Label htmlFor="buyingOption">
-                    Que souhaites vous acheter ?
+                    Que souhaitez vous acheter ?
                   </Label>
                   <Controller
                     name="buyingOption"
@@ -350,8 +350,8 @@ const Estimation = () => {
             className="gap-x-2"
             disabled={mutation.isPending}
           >
-            {mutation.isPending ? "Envoi en cours..." : "Envoyer"}{" "}
-            <Mail size={16} />
+            {mutation.isPending ? "Envoi en cours..." : "Envoyer ma demande"}{" "}
+            <Send size={16} />
           </Button>
 
           {mutation.isError && (

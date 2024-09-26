@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail } from "lucide-react";
+import { Send } from "lucide-react";
 
 const Contact = () => {
   return (
-    <main >
+    <main>
       <PageHeader
         title="Besoin d'informations supplémentaires ?"
         description="Remplissez le formulaire et nous vous répondrons rapidement pour répondre à votre demande."
@@ -42,7 +42,7 @@ const Contact = () => {
             />
           </div>
           <Button className="gap-x-2">
-            Envoyer <Mail size={16} />
+            Envoyer ma demande <Send size={18} />
           </Button>
         </div>
       </Section>

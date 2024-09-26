@@ -29,7 +29,7 @@ const Services = () => {
               votre bien.
             </p>
             <div className="flex flex-row items-center gap-x-2 font-bold text-primary">
-              <span>En savoir plus</span>
+              <span>Faire estimer ma voiture</span>
               <ArrowRight
                 size={18}
                 className="transition-transform duration-300 group-hover:translate-x-2"
@@ -62,7 +62,7 @@ const Services = () => {
               chaque étape jusqu&apos;à la livraison.
             </p>
             <div className="flex flex-row items-center gap-x-2 font-bold text-primary">
-              <span>En savoir plus</span>
+              <span>Être accompagné</span>
               <ArrowRight
                 size={18}
                 className="transition-transform duration-300 group-hover:translate-x-2"
@@ -84,7 +84,7 @@ const Services = () => {
               en toute tranquillité.
             </p>
             <div className="flex flex-row items-center gap-x-2 font-bold text-primary">
-              <span>En savoir plus</span>
+              <span>Être accompagné</span>
               <ArrowRight
                 size={18}
                 className="transition-transform duration-300 group-hover:translate-x-2"

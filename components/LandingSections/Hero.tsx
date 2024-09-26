@@ -1,7 +1,7 @@
 "use client";
 
 import { gsap } from "gsap";
-import { Star } from "lucide-react";
+import { Search, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -23,13 +23,20 @@ const Hero = () => {
       <div id="hero-text" className="opacity-0">
         <h1>
           L&apos;agence automobile qui{" "}
-          <span className="text-primary">concrétise</span> votre projet en tout sérénité.
+          <span className="text-primary">concrétise</span> votre projet en tout
+          sérénité.
         </h1>
         <p className="subtitle my-4 text-muted-foreground">
-          Estimation, achat, vente : bénéficiez d&apos;un accompagnement expert selon vos besoins. 
+          Estimation, achat, vente : bénéficiez d&apos;un accompagnement expert
+          selon vos besoins.
         </p>
         <Button>
-          <Link href="/vehicules">Trouver ma voiture</Link>
+          <Link
+            href="/vehicules"
+            className="flex flex-row items-center gap-x-2"
+          >
+            Trouver ma nouvelle voiture  <Search size={18} />
+          </Link>
         </Button>
         <Link
           href="https://g.co/kgs/6c2xQVQ"

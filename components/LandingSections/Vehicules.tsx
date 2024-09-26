@@ -2,7 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getNonPremiumVehicles, getPremiumVehicles } from "@/lib/actions";
 import Link from "next/link";
 
-import { Notebook } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import Carrousel from "../Carrousel";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
@@ -32,11 +32,8 @@ const Voitures = async () => {
               isPremium={false}
             />{" "}
             <Button asChild>
-              <Link
-                href="/vehicules"
-                className="flex flex-row gap-x-2"
-              >
-                <Notebook size={18} /> Voir Catalogue Classique
+              <Link href="/vehicules" className="flex flex-row gap-x-2">
+                Voir le catalogue <BookOpen size={18} />
               </Link>
             </Button>
           </TabsContent>
@@ -52,7 +49,7 @@ const Voitures = async () => {
               className="bg-tertiary text-slate-950 hover:bg-tertiary/80"
             >
               <Link href="/vehicules" className="flex flex-row gap-x-2">
-                <Notebook size={18} /> Voir Catalogue Premium
+                Voir le catalogue <BookOpen size={18} />
               </Link>
             </Button>
           </TabsContent>

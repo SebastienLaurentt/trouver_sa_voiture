@@ -1,6 +1,6 @@
 "use client";
 
-import { Atom } from "lucide-react";
+import { Atom, Send } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
@@ -23,7 +23,9 @@ const Footer = () => {
             </p>
             <div className="flex flex-row gap-x-2 px-6">
               <Input placeholder="Votre email" />
-              <Button>Envoyer</Button>
+              <Button className="flex flex-row items-center gap-x-2">
+                Envoyer <Send size={18} />
+              </Button>
             </div>
           </div>
         </div>
@@ -45,16 +47,10 @@ const Footer = () => {
                 Nos voitures
               </span>
               <ul className="flex flex-col gap-y-1 text-foreground/90">
-                <Link
-                  href="/vehicules"
-                  className="xl:hover:text-foreground"
-                >
+                <Link href="/vehicules" className="xl:hover:text-foreground">
                   Classiques
                 </Link>
-                <Link
-                  href="/vehicules"
-                  className="xl:hover:text-foreground"
-                >
+                <Link href="/vehicules" className="xl:hover:text-foreground">
                   Premium
                 </Link>
               </ul>
