@@ -5,6 +5,7 @@ import Section from "@/components/Section";
 import SectionHeader from "@/components/SectionHeader";
 import Step from "@/components/Step";
 import { Button } from "@/components/ui/button";
+import { TrendingUp } from "lucide-react";
 import Link from "next/link";
 
 const Vente = () => {
@@ -39,8 +40,10 @@ const Vente = () => {
           />
         </div>
         <div className="mt-8 flex justify-center lg:mt-12">
-          <Button asChild>
-            <Link href="/services/estimation">Estimer ma voiture</Link>
+          <Button asChild className="flex flex-row items-center gap-x-2">
+            <Link href="/services/estimation">
+              Estimer ma voiture <TrendingUp size={18} />
+            </Link>
           </Button>
         </div>
       </Section>
