@@ -26,7 +26,7 @@ const Hero = () => {
           <span className="text-primary">concrétise</span> votre projet en tout
           sérénité.
         </h1>
-        <p className="subtitle my-4 text-muted-foreground">
+        <p className="subtitle mb-8 mt-4 text-muted-foreground">
           Estimation, achat, vente : bénéficiez d&apos;un accompagnement expert
           selon vos besoins.
         </p>
@@ -35,12 +35,12 @@ const Hero = () => {
             href="/vehicules"
             className="flex flex-row items-center gap-x-2"
           >
-            Trouver ma nouvelle voiture  <Search size={18} />
+            Trouver ma nouvelle voiture <Search size={18} />
           </Link>
         </Button>
         <Link
           href="https://g.co/kgs/6c2xQVQ"
-          className="mt-6 flex flex-col items-center justify-center gap-y-2 md:flex-row md:gap-x-3"
+          className="mt-8 flex flex-col items-center justify-center gap-y-2 md:flex-row md:gap-x-3"
         >
           <div className="flex flex-col items-center">
             <div className="flex flex-row items-center gap-x-1 font-bold">
