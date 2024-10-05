@@ -15,8 +15,8 @@ const Voitures = async () => {
   return (
     <Section>
       <SectionHeader
-        tag="Nos Voitures"
-        description="Choississez selon vos envies"
+        tag="Notre catalogue"
+        description="Trouvez la voiture de vos rêves parmis notre sélection"
       />
       <div className="flex w-full flex-col items-center">
         <Tabs defaultValue="classiques" className="mx-auto w-full text-center">

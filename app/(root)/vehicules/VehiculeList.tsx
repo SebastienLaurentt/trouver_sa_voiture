@@ -69,92 +69,94 @@ const VehiculesList: React.FC<VehiculesListProps> = ({ vehicles }) => {
   ]);
 
   return (
-    <div className="relative flex">
-      <div className="fixed left-2 mt-12 hidden space-y-5 rounded-lg border bg-muted px-12 py-8 xl:block 2xl:left-8 2xl:mt-20 2xl:w-96 2xl:p-12">
-        <h2 className="mb-4 text-xl font-bold">Filtres</h2>
-        <Input
-          placeholder="Rechercher..."
-          value={searchTerm}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setSearchTerm(e.target.value)
-          }
-        />
-        <Select
-          onValueChange={(value) =>
-            setSelectedCategoryType(value === "all" ? null : value)
-          }
-          value={selectedCategoryType || ""}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Catégorie de voiture" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">Tous</SelectItem>
-            <SelectItem value="Classique">Classique</SelectItem>
-            <SelectItem value="Premium">Premium</SelectItem>
-          </SelectContent>
-        </Select>
-        <Select
-          onValueChange={(value) =>
-            setSelectedBoiteType(value === "all" ? null : value)
-          }
-          value={selectedBoiteType || ""}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Boîte de vitesse" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">Tous</SelectItem>
-            <SelectItem value="Manuelle">Manuelle</SelectItem>
-            <SelectItem value="Automatique">Automatique</SelectItem>
-          </SelectContent>
-        </Select>
-        <Select
-          onValueChange={(value) =>
-            setSelectedCarType(value === "all" ? null : value)
-          }
-          value={selectedCarType || ""}
-        >
-          <SelectTrigger>
-            <SelectValue placeholder="Type de voiture" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">Tous</SelectItem>
-            <SelectItem value="Berline">Berline</SelectItem>
-            <SelectItem value="SUV">SUV</SelectItem>
-            <SelectItem value="Citadine">Citadine</SelectItem>
-          </SelectContent>
-        </Select>
-        <div className="pt-6">
-          <DualRangeSlider
-            defaultValue={[5000, 200000]}
-            max={200000}
-            min={5000}
-            step={1000}
-            onValueChange={(value: number[]) =>
-              setKmRange([value[0], value[1]])
-            }
-            unit="km"
-          />
+    <Section marginTop marginBottom classname="2xl:max-w-7xl">
+      <div className="flex flex-col 2xl:flex-row">
+        <div className="mb-8 hidden 2xl:mb-0 2xl:block 2xl:w-1/4 2xl:pr-4">
+          <div className="space-y-5 rounded-lg border bg-muted px-6 py-8 xl:px-10 2xl:sticky 2xl:top-24">
+            <h2 className="mb-4 text-xl font-bold">Filtres</h2>
+            <Input
+              placeholder="Rechercher..."
+              value={searchTerm}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setSearchTerm(e.target.value)
+              }
+            />
+            <Select
+              onValueChange={(value) =>
+                setSelectedCategoryType(value === "all" ? null : value)
+              }
+              value={selectedCategoryType || ""}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Catégorie de voiture" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Tous</SelectItem>
+                <SelectItem value="Classique">Classique</SelectItem>
+                <SelectItem value="Premium">Premium</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select
+              onValueChange={(value) =>
+                setSelectedBoiteType(value === "all" ? null : value)
+              }
+              value={selectedBoiteType || ""}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Boîte de vitesse" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Tous</SelectItem>
+                <SelectItem value="Manuelle">Manuelle</SelectItem>
+                <SelectItem value="Automatique">Automatique</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select
+              onValueChange={(value) =>
+                setSelectedCarType(value === "all" ? null : value)
+              }
+              value={selectedCarType || ""}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Type de voiture" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Tous</SelectItem>
+                <SelectItem value="Berline">Berline</SelectItem>
+                <SelectItem value="SUV">SUV</SelectItem>
+                <SelectItem value="Citadine">Citadine</SelectItem>
+              </SelectContent>
+            </Select>
+            <div className="pt-6">
+              <DualRangeSlider
+                defaultValue={[5000, 200000]}
+                max={200000}
+                min={5000}
+                step={1000}
+                onValueChange={(value: number[]) =>
+                  setKmRange([value[0], value[1]])
+                }
+                unit="km"
+              />
+            </div>
+            <div className="pt-8">
+              <DualRangeSlider
+                defaultValue={[5000, 200000]}
+                max={200000}
+                min={5000}
+                step={1000}
+                onValueChange={(value: number[]) =>
+                  setPriceRange([value[0], value[1]])
+                }
+                unit="€"
+              />
+            </div>
+          </div>
         </div>
-        <div className="pt-8">
-          <DualRangeSlider
-            defaultValue={[5000, 200000]}
-            max={200000}
-            min={5000}
-            step={1000}
-            onValueChange={(value: number[]) =>
-              setPriceRange([value[0], value[1]])
-            }
-            unit="€"
-          />
-        </div>
-      </div>
 
-      <div className="w-full xl:ml-72 2xl:ml-0">
-        <Section marginTop marginBottom>
+        <div className="2xl:w-3/4">
           {filteredVehicles.length > 0 ? (
-            <div className="grid grid-cols-1 justify-items-center gap-4 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid grid-cols-1 justify-items-center gap-6 md:grid-cols-2 xl:grid-cols-3">
               {filteredVehicles.map((vehicle, index) => (
                 <li key={index} className="list-none">
                   <CarCard
@@ -176,7 +178,7 @@ const VehiculesList: React.FC<VehiculesListProps> = ({ vehicles }) => {
               Aucun véhicule ne correspond à cette recherche !
             </p>
           )}
-        </Section>
+        </div>
       </div>
 
       <Sheet>
@@ -270,7 +272,7 @@ const VehiculesList: React.FC<VehiculesListProps> = ({ vehicles }) => {
           </div>
         </SheetContent>
       </Sheet>
-    </div>
+    </Section>
   );
 };
 

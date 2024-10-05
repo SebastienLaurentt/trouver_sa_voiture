@@ -22,7 +22,7 @@
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
+    --border: 0 0% 100%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 48%;
     --radius: 0.75rem;
@@ -36,7 +36,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border/10;
   }
   body {
     @apply bg-background text-foreground;
@@ -52,8 +52,23 @@
   }
 
 
+
   /* Custom class */
   .subtitle {
-    @apply md:w-[480px] md:text-lg mx-auto;
+    @apply md:w-[550px] md:text-lg mx-auto text-pretty;
+  }
+}
+
+@layer components {
+  .card-glass-effect {
+    @apply rounded-[2.25rem] border border-white/5 p-8 opacity-100 shadow-xl shadow-slate-900/5;
+    @apply bg-white/5 backdrop-blur-sm;
+    @apply transition-all duration-300 hover:bg-white/10;
+    @apply relative overflow-hidden;
+  }
+
+  .card-glass-effect::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none;
   }
 }

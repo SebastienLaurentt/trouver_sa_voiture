@@ -30,7 +30,7 @@ const CarCard = ({
 }: CarCardProps) => {
   return (
     <Link href={`/vehicules/${id}`}>
-      <div className="relative w-[320px] rounded-lg border shadow shadow-slate-800">
+      <div className="relative w-[320px] rounded-sm border shadow shadow-slate-800">
         <div className="relative h-[200px] w-full">
           {/* Image et tags */}
           <Image
@@ -43,7 +43,7 @@ const CarCard = ({
 
           {/* Tag "Nouveau" */}
           {tag && (
-            <div className="absolute left-0 top-0 rounded-tl-md bg-primary px-2 py-1 text-xs font-bold text-white">
+            <div className="absolute left-0 top-0 rounded-tl-sm bg-primary px-2 py-1 text-xs font-bold text-white">
               {tag}
             </div>
           )}

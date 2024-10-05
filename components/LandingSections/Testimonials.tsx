@@ -126,21 +126,25 @@ function Review({ text, name, date, className, ...props }: ReviewProps) {
   return (
     <div
       className={cn(
-        "animate-fade-in rounded-[2.25rem] border p-8 opacity-100 shadow-xl shadow-slate-900/5",
+        "card-glass-effect animate-fade-in",
         className
       )}
       style={{ animationDelay }}
       {...props}
     >
-      <p className="text-pretty">{text}</p>
-      <span className="mt-4 block text-sm ">{name}</span>
-      <span className="font-semibold text-primary">{date}</span>
-      <div className="mt-2 flex flex-row gap-x-0">
-        <Star fill="#cead6f" color="#cead6f" />
-        <Star fill="#cead6f" color="#cead6f" />
-        <Star fill="#cead6f" color="#cead6f" />
-        <Star fill="#cead6f" color="#cead6f" />
-        <Star fill="#cead6f" color="#cead6f" />
+      <div className="relative z-10">
+        <p className="text-pretty text-white/80">{text}</p>
+        <span className="mt-4 block text-sm font-semibold text-white/90">
+          {name}
+        </span>
+        <span className="font-semibold text-primary/90">{date}</span>
+        <div className="mt-2 flex flex-row gap-x-0">
+          <Star fill="#cead6f" color="#cead6f" />
+          <Star fill="#cead6f" color="#cead6f" />
+          <Star fill="#cead6f" color="#cead6f" />
+          <Star fill="#cead6f" color="#cead6f" />
+          <Star fill="#cead6f" color="#cead6f" />
+        </div>
       </div>
     </div>
   );
