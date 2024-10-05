@@ -27,7 +27,7 @@ const PageHeader = ({ title, description }: PageHeaderProps) => {
       <h1 id="title" className="mb-4 text-balance opacity-0 lg:w-[650px]">
         {title}
       </h1>
-      <p id="description" className="subtitle opacity-0">
+      <p id="description" className="subtitle text-muted-foreground opacity-0">
         {description}
       </p>
     </div>
