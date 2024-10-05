@@ -11,9 +11,11 @@ import {
 } from "@/components/ui/navigation-menu";
 
 import { cn } from "@/lib/utils";
-import { Atom, ChartNoAxesCombined, Handshake } from "lucide-react";
+import { ChartNoAxesCombined, Handshake } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import Logo from "../public/images/LogoWhite.png";
 import BurgerMenu from "./BurgerMenu";
 import { Button } from "./ui/button";
 
@@ -58,8 +60,7 @@ const Header: React.FC = () => {
     <header className="shadow-md">
       <nav className="relative mx-auto flex items-center justify-between px-6 py-4 md:max-w-2xl md:px-0 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-[1400px]">
         <div className="flex flex-row items-center gap-x-1">
-          <Atom size={28} className="text-primary" />
-          <span className="text-3xl font-semibold">TSV</span>
+          <Image src={Logo} alt="logo" width={100} height={100} />
         </div>
         <NavigationMenu className="hidden lg:absolute lg:left-1/2 lg:block lg:-translate-x-1/2">
           <NavigationMenuList>

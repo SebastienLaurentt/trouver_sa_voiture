@@ -1,10 +1,10 @@
 "use client";
 
-import { Atom } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LateralCar from "../public/images/LateralCar.jpg";
+import Logo from "../public/images/LogoWhite.png";
 import { Button } from "./ui/button";
 
 const Footer = () => {
@@ -41,15 +41,9 @@ const Footer = () => {
           </div>
         </div>
         <div className="mx-auto flex flex-col justify-between gap-y-8 py-12 md:flex-row md:gap-y-0">
-          <div className="flex flex-col">
-            <div className="flex flex-row items-center gap-x-1">
-              <Atom size={28} className="text-primary" />
-              <span className="text-3xl font-semibold">TSV</span>
-            </div>
-            <span className="w-[250px] text-left">
-              Trouver sa voiture{" "}
-              <span className="font-bold text-primary">facilement</span> !
-            </span>
+          <div className="flex flex-col gap-y-2">
+            <Image src={Logo} alt="logo" width={100} height={100} />
+            <span>Agence de courtier automobile</span>
           </div>
           <div className="flex flex-row justify-between gap-x-4 text-left lg:gap-x-8 2xl:gap-x-16">
             <div className="flex flex-col gap-y-3">
