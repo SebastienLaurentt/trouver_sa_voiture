@@ -30,7 +30,7 @@ const CarCard = ({
 }: CarCardProps) => {
   return (
     <Link href={`/vehicules/${id}`}>
-      <div className="relative w-[320px] rounded-sm border shadow shadow-slate-800">
+      <div className="relative w-full rounded-sm border shadow shadow-slate-800">
         <div className="relative h-[200px] w-full">
           {/* Image et tags */}
           <Image

@@ -69,10 +69,10 @@ const VehiculesList: React.FC<VehiculesListProps> = ({ vehicles }) => {
   ]);
 
   return (
-    <Section marginTop marginBottom classname="2xl:max-w-7xl">
-      <div className="flex flex-col 2xl:flex-row">
-        <div className="mb-8 hidden 2xl:mb-0 2xl:block 2xl:w-1/4 2xl:pr-4">
-          <div className="space-y-5 rounded-lg border bg-muted px-6 py-8 xl:px-10 2xl:sticky 2xl:top-24">
+    <Section marginTop marginBottom classname="xl:max-w-6xl 2xl:max-w-[1400px]">
+      <div className="flex flex-col  2xl:flex-row 2xl:gap-4">
+        <div className="mb-8 hidden 2xl:mb-0 2xl:block 2xl:w-1/4">
+          <div className="space-y-5 rounded-lg bg-muted px-6 py-8 xl:px-12 2xl:sticky 2xl:top-24">
             <h2 className="mb-4 text-xl font-bold">Filtres</h2>
             <Input
               placeholder="Rechercher..."
@@ -156,9 +156,9 @@ const VehiculesList: React.FC<VehiculesListProps> = ({ vehicles }) => {
 
         <div className="2xl:w-3/4">
           {filteredVehicles.length > 0 ? (
-            <div className="grid grid-cols-1 justify-items-center gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:gap-x-4 2xl:gap-y-6">
               {filteredVehicles.map((vehicle, index) => (
-                <li key={index} className="list-none">
+                <li key={index} className="w-full list-none">
                   <CarCard
                     id={vehicle.id}
                     src={`https://aotdlnddxemcekzntizx.supabase.co/storage/v1/object/public/images/${vehicle.imageUrl}`}
@@ -183,7 +183,7 @@ const VehiculesList: React.FC<VehiculesListProps> = ({ vehicles }) => {
 
       <Sheet>
         <SheetTrigger asChild>
-          <div className="fixed inset-x-0 bottom-0 z-50 flex justify-center bg-gradient-to-t from-transparent/100 via-transparent/60 to-transparent py-4 xl:hidden">
+          <div className="fixed inset-x-0 bottom-0 z-50 flex justify-center bg-gradient-to-t from-transparent/100 via-transparent/60 to-transparent py-4 2xl:hidden">
             <Button className="flex w-[200px] flex-row gap-x-2 bg-slate-200 px-8 py-2 text-slate-950">
               Filtrer <Filter size={18} />
             </Button>

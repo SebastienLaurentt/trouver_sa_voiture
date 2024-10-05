@@ -63,7 +63,7 @@
   .card-glass-effect {
     @apply rounded-[2.25rem] border border-white/5 p-8 opacity-100 shadow-xl shadow-slate-900/5;
     @apply bg-white/5 backdrop-blur-sm;
-    @apply transition-all duration-300 hover:bg-white/10;
+    @apply transition-all duration-300 ;
     @apply relative overflow-hidden;
   }
 
