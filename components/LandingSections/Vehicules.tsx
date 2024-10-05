@@ -19,10 +19,10 @@ const Voitures = async () => {
         description="Trouvez la voiture de vos rêves parmis notre sélection"
       />
       <div className="flex w-full flex-col items-center">
-        <Tabs defaultValue="classiques" className="mx-auto w-full text-center">
+        <Tabs defaultValue="premium" className="mx-auto w-full text-center">
           <TabsList className="">
-            <TabsTrigger value="classiques">Classiques</TabsTrigger>
             <TabsTrigger value="premium">Premium</TabsTrigger>
+            <TabsTrigger value="classiques">Classiques</TabsTrigger>
           </TabsList>
 
           {/* Contenu pour les véhicules classiques */}

@@ -161,7 +161,7 @@ function ReviewGrid({ isVisible }: { isVisible: boolean }) {
     <div
       ref={containerRef}
       className={cn(
-        "relative  mt-16 grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden  sm:mt-20 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3", // Add xl:grid-cols-3
+        "relative  mt-16 grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden  sm:mt-20 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3", 
         isVisible && "animate-fade-in"
       )}
     >

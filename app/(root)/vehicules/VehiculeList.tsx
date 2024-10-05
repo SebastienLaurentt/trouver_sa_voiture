@@ -72,7 +72,7 @@ const VehiculesList: React.FC<VehiculesListProps> = ({ vehicles }) => {
     <Section marginTop marginBottom classname="2xl:max-w-[1400px] relative">
       <div className="flex flex-col 2xl:flex-row 2xl:gap-6">
         <div className="mb-8 hidden 2xl:mb-0 2xl:block 2xl:w-1/4">
-          <div className="space-y-5 rounded-lg bg-muted px-6 py-8 xl:px-12 2xl:sticky 2xl:top-24">
+          <div className="card-glass-effect space-y-5  px-6 py-8 xl:px-12 2xl:sticky 2xl:top-24">
             <h2 className="mb-4 text-xl font-bold">Filtres</h2>
             <Input
               placeholder="Rechercher..."
@@ -184,7 +184,7 @@ const VehiculesList: React.FC<VehiculesListProps> = ({ vehicles }) => {
       <Sheet>
         <SheetTrigger asChild>
           <div className="sticky bottom-0 z-50 mt-4 flex justify-center bg-gradient-to-t from-background via-background/60 to-transparent py-4 2xl:hidden">
-            <Button className="flex w-[200px] flex-row gap-x-2 bg-slate-200 px-8 py-2 hover:bg-slate-200 text-slate-950">
+            <Button className="flex w-[200px] flex-row gap-x-2 bg-slate-200 px-8 py-2 text-slate-950 hover:bg-slate-200">
               Filtrer <Filter size={18} />
             </Button>
           </div>
