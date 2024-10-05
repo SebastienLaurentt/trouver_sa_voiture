@@ -18,8 +18,7 @@ const Footer = () => {
               Vous avez besoin d&apos;être accompagné ?
             </h2>
             <p className="mb-8 md:max-w-[360px]">
-              Laissez-nous votre email et nous vous recontacterons au plus vite
-              !{" "}
+              Laissez-nous votre email et nous vous recontacterons au plus vite.
             </p>
             <div className="flex flex-row gap-x-2 px-6">
               <Input placeholder="Votre email" />
