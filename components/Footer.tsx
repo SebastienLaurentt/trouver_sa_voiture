@@ -1,10 +1,11 @@
 "use client";
 
-import { Atom, Send } from "lucide-react";
+import { Atom } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import LateralCar from "../public/images/LateralCar.jpg";
 import { Button } from "./ui/button";
-import { Input } from "./ui/input";
 
 const Footer = () => {
   const pathname = usePathname();
@@ -12,23 +13,34 @@ const Footer = () => {
   return (
     <footer>
       <div className="mx-auto px-6 md:max-w-2xl md:px-0 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-[1400px]">
-        <div className={`${isCtaHidden ? "hidden" : "py-8"}`}>
-          <div className="flex flex-col items-center  rounded-xl px-4 py-12 text-center md:py-16">
+        <div
+          className={`${
+            isCtaHidden
+              ? "hidden"
+              : "flex flex-row items-center justify-between py-12 md:gap-x-8 lg:gap-x-0"
+          }`}
+        >
+          <div>
             <h2 className="mb-4 font-semibold md:max-w-[400px]">
-              Vous avez besoin d&apos;être accompagné ?
+              À vos cotés pour vos projets automobiles
             </h2>
-            <p className="mb-8 md:max-w-[360px]">
-              Laissez-nous votre email et nous vous recontacterons au plus vite.
+            <p className="mb-8 text-muted-foreground md:max-w-[360px]">
+              Estimation, achat, vente, c&apos;est notre quotidien.
             </p>
-            <div className="flex flex-row gap-x-2 px-6">
-              <Input placeholder="Votre email" />
-              <Button className="flex flex-row items-center gap-x-2">
-                Envoyer <Send size={18} />
+            <div className="flex flex-row gap-x-2 ">
+              <Button className="flex flex-row items-center gap-x-2" asChild>
+                <Link href="/vehicules">Voir le catalogue</Link>
+              </Button>
+              <Button asChild variant="secondary">
+                <Link href="/contact">Nous contacter</Link>
               </Button>
             </div>
           </div>
+          <div className="hidden md:block">
+            <Image src={LateralCar} alt="logo" width={600} height={600} />
+          </div>
         </div>
-        <div className="mx-auto flex flex-col justify-between gap-y-8 py-12  md:flex-row md:gap-y-0 ">
+        <div className="mx-auto flex flex-col justify-between gap-y-8 py-12 md:flex-row md:gap-y-0">
           <div className="flex flex-col">
             <div className="flex flex-row items-center gap-x-1">
               <Atom size={28} className="text-primary" />
@@ -39,7 +51,7 @@ const Footer = () => {
               <span className="font-bold text-primary">facilement</span> !
             </span>
           </div>
-          <div className="flex flex-row gap-x-8 text-left">
+          <div className="flex flex-row justify-between gap-x-4 text-left lg:gap-x-8 2xl:gap-x-16">
             <div className="flex flex-col gap-y-3">
               <span className="font-bold text-muted-foreground">
                 {" "}

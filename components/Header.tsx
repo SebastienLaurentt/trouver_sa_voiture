@@ -15,6 +15,7 @@ import { Atom, ChartNoAxesCombined, Handshake } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import BurgerMenu from "./BurgerMenu";
+import { Button } from "./ui/button";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -55,12 +56,12 @@ const Header: React.FC = () => {
 
   return (
     <header className="shadow-md">
-      <nav className="mx-auto flex items-center justify-between px-6 py-4 md:max-w-2xl md:px-0 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-[1400px]">
+      <nav className="relative mx-auto flex items-center justify-between px-6 py-4 md:max-w-2xl md:px-0 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-[1400px]">
         <div className="flex flex-row items-center gap-x-1">
           <Atom size={28} className="text-primary" />
           <span className="text-3xl font-semibold">TSV</span>
         </div>
-        <NavigationMenu className="hidden lg:block">
+        <NavigationMenu className="hidden lg:absolute lg:left-1/2 lg:block lg:-translate-x-1/2">
           <NavigationMenuList>
             <NavigationMenuItem>
               <Link href="/" legacyBehavior passHref>
@@ -111,15 +112,11 @@ const Header: React.FC = () => {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/contact" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Contact
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+        <Button asChild variant="secondary" className="hidden lg:block">
+          <Link href="/contact">Nous contacter</Link>
+        </Button>
 
         <div className="flex items-center lg:hidden">
           <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
