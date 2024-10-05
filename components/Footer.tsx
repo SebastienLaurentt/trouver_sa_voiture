@@ -13,11 +13,11 @@ const Footer = () => {
     <footer>
       <div className="mx-auto px-6 md:max-w-2xl md:px-0 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7xl">
         <div className={`${isCtaHidden ? "hidden" : "py-8"}`}>
-          <div className="flex flex-col items-center  gap-y-4 rounded-xl bg-muted px-4 py-12 text-center md:gap-y-6 md:py-16">
-            <h2 className="font-semibold md:max-w-[400px]">
+          <div className="flex flex-col items-center  rounded-xl px-4 py-12 text-center md:py-16">
+            <h2 className="mb-4 font-semibold md:max-w-[400px]">
               Vous avez besoin d&apos;être accompagné ?
             </h2>
-            <p className="md:max-w-[360px]">
+            <p className="mb-8 md:max-w-[360px]">
               Laissez-nous votre email et nous vous recontacterons au plus vite
               !{" "}
             </p>

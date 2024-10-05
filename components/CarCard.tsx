@@ -43,14 +43,14 @@ const CarCard = ({
 
           {/* Tag "Nouveau" */}
           {tag && (
-            <div className="absolute left-0 top-0 rounded-tl-sm bg-primary px-2 py-1 text-xs font-bold text-white">
+            <div className="absolute left-0 top-0 rounded-tl-sm bg-accent px-2 py-1.5 text-xs font-bold text-white">
               {tag}
             </div>
           )}
 
           {/* Tag "Vendu" */}
           {sold && (
-            <div className="absolute right-0 top-0  rounded-tr-md bg-red-800 px-2 py-1 text-xs font-bold text-white">
+            <div className="absolute right-0 top-0  rounded-tr-md bg-red-800 px-2 py-1.5 text-xs font-bold text-white">
               Vendu
             </div>
           )}
@@ -88,9 +88,7 @@ const CarCard = ({
           </div>
           <div className="flex w-full flex-row items-center justify-between gap-x-2">
             <span
-              className={`text-2xl font-bold ${
-                premium ? "text-tertiary" : ""
-              }`}
+              className={`text-2xl font-bold ${premium ? "text-tertiary" : ""}`}
             >
               {price} €
             </span>
