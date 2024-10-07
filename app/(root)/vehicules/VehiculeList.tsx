@@ -183,7 +183,7 @@ const VehiculesList: React.FC<VehiculesListProps> = ({ vehicles }) => {
 
       <Sheet>
         <SheetTrigger asChild>
-          <div className="sticky bottom-0 z-50 mt-4 flex justify-center bg-gradient-to-t from-background via-background/60 to-transparent py-4 2xl:hidden">
+          <div className="sticky bottom-0 z-30 mt-4 flex justify-center bg-gradient-to-t from-background via-background/60 to-transparent py-4 2xl:hidden">
             <Button className="flex w-[200px] flex-row gap-x-2 bg-slate-200 px-8 py-2 text-slate-950 hover:bg-slate-200">
               Filtrer <Filter size={18} />
             </Button>
