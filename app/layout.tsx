@@ -1,6 +1,6 @@
 import QueryProvider from "@/components/QueryProvider";
 import { Toaster } from "@/components/ui/toaster";
-import { poppins } from "@/lib/font";
+import { general, satoshi } from "@/lib/font";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <QueryProvider>
-        <body className={`${poppins} min-h-screen`}>
+        <body className={`${general} min-h-screen`}>
           {children} <Toaster />
         </body>
       </QueryProvider>
