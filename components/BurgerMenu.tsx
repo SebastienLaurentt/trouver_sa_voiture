@@ -1,6 +1,8 @@
-import { Atom, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { Dispatch, SetStateAction, useEffect } from "react";
+import Logo from "../public/images/LogoWhite.png";
 
 interface IBurgerMenu {
   isOpen: boolean;
@@ -47,7 +49,6 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
           isOpen ? "opacity-100" : "hidden opacity-0"
         }`}
       >
-   
         <button
           id="CloseBurgerMenu"
           onClick={() => setIsOpen(false)}
@@ -57,12 +58,9 @@ export default function BurgerMenu({ isOpen, setIsOpen }: IBurgerMenu) {
           <X className="lg:size-10" />
         </button>
 
-      
         <div className="mt-24 flex flex-col gap-y-20">
-          
           <div className="flex flex-row items-center justify-center gap-x-1">
-            <Atom size={44} className="text-primary" />
-            <span className="text-5xl font-semibold">TSV</span>
+            <Image src={Logo} alt="logo" width={200} height={200} />
           </div>
 
           <ul className="flex flex-col gap-y-2 text-lg">

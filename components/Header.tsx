@@ -109,7 +109,7 @@ const Header: React.FC = () => {
             <NavigationMenuItem>
               <Link href="/about" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  À propos
+                  À Propos
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
