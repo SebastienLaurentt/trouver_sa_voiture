@@ -1,6 +1,6 @@
 import QueryProvider from "@/components/QueryProvider";
 import { Toaster } from "@/components/ui/toaster";
-import { general, satoshi } from "@/lib/font";
+import { general } from "@/lib/font";
 import type { Metadata } from "next";
 import "./globals.css";
 
