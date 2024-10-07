@@ -59,9 +59,9 @@ const Header: React.FC = () => {
   return (
     <header className="shadow-md">
       <nav className="relative mx-auto flex items-center justify-between px-6 py-4 md:max-w-2xl md:px-0 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-[1400px]">
-        <div className="flex flex-row items-center gap-x-1">
+        <Link href="/" className="flex flex-row items-center gap-x-1">
           <Image src={Logo} alt="logo" width={100} height={100} />
-        </div>
+        </Link>
         <NavigationMenu className="hidden lg:absolute lg:left-1/2 lg:block lg:-translate-x-1/2">
           <NavigationMenuList>
             <NavigationMenuItem>

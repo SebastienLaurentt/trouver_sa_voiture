@@ -8,7 +8,7 @@ const Services = () => {
   return (
     <Section marginTop>
       <SectionHeader
-        tag="Nos Services"
+        tag="Nos services"
         description="Vous accompagner dans vos démarches automobiles"
       />
       <div className="flex flex-col gap-y-4 lg:flex-row lg:gap-x-4 lg:gap-y-0">
