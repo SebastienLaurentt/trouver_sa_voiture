@@ -45,7 +45,7 @@ const Footer = () => {
         <div className="mx-auto flex flex-col justify-between gap-y-8 py-12 md:flex-row md:gap-y-0">
           <div className="flex flex-col gap-y-2">
             <Image src={Logo} alt="logo" width={100} height={100} />
-            <span>Agence de courtier automobile</span>
+            <span>Agence de courtage automobile</span>
           </div>
           <div className="flex flex-row justify-between gap-x-4 text-left lg:gap-x-8 2xl:gap-x-16">
             <div className="flex flex-col gap-y-3">
