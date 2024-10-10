@@ -51,7 +51,7 @@ const Footer = () => {
             <div className="flex flex-col gap-y-3">
               <span className="font-bold text-muted-foreground">
                 {" "}
-                Nos voitures
+                Véhicules
               </span>
               <ul className="flex flex-col gap-y-1 text-foreground/90">
                 <Link href="/vehicules" className="xl:hover:text-foreground">
@@ -64,7 +64,7 @@ const Footer = () => {
             </div>
             <div className="flex flex-col gap-y-3">
               <span className="font-bold text-muted-foreground">
-                Nos Services
+                Services
               </span>
               <ul className="flex flex-col gap-y-1 text-foreground/90">
                 <Link
