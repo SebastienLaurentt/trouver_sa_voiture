@@ -9,7 +9,6 @@ import { useEffect } from "react";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
@@ -30,7 +29,7 @@ const Services = () => {
       "#services-blur",
       { opacity: 0, scale: 0.8 },
       { opacity: 1, scale: 1, duration: 1, ease: "power2.out" },
-      "-=0.4" 
+      "-=0.4"
     );
 
     return () => {
@@ -42,7 +41,7 @@ const Services = () => {
     <Section marginTop>
       <div
         id="services-container"
-        className="relative rounded-xl bg-black opacity-0"
+        className="relative rounded-xl bg-black p-4 opacity-0 md:p-0"
       >
         <div
           id="services-blur"

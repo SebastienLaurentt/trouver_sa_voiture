@@ -126,19 +126,18 @@ function Review({ text, name, date, className, ...props }: ReviewProps) {
 
   return (
     <div
-      className={cn(
-        "card-glass-effect animate-fade-in relative bg-black/70 backdrop-blur-sm",
-        className
-      )}
+      className={cn("card-glass-effect animate-fade-in relative", className)}
       style={{ animationDelay }}
       {...props}
     >
-      <div className="relative">
-        <p className="text-pretty text-white/80">{text}</p>
-        <span className="mt-4 block text-sm font-semibold text-white/90">
+      <div className="relative z-10">
+        <p className="text-shadow-sm text-pretty text-white/90">{text}</p>
+        <span className="text-shadow-sm mt-4 block text-sm font-semibold text-white">
           {name}
         </span>
-        <span className="font-semibold text-primary/90">{date}</span>
+        <span className="text-shadow-sm font-semibold text-primary">
+          {date}
+        </span>
         <div className="mt-2 flex flex-row gap-x-0">
           <Star fill="#cead6f" color="#cead6f" />
           <Star fill="#cead6f" color="#cead6f" />
@@ -221,7 +220,7 @@ export function Testimonials() {
     <Section marginBottom marginTop>
       <div
         ref={containerRef}
-        className="relative rounded-xl bg-black  opacity-0"
+        className="relative rounded-xl bg-black p-4 opacity-0 md:p-0"
       >
         <div className="relative z-10">
           <SectionHeader
