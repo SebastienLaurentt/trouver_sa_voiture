@@ -11,8 +11,10 @@ const Footer = () => {
   const pathname = usePathname();
   const isCtaHidden = pathname === "/contact";
   return (
-    <footer>
-      <div className="mx-auto px-6 md:max-w-2xl md:px-0 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-[1400px]">
+    <footer className="relative overflow-hidden">
+      <div className="footer-blur-effect" />
+
+      <div className="relative z-10 mx-auto px-6 md:max-w-2xl md:px-0 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-[1400px]">
         <div
           className={`${
             isCtaHidden

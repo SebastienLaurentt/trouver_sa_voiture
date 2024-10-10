@@ -45,7 +45,7 @@ const Services = () => {
       >
         <div
           id="services-blur"
-          className="pointer-events-none absolute left-1/2 top-0 size-1/2 -translate-x-1/2 rounded-full bg-primary/20 opacity-0 blur-[100px]"
+          className="blur-effect-services opacity-0"
         />
 
         <div className="relative z-10">

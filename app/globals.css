@@ -70,4 +70,18 @@
     @apply before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/10 before:via-transparent before:to-transparent before:pointer-events-none;
     @apply after:absolute after:inset-0 after:bg-gradient-to-tr after:from-transparent after:via-transparent after:to-white/10 after:pointer-events-none;
   }
+  .footer-blur-effect {
+    @apply pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-primary/20 blur-[100px];
+    mask-image: linear-gradient(to top, white, transparent);
+  }
+  .blur-effect-services {
+    @apply pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 rounded-full bg-primary/20 blur-[100px];
+    width: 80%;
+    height: 70%;
+    
+    @screen md {
+      width: 50%;
+      height: 50%;
+    }
+  }
 }
