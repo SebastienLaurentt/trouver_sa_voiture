@@ -221,7 +221,7 @@ export function Testimonials() {
     <Section marginBottom marginTop>
       <div
         ref={containerRef}
-        className="relative rounded-xl bg-black p-8 opacity-0"
+        className="relative rounded-xl bg-black  opacity-0"
       >
         <div className="relative z-10">
           <SectionHeader
