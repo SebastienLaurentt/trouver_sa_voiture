@@ -158,21 +158,31 @@ function ReviewGrid() {
   const column3 = columns[2];
 
   return (
-    <div className="relative mt-16 grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden sm:mt-20 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-      {/* Élément de flou modifié */}
-      <div className="absolute inset-0 z-0 ">
-        <div className="absolute left-1/2 top-1/2 size-[200px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 blur-[60px] xl:size-[400px]"></div>
+    <div className="relative mt-16 grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 sm:mt-20 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+      {/* Conteneur pour l'effet de lumière */}
+      <div className="absolute inset-0 z-0">
+        {/* Effet de lumière */}
+        <div className="absolute left-1/2 top-1/2 h-[500px] w-screen -translate-x-1/2 -translate-y-1/2 bg-white/10 blur-[100px] md:w-[400px] md:rounded-full lg:size-[500px] xl:size-[600px]"></div>
       </div>
 
-      <div className="relative z-10">
-        <ReviewColumn reviews={column1} msPerPixel={30} />
+      {/* Conteneur pour les colonnes avec overflow caché */}
+      <div className="relative z-10 h-full overflow-hidden">
+        <div className="h-full">
+          <ReviewColumn reviews={column1} msPerPixel={30} />
+        </div>
       </div>
-      <div className="relative z-10 hidden md:block">
-        <ReviewColumn reviews={column2} msPerPixel={40} />
+      <div className="relative z-10 hidden h-full overflow-hidden md:block">
+        <div className="h-full">
+          <ReviewColumn reviews={column2} msPerPixel={40} />
+        </div>
       </div>
-      <div className="relative z-10 hidden xl:block">
-        <ReviewColumn reviews={column3} msPerPixel={30} />
+      <div className="relative z-10 hidden h-full overflow-hidden xl:block">
+        <div className="h-full">
+          <ReviewColumn reviews={column3} msPerPixel={30} />
+        </div>
       </div>
+
+      {/* Gradients */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-32 bg-gradient-to-b from-[#000]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-t from-[#000]" />
     </div>
