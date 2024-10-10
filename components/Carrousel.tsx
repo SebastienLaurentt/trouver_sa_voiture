@@ -1,15 +1,18 @@
 "use client";
+
 import { EditVehicleFormData } from "@/lib/schema";
 import { TouchEvent, useEffect, useRef, useState } from "react";
 import CarCard from "./CarCard";
 
+interface CarrouselProps {
+  vehicles: EditVehicleFormData[];
+  isPremium?: boolean;
+}
+
 const Carrousel = ({
   vehicles,
   isPremium = false,
-}: {
-  vehicles: EditVehicleFormData[];
-  isPremium?: boolean;
-}) => {
+}: CarrouselProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [touchStartX, setTouchStartX] = useState<number>(0);
   const [touchEndX, setTouchEndX] = useState<number>(0);
@@ -19,7 +22,7 @@ const Carrousel = ({
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
-      setCurrentIndex(0); // Reset index on resize
+      setCurrentIndex(0); 
     };
 
     if (typeof window !== "undefined") {
