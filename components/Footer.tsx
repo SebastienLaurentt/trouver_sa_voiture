@@ -77,13 +77,13 @@ const Footer = () => {
                   href="/services/achat"
                   className="xl:hover:text-foreground"
                 >
-                  Acheter
+                  Achat
                 </Link>
                 <Link
                   href="/services/vente"
                   className="xl:hover:text-foreground"
                 >
-                  Vendre
+                  Vente
                 </Link>
               </ul>
             </div>
