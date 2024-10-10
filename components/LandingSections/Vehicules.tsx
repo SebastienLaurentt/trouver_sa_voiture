@@ -2,14 +2,17 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { EditVehicleFormData } from "@/lib/schema";
-import { useInView } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BookOpen } from "lucide-react";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect } from "react";
 import Carrousel from "../Carrousel";
 import Section from "../Section";
 import SectionHeader from "../SectionHeader";
 import { Button } from "../ui/button";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface VehiculesProps {
   premiumVehicles: EditVehicleFormData[];
@@ -17,16 +20,29 @@ interface VehiculesProps {
 }
 
 const Voitures = ({ premiumVehicles, classicVehicles }: VehiculesProps) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.4 });
+  useEffect(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#vehicules-container",
+        start: "top 60%",
+        once: true,
+      },
+    });
+
+    tl.fromTo(
+      "#vehicules-container",
+      { opacity: 0 },
+      { opacity: 1, duration: 0.7, ease: "power2.out" }
+    );
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
 
   return (
     <Section>
-      <div
-        ref={containerRef}
-        className="opacity-0 transition-opacity duration-700 ease-in-out"
-        style={{ opacity: isInView ? 1 : 0 }}
-      >
+      <div id="vehicules-container" className="opacity-0">
         <SectionHeader
           tag="Notre catalogue"
           description="Trouvez la voiture de vos rêves parmis notre sélection"

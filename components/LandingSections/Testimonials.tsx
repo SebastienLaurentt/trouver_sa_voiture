@@ -1,7 +1,8 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useInView } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Star } from "lucide-react";
 import { HTMLAttributes, useEffect, useRef, useState } from "react";
 import Section from "../Section";
@@ -125,10 +126,7 @@ function Review({ text, name, date, className, ...props }: ReviewProps) {
 
   return (
     <div
-      className={cn(
-        "card-glass-effect animate-fade-in",
-        className
-      )}
+      className={cn("card-glass-effect animate-fade-in", className)}
       style={{ animationDelay }}
       {...props}
     >
@@ -150,58 +148,72 @@ function Review({ text, name, date, className, ...props }: ReviewProps) {
   );
 }
 
-function ReviewGrid({ isVisible }: { isVisible: boolean }) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const columns = splitArray(TESTIMONIALS, 3); // Change to 3 columns
+function ReviewGrid() {
+  const columns = splitArray(TESTIMONIALS, 3);
   const column1 = columns[0];
   const column2 = columns[1];
   const column3 = columns[2];
 
   return (
-    <div
-      ref={containerRef}
-      className={cn(
-        "relative  mt-16 grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden  sm:mt-20 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3", 
-        isVisible && "animate-fade-in"
-      )}
-    >
-      {isVisible ? (
-        <>
-          <ReviewColumn reviews={column1} msPerPixel={30} />
-          <ReviewColumn
-            reviews={column2}
-            className="hidden md:block"
-            msPerPixel={40}
-          />
-          <ReviewColumn
-            reviews={column3}
-            className="hidden xl:block"
-            msPerPixel={30}
-          />
-        </>
-      ) : null}
+    <div className="relative mt-16 grid h-[49rem] max-h-[150vh] grid-cols-1 items-start gap-8 overflow-hidden sm:mt-20 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+      <ReviewColumn reviews={column1} msPerPixel={30} />
+      <ReviewColumn
+        reviews={column2}
+        className="hidden md:block"
+        msPerPixel={40}
+      />
+      <ReviewColumn
+        reviews={column3}
+        className="hidden xl:block"
+        msPerPixel={30}
+      />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#000]" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#000]" />
     </div>
   );
 }
 
+gsap.registerPlugin(ScrollTrigger);
+
 export function Testimonials() {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.4 });
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top 60%",
+        once: true,
+      },
+    });
+
+    tl.fromTo(
+      container,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.7, ease: "power2.out" }
+    );
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
 
   return (
     <Section marginBottom marginTop>
       <div
         ref={containerRef}
-        className=" opacity-0 transition-opacity duration-700 ease-in-out"
-        style={{ opacity: isInView ? 1 : 0 }}
+        className="relative rounded-xl bg-black p-8 opacity-0"
       >
-        <SectionHeader
-          tag="Avis clients"
-          description="Ils sont satisfaits de nos services"
-        />
-        <ReviewGrid isVisible={isInView} />
+        <div className="relative z-10">
+          <SectionHeader
+            tag="Avis clients"
+            description="Ils sont satisfaits de nos services"
+          />
+          <ReviewGrid />
+        </div>
       </div>
     </Section>
   );
